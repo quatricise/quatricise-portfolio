@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quatricise | Music producer & illustrator portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="Music producer and illustrator website portfolio. Based in Czech Republic. Electronic, ambient, lofi music.">
+  <meta name="theme-color" content="#51326b"/>
+  <meta http-equiv="Cache-Control" content="no-store"/>
+  <meta http-equiv="expires" content="-1" />
+
+  <link rel="icon" href="images/quatricise_planet_icon_16w.png" type="image/gif" sizes="16x16">
+  <link rel='stylesheet' href='css/style.css'>
+  <link rel='stylesheet' href='css/projectDetail.css'>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  
+  <script src="fontawesomeScript.js" type='text/javascript' async></script>
+  <script src="lazysizes.min.js" async></script>
+</head>
+<body>
+<div id="daytime-check" style="display:hidden;"></div>
+
+<div class="preloader">
+  <div class="preloader-image--small-circle spinning">
+    <img class="" src="images/circle_loading.png" alt="">
+  </div>
+</div>
+
+<div class='header'>
+  <div class="navbar">
+    <div tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);">
+    </div>
+    <div class='buttonCell hidden'>
+      <div class='disablePointerEvents' id='dayNightSwitchCell'>
+        <label class="disablePointerEvents dayNightSwitch">
+          <input tabindex="-1" class='disablePointerEvents' type="checkbox" id='dayNightCheckbox'>
+          <span class="disablePointerEvents, slider round"></span>
+        </label>
+      </div>
+      <button tabindex="0" class='brightness-mode-switch-text'onclick='toggleCheckbox()'>LIGHT MODE</button>
+      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">projects</button>
+      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">about</button>
+    </div>
+    <div class="hamburger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </div>
+</div>
+
+<div id="search-results-page" class="hidden">
+  <div id="search-results-wrapper">
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<div id='projects-page'>
+  <div id="projects-page-content" class='pointerEventsNone no-scrollbar'>
+    <div class="projects-page-header">
+      <h1 id="projects-page-main-heading">Projects</h1>
+      <div class="project-type-switch">
+        <div id="project-categories">
+          <div tabindex="0" class="project-switch-item active" data-category="*"            >everything</div>
+          <div tabindex="0" class="project-switch-item"        data-category="music"        >music</div>
+          <div tabindex="0" class="project-switch-item"        data-category="illustration" >illustration</div>
+          <div tabindex="0" class="project-switch-item"        data-category="design"       >design</div>
+          <div tabindex="0" class="project-switch-item"        data-category="code"         >code</div>
+        </div>
+        <div tabindex="0" id="search-bar" class="search-bar" onclick="Search.showSearchBar()">
+          <input type="text" name="" id="search-bar-input">
+          <img src="images/icon_search_white.png" class="search-bar-icon">
+        </div>
+      </div>
+    </div>
+  <div id="projects-gallery-wrapper">
+    <div id="projects-gallery"></div>
+  </div>
+  <audio id="active-audio-element" ontimeupdate="onTimeUpdate()">
+    <source id="source-audio" src="" type="audio/mpeg">
+  </audio>
+  </div>
+</div>
+
+<div id="project-detail" class="">
+  <div id="background-container" class='fullscreen-fixed'>
+    <div id='background' class='background-dark background-ancient-cycles'></div>
+  </div>
+  <div id="project-detail-panel">
+    <div id="project-detail-hide-button" onclick="ProjectManager.hideProjectDetail()">Hide</div>
+    <div id="project-detail-content">
+      <div id="project-detail-artwork-side">
+        <img class="artwork-side-image" src="projectData/music/flowerized/images/coverLarge.jpg" alt="">
+      </div>
+      <div id="project-detail-text-side">
+        <div id="project-detail-type">Project type</div>
+        <h2  id="project-detail-heading">Project name</h2>
+        <div id="project-detail-description">
+          Some data
+        </div>
+        <div id="project-detail-tracklist"></div>
+      </div>
+    </div>
+      <div id="audio-player">
+        <div class="player-control-panel">
+          <div class="infos-ctn">
+          <div style='width: 50px' class="timer">00:00</div>
+          <div class="title"></div>
+          <div class="duration">00:00</div>
+        </div>
+        <div id="my-progress-hitbox">
+          <div id="myProgress" class="bg-color--purple-bright04">
+            <div id="myBar" style='width: 0%'>
+              <div id="myBarCircle" style="left: 0%"></div>
+              <div class='myBarColor'></div>
+            </div>
+          </div>
+        </div>
+        <div class="display-flex">
+        <div class="btn-ctn">
+          <div class="btn-action first-btn hover-day" onclick="previous()">
+            <div id="btn-faws-back">
+              <i class='fas fa-step-backward'></i>
+            </div>
+          </div>
+          <div class="btn-action third-btn hover-day" onclick="toggleAudio()">
+            <div id="btn-faws-play-pause">
+              <i class='fas fa-play' id="icon-play"></i>
+              <i class='fas fa-pause' id="icon-pause" style="display: none"></i>
+            </div>
+          </div>
+          <div class="btn-action fifth-btn hover-day" onclick="next()">
+            <div id="btn-faws-next">
+              <i class='fas fa-step-forward'></i>
+            </div>
+          </div>
+          <div class="volume-slider">
+            <div class="btn-volume seventh-btn btn-action hover-day" id="volume-slider" onclick="toggleMute()">
+              <div id="btn-faws-volume-slider" class="">
+                <i id="icon-vol" class='fas fa-volume-up'></i>
+                <i id="icon-vol-mute" class='fas fa-volume-mute' style="display: none"></i>
+              </div>
+            </div >
+              <div id="volume-bar" >
+                <div id="volume-bar--bg"></div>
+                <div id="volume-bar--inner">
+                  <img id="volumeCircle" src='images/my_bar_circle_white.png'></img>
+                </div>
+            </div>
+          </div>
+        </div>
+        <span class="navbar--music-links"></span>
+      </div>
+      </div>
+    </div>
+    <div id="project-detail-arrows">
+      <div tabindex="0" class="arrow left" title="Previous project"></div>
+      <div tabindex="0" class="arrow right" title="Next project"></div>
+    </div>
+  </div>
+</div>
+
+<div id="aboutPage" class='pointerEventsNone no-scrollbar page hidden'>
+  <div class="about-section">
+    <div class="about-text">
+        <p class="aboutParagraph">
+          <span class="paragraph-section">
+            Hi, my name isn't quatricise, I don't even know how to pronounce that word, but anyways... <br> <br>
+            I do various things, including music production, illustration and programming/web design.
+            You should find some of those things here. If not, I have social media too.
+          </span>
+          <span class="paragraph-section">
+            I'm open to letting people use my music, but please write me first.
+            I accept art and music commissions as well.
+            Please message me via email or Instagram.
+            <br><br>
+            stepantrvaj@gmail.com
+            <br>
+            instagram.com/quatricise
+          </span>
+      </p>
+      <div class="aboutParagraph">
+        <span class="paragraph-section">
+          Music
+          <br>
+        </span>
+        <span class="music-links">
+          <a target="_blank" rel="noopener" class="" href="https://quatricise.bandcamp.com"><i class="fab fa-bandcamp"></i></a>
+          <a target="_blank" rel="noopener" class="" href="https://soundcloud.com"><i class="fab fa-soundcloud"></i></a>
+          <a target="_blank" rel="noopener" class="" href="https://open.spotify.com/artist/5Zs4jYGAgMBNVEx4znSTxp?si=VauChTQFRoGvJXgQ8F7OLA"><i class="fab fa-spotify"></i></a>
+          <a target="_blank" rel="noopener" class="" href="https://app.matter.online/@quatricise"><img class="matter-logo" src="images/matter_logo_white.png" alt=""></a>
+        </span>
+        <span class="paragraph-section">
+          Art 
+          <br>
+        </span>
+        <span class="social-media-links">
+          <a target="_blank" title="Behance" rel="noopener" href='https://behance.net/quatricise'><i class="fab fa-behance-square"></i></a></a>
+          <a target="_blank" title="Instagram" rel="noopener" class="tooltip" href = "https://instagram.com/quatricise"><i class="fab fa-instagram"></i></a>
+          <a target="_blank" title="Twitter" rel="noopener" class="tooltip" href = "https://twitter.com/quatricise"><i class="fab fa-twitter"></i></a>
+        </span>
+        <span class="paragraph-section">
+          Contact me
+          <br>
+        </span>
+        <span class="social-media-links">
+          <a target="_blank" title="Email me" rel="noopener" class="tooltip" href="mailto: stepantrvaj@gmail.com"><i class="fas fa-envelope-square"></i></a>
+        </span>
+        <div style="height: 1px;"></div>
+      <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id='lightboxFull' class='display-flex opacity-zero z-index-minus100 hidden no-scrollbar pointerEventsNoneBlock'>
+  <img src="images/circle_loading.png" alt="" class="circle-loading">
+  <div class="lightbox-full--page" id="lightboxFullPage"
+       ontouchstart="touchStart(event,'lightboxFullPage');" 
+       ontouchend="touchEnd(event);" 
+       ontouchmove="touchMove(event);" 
+       ontouchcancel="touchCancel(event);"
+    >
+    <div class="imgContainer" id="lightboxImageContainer"> 
+      <img id='lightboxFullImage' srcset=''>  
+    </div>
+    <p id="lightbox-title"></p>
+    <p id='lightbox-description'></p>
+  </div>
+</div>
+
+<div id='lightbox-album' class='opacity-zero z-index-minus100 hidden no-scrollbar'>
+  <div class="lightbox-album--page">
+    <div class="imgContainer"> 
+      <img id='lightbox-album--image' srcset=''>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="utility.js"></script>
+<script type="text/javascript" src="extensions.js"></script>
+<script type="text/javascript" src="mouse.js"></script>
+<script type="text/javascript" src="embeddedElement.js"></script>
+<script type="text/javascript" src="projectData.js"></script>
+<script type="text/javascript" src="vanillaTilt.js"></script>
+<script type="text/javascript" src="touchSupport.js"></script>
+<script type="text/javascript" src="projectManager.js"></script>
+<script type="text/javascript" src="illustrationProject.js"></script>
+<script type="text/javascript" src="designProject.js"></script>
+<script type="text/javascript" src="audioProject.js"></script>
+<script type="text/javascript" src="audioPlayer.js"></script>
+<script type="text/javascript" src="audioTrack.js"></script>
+<script type="text/javascript" src="search.js"></script>
+<script type="text/javascript" src="audio.js"></script>
+<script type="text/javascript" src="lightbox.js"></script>
+<script type="text/javascript" src="history.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+</body>
+</html>
