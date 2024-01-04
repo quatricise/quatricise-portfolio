@@ -11,7 +11,7 @@ class IllustrationProject {
     item.classList.add("project-thumbnail")
     item.style.width = ProjectManager.gallery.itemWidth + "px"
     item.style.height = ProjectManager.gallery.itemHeight + "px"
-    item.dataset.category = "illustration"
+    item.dataset.category = this.category
 
     let
     image = new Image()

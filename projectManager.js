@@ -2,6 +2,7 @@ class ProjectManager {
   static projectDetailVisible = false
   static openProject(project) {
     this.openProjectDetail()
+    project.showProject()
   }
   static openProjectDetail() {
     Q("#project-detail").classList.remove("hidden")
@@ -17,8 +18,21 @@ class ProjectManager {
     this.openProjectDetail()
   }
   static showByCategory(category) {
-    console.log("Mám hlad 🧑🏼‍🦱", "Dal bych si " + category + ".");
+    /* wildcard */
+    if(category === "*") {
+      Qa(".project-thumbnail").forEach(thumbnail => thumbnail.classList.remove("hidden"))
+    }
+    else {
+      Qa(".project-thumbnail").forEach(thumbnail => {
+        if(thumbnail.dataset.category === category) 
+        thumbnail.classList.remove("hidden")
+        else
+        thumbnail.classList.add("hidden")
+      })
+    }
 
+    Qa(".project-switch-item").forEach(item => item.classList.remove("active"))
+    Q(`.project-switch-item[data-category='${category}']`).classList.add("active")
   }
   static showAll() {
 

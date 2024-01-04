@@ -396,6 +396,13 @@ Q("#search-bar input").onblur = () => {
   Search.hideSearchBar()  
 }
 
+document.addEventListener("click", function(e) {
+  if(e.target.closest(".project-thumbnail")) {
+    let thumbnail = e.target.closest(".project-thumbnail")
+    ProjectManager.openProject()
+  }
+}, false)
+
 
 function init() {
   ProjectManager.setup()

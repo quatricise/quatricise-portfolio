@@ -15,14 +15,14 @@ class AudioProject {
     item.classList.add("project-thumbnail")
     item.style.width = ProjectManager.gallery.itemWidth + "px"
     item.style.height = ProjectManager.gallery.itemHeight + "px"
-    item.dataset.projecttype = this.projectType
+    item.dataset.category = this.category
+    item.onclick = () => this.load()
 
     let
     image = new Image()
     image.draggable = false
     image.dataset.srcset = `projectData/music/${this.name}/images/coverSmall.jpg 450w, projectData/music/${this.name}/images/coverLarge.jpg 900w`
     image.src =`projectData/music/${this.name}/images/coverSmall.jpg`
-    image.onclick = () => this.load()
 
     let 
     description = document.createElement("div")
@@ -59,6 +59,7 @@ class AudioProject {
     container = document.createElement("div")
     container.classList.add("project-thumbnail", `cover-container--${this.name}`, "box-shadow--dark-generic", "hide-gradient")
     container.style.background = `linear-gradient(90deg, ${this.projectData.colors.gradient[0]} 0%, ${this.projectData.colors.gradient[1]} 100%)`
+    container.onclick = () => this.load()
   
     let 
     image = new Image()
@@ -66,7 +67,6 @@ class AudioProject {
     image.classList.add("album-cover", this.name)
     image.dataset.srcset = `projectData/music/${this.name}/images/coverSmall.jpg 450w, projectData/music/${this.name}/images/coverLarge.jpg 900w`
     image.src =`projectData/music/${this.name}/images/coverSmall.jpg`
-    image.onclick = () => this.load()
 
     let
     description = document.createElement("div")
