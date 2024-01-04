@@ -195,7 +195,6 @@ function changeToDark() {
   for(var i = 0; i < musicIcons.length; i++) {
     musicIcons[i].classList.remove('color-night--whitegray');
   }
-  console.log("It's dark.");
 }
 
 function openLightboxFull() {
@@ -396,27 +395,18 @@ Q("#search-bar input").onblur = () => {
   Search.hideSearchBar()  
 }
 
-document.addEventListener("click", function(e) {
-  if(e.target.closest(".project-thumbnail")) {
-    let thumbnail = e.target.closest(".project-thumbnail")
-    ProjectManager.openProject()
-  }
-}, false)
-
-
 function init() {
-  ProjectManager.setup()
+  Project.init()
 
-  for(let image of projectData.special.illustrationDump.images)
-    new IllustrationProject(image)
+  for(let key in projectData)
+    new Project(projectData[key])
 
-  for(let name in projectData.design)
-    new DesignProject(name)
-
-  for(let name in projectData.music)
-    new AudioProject(name)
-
-  AudioProject.list[0].load()
+  /* 
+  legacy feature, it loads audio, needs to be reworked into the new project system, it also changed background
+  i might extend some global feature that actually does this with every project but adds blur and darkens the thumbnail, that way I don't need
+  any extra assets to create that nice backdrop
+  */
+  // AudioProject.list[0].load()
 }
 
 window.onload = init

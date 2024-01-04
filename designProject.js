@@ -7,8 +7,8 @@ class DesignProject {
     let 
     item = document.createElement("div")
     item.classList.add("project-thumbnail")
-    item.style.width = ProjectManager.gallery.itemWidth + "px"
-    item.style.height = ProjectManager.gallery.itemHeight + "px"
+    item.style.width = Project.gallery.itemWidth + "px"
+    item.style.height = Project.gallery.itemHeight + "px"
     item.dataset.category = this.category
     item.onclick = () => this.load()
 

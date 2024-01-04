@@ -2,7 +2,6 @@ class ProjectManager {
   static projectDetailVisible = false
   static openProject(project) {
     this.openProjectDetail()
-    project.showProject()
   }
   static openProjectDetail() {
     Q("#project-detail").classList.remove("hidden")
@@ -34,11 +33,8 @@ class ProjectManager {
     Qa(".project-switch-item").forEach(item => item.classList.remove("active"))
     Q(`.project-switch-item[data-category='${category}']`).classList.add("active")
   }
-  static showAll() {
-
-  }
   static setup() {
-    /* add functions to switches */
+    /* add functions to category switches */
     Qa(".project-switch-item").forEach(item => {
       item.onclick = () => this.showByCategory(item.dataset.category)
     })

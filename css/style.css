@@ -464,7 +464,7 @@ input[type="text"] {
   gap: 60px;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 #projects-page-main-heading {
   color: white;
@@ -1173,7 +1173,7 @@ button {
   z-index: 10000;
 }
 .navbar {
-  padding-bottom: 25px;
+  /* padding-bottom: 25px; */
   padding-top: 15px;
   display: flex;
   align-content: stretch;

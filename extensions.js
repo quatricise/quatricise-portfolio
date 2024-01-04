@@ -10,7 +10,9 @@ String.prototype.bool = function() {
   if(this.includes("false")) return false
   if(this.includes("true")) return true
 }
-String.prototype.matchAgainst = function(...strings) {
+
+/** If any of the strings equal to the calling string, returns true. */
+String.prototype.isAny = function(...strings) {
   let match = false
   strings.forEach(str => {
     if(str == this) 
@@ -18,11 +20,15 @@ String.prototype.matchAgainst = function(...strings) {
   })
   return match
 }
+
+/** If any of the strings are found inside the calling string, returns true. */
 String.prototype.includesAny = function(...strings) {
   for(let str of strings)
     if(this.includes(str))
       return true
+  return false
 }
+
 String.prototype.splitCamelCase = function() {
   return this.replace(/([a-z])([A-Z])/g, '$1 $2')
 }
