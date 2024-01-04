@@ -18,10 +18,12 @@ class Search {
   static toggleSearchBar() {
     this.searchBarVisible ? this.hideSearchBar() : this.showSearchBar()
   }
-  static for(searchQuery) {
+  static search(/** @type String */ searchQuery) {
     this.currentProjectType = "music" 
+
     //this is shit currently, the results do not store information of project type, 
     //so the only thing that can be searched is music
+
     this.results.clear()
     let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks"]
     for(let key in projectData.music) {

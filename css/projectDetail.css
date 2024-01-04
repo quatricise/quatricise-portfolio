@@ -36,7 +36,7 @@
   background-color: rgba(255, 255, 255, 0.125);
 }
 
-#project-detail-heading {
+#project-detail-title {
   margin-top: -10px;
 }
 
@@ -86,9 +86,6 @@
 }
 
 #project-detail-type {
-  padding: 3px 20px 8px;
-  border: 2px solid white;
-  border-radius: 5px;
   width: max-content;
   font-size: 1.2rem;
 }
@@ -215,4 +212,13 @@
   width: max-content;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.tag-button {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.tag-button:hover {
+  background-color:rgba(255, 255, 255, 0.125);
 }

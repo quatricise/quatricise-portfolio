@@ -381,12 +381,13 @@ document.addEventListener("keydown", (event) => {
   if(event.code === "Escape") {
     Search.hideSearchBar()
     Search.hideResults()
+    Project.hideDetail()
   }
   if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
     Search.hideSearchBar()
   }
   if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement == Q("#search-bar input")) {
-    Search.for(Q("#search-bar-input").value)
+    Search.search(Q("#search-bar-input").value)
   }
 });
 
@@ -400,13 +401,6 @@ function init() {
 
   for(let key in projectData)
     new Project(projectData[key])
-
-  /* 
-  legacy feature, it loads audio, needs to be reworked into the new project system, it also changed background
-  i might extend some global feature that actually does this with every project but adds blur and darkens the thumbnail, that way I don't need
-  any extra assets to create that nice backdrop
-  */
-  // AudioProject.list[0].load()
 }
 
 window.onload = init

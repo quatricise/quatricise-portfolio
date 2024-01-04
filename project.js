@@ -11,12 +11,6 @@ class Project {
     /** @type Map<String, HTMLElement> - Contains refs to HTML elements that are part of this project. */
     this.elements = new Map()
 
-    /** Boolean flags */
-    this.flags = {
-      /** Whether this is the selected project, regardless of the visibility of the project detail panel. */
-      selected: false,
-    }
-
     this.createGalleryItem()
 
     Project.list.add(this)
@@ -38,11 +32,16 @@ class Project {
     image.dataset.srcset = `projectData/music/${this.name}/images/coverSmall.jpg 450w, projectData/music/${this.name}/images/coverLarge.jpg 900w`
     image.src =`projectData/music/${this.name}/images/coverSmall.jpg`
 
+
+
     /* so this was some weird hack in the illustration projects */
+
     // let thumbnailSource = `projectData/design/illustrationDump/${this.image.thumbnail}`
     // fetch(thumbnailSource)
     // .then(data => image.src = thumbnailSource)
     // .catch(data => image.src = `projectData/design/illustrationDump/${this.image.src}`)
+
+
 
     let 
     description = document.createElement("div")
@@ -81,6 +80,7 @@ class Project {
 
     {
       /* sooo this happens inside the AudioProject, and needs to be somehow standardized. */
+
       // Q("#projects-gallery").append(container)
       // Q("#project-detail-description").append(description)
       // Q("#background-container").append(background)
@@ -92,17 +92,52 @@ class Project {
     }
   }
 
-  /* Open project detail and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
+  /* Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
   select() {
-    if(this.flags.selected) return
     Project.showDetail()
-    this.flags.selected = true
-  }
-  /* Close project detail and also reset the background to be the regular shade of black. */
-  deselect() {
-    if(!this.flags.selected) return
 
-    this.flags.selected = false
+    if(Project.selected === this) return
+    Project.selected?.deselect()
+
+    Q("#project-detail-title").innerHTML = this.data.title
+
+    let tagsHTML = El("div", "tag-container")
+
+    /* fill the tag container with interactive tag buttons */
+    Array.from(this.data.tags).forEach(tag => {
+      let button = El("span", "tag-button")
+      button.innerText = `#${tag} `
+      button.style.cursor = "pointer"
+
+      /* make button close the detail and filter the gallery by the tag */
+      button.onclick = () => {
+        Project.hideDetail()
+        Project.showByTags(tag)
+      }
+
+      tagsHTML.append(button)
+    })
+
+    Q("#project-detail-type").innerHTML = ""
+    Q("#project-detail-type").append(tagsHTML)
+
+    Q("#project-detail-description").innerHTML = this.data.description
+
+    Project.selected = this
+  }
+
+  /* Close project detail and also reset the background to be the regular shade of black. Does not clear the project detail. */
+  deselect() {
+    Project.selected = null
+  }
+
+  /** Hide the background element with the darkened thumbnail. */
+  hideBackground() {
+    this.elements.background.style.filter = "opacity(0)"
+  }
+  /** Show the background element with the darkened thumbnail. */
+  showBackground() {
+    this.elements.background.style.filter = "opacity(1)"
   }
   
   //#region static
@@ -185,6 +220,9 @@ class Project {
 
   /** @type Set<Project> */
   static list = new Set()
+
+  /** @type Project - Currently selected project, regardless of whether the detail panel is visible. */
+  static selected = null
 
   //#endregion static
 }

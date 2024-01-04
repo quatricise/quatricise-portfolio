@@ -328,13 +328,31 @@
 let projectData = {
   flowerized: {
     title: "Flowerized",
-    description: "",
+    description:
+    `Soundtrack for the game Flowerized.
+    <br><br>
+    Flowerized is a 3D first-person story adventure game in which you play as Ilva, a former astrobiologist from a technologically advanced planetary system. She has been demoted to an orbital cleaner job. She was supposed to collect mismatched body parts of unfortunate individuals who underwent unsuccessful teleportation. One day, her ship accidentally goes through a teleport itself and crashes on a deserted planet...    
+    <br><br>
+    <b>${embeddedElement("a", ["href", "https://visiongame.cz/hra/flowerized/"], ["text", "Get the game here"])}</b>
+    `,
     tags: ["music", "illustration"],
+    colors: {
+      gradient: ["#f85549", "#18468a"]
+    },
     content: [
       {
         type: "audio",
-        src: "",
-        description: ""
+        src: [
+          "Sunlit Garden",
+          "Strange and Foreign Land",
+          "Engine",
+          "Dark Forest",
+          "Main Map (Alternative)",
+          "Mushroom Prince",
+          "Wasteland",
+          "Winds",
+          "Reflection",
+        ],
       },
     ]
   },
@@ -353,3 +371,35 @@ let projectData = {
     ]
   }
 }
+
+/** 
+ * Different types of content that can be inside projectData 
+ * Audio - always right
+ * Text - always right
+ * Images - always left
+ * 
+ * The order matters, so music can go before description, but also more music can follow text.
+ * Example: Music tracks, some description, music tracks, some more description.
+ * */
+let contentTypes = [
+  {
+    type: "audio",
+    src: [
+      "Track 1",
+      "Track 2",
+      "Track 3",
+    ]
+  },
+  {
+    type: "images",
+    src: [
+      "img 1.png",
+      "img 2.png",
+      "img 3.png",
+    ]
+  },
+  {
+    type: "text",
+    text: "Some kind of text goes here. Can be template literal. `Text${}`"
+  },
+]
