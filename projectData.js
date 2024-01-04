@@ -343,27 +343,19 @@ let projectData = {
       {
         type: "audio",
         src: [
-          "Sunlit Garden",
-          "Strange and Foreign Land",
-          "Engine",
-          "Dark Forest",
-          "Main Map (Alternative)",
-          "Mushroom Prince",
-          "Wasteland",
-          "Winds",
-          "Reflection",
+          "Track 1",
         ],
       },
     ]
   },
-  /** This project has an exception that it generates many thumbnails per each of it's contents */
+  /** This project is an exception that it generates many thumbnails per each of it's contents */
   illustrationDump: {
     title: "",
     description: "",
     tags: ["illustration"],
     content: [
       {
-        type: "image",
+        type: "images",
         src: "",
         hasThumbnail: true,
         description: ""
@@ -380,8 +372,11 @@ let projectData = {
  * 
  * The order matters, so music can go before description, but also more music can follow text.
  * Example: Music tracks, some description, music tracks, some more description.
- * */
+*/
 let contentTypes = [
+
+
+
   {
     type: "audio",
     src: [
@@ -390,16 +385,25 @@ let contentTypes = [
       "Track 3",
     ]
   },
+
+
+
   {
     type: "images",
     src: [
-      "img 1.png",
-      "img 2.png",
-      "img 3.png",
+      {src: "img 1.png", title: "", hasThumbnail: true},
+      {src: "img 2.png", title: "", hasThumbnail: true},
+      {src: "img 3.png", title: "", hasThumbnail: true},
     ]
   },
+
+
+
   {
     type: "text",
-    text: "Some kind of text goes here. Can be template literal. `Text${}`"
+    text: "Some kind of text goes here. Can be template literal: `Text${}`"
   },
+
+
+
 ]
