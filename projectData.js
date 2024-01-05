@@ -325,40 +325,45 @@
 //   },
 // }
 
-let projectData = {
-  flowerized: {
-    title: "Flowerized",
+let projects = {
+  jumpout: {
+    title: "Jumpout",
     description:
-    `Soundtrack for the game Flowerized.
+    `Soundtrack for the game Jumpout.
     <br><br>
-    Flowerized is a 3D first-person story adventure game in which you play as Ilva, a former astrobiologist from a technologically advanced planetary system. She has been demoted to an orbital cleaner job. She was supposed to collect mismatched body parts of unfortunate individuals who underwent unsuccessful teleportation. One day, her ship accidentally goes through a teleport itself and crashes on a deserted planet...    
-    <br><br>
-    <b>${embeddedElement("a", ["href", "https://visiongame.cz/hra/flowerized/"], ["text", "Get the game here"])}</b>
+    Jumpout is a mysterious online multiplayer videogame. Your ship has become stranded in an uncharted area of space, you must collect resources to construct a Jump Drive that will get you out of this mess.
     `,
-    tags: ["music", "illustration"],
+    tags: ["music"],
     colors: {
-      gradient: ["#f85549", "#18468a"]
+      gradient: ["#000000", "#000000"]
     },
     content: [
       {
         type: "audio",
         src: [
-          "Track 1",
+          "Jumpout",
+          "Battle",
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Jumpout Album Cover"},
         ],
       },
     ]
   },
-  /** This project is an exception that it generates many thumbnails per each of it's contents */
-  illustrationDump: {
+  /** This project will be an exception that it generates many thumbnails per each of it's contents */
+  illustrations: {
     title: "",
     description: "",
     tags: ["illustration"],
     content: [
       {
         type: "images",
-        src: "",
-        hasThumbnail: true,
-        description: ""
+        src: [
+          {src: "Img 1.jpg", title: ""},
+        ],
       },
     ]
   }
@@ -391,9 +396,9 @@ let contentTypes = [
   {
     type: "images",
     src: [
-      {src: "img 1.png", title: "", hasThumbnail: true},
-      {src: "img 2.png", title: "", hasThumbnail: true},
-      {src: "img 3.png", title: "", hasThumbnail: true},
+      {src: "img 1.png", title: ""},
+      {src: "img 2.png", title: ""},
+      {src: "img 3.png", title: ""},
     ]
   },
 

@@ -26,8 +26,8 @@ class Search {
 
     this.results.clear()
     let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks"]
-    for(let key in projectData.music) {
-      let dataBlock = projectData.music[key]
+    for(let key in projects.music) {
+      let dataBlock = projects.music[key]
       this.currentDataBlock = dataBlock
       for(let prop of searchProperties) {
         this.searchData(dataBlock[prop], searchQuery)

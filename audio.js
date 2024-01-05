@@ -232,10 +232,10 @@ function getDuration() {
   document.querySelectorAll('.duration')[0].innerHTML = this.getMinutes(this.currentAudio.duration)
 }
 function getAudioFileURL(albumName, trackIndex) {
-  return "projectData/music/" + albumName + "/tracks/" + projectData.music[albumName].tracks[trackIndex] + ".mp3"
+  return "projectData/music/" + albumName + "/tracks/" + projects.music[albumName].tracks[trackIndex] + ".mp3"
 }
 function refreshAudioPlayer(audioName) {
-  let audioData = projectData.music[audioName]
+  let audioData = projects.music[audioName]
   currentListAudio = audioData
   currentAudioName = audioName
   document.querySelector('#project-detail-tracklist').innerHTML = ''

@@ -1,7 +1,7 @@
 class AudioProject {
   constructor(name) {
     this.name = name
-    this.projectData = projectData.music[name]
+    this.projectData = projects.music[name]
     this.audioCategory = this.projectData.category
     this.category = "music"
     this.selected = false

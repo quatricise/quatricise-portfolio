@@ -1,4 +1,5 @@
-/hyperion
+hyperion/
 /legacy
-/shrekjump
-/zbysquest
+_legacy/
+shrekjump/
+zbysquest/

@@ -399,8 +399,8 @@ Q("#search-bar input").onblur = () => {
 function init() {
   Project.init()
 
-  for(let key in projectData)
-    new Project(projectData[key])
+  for(let key in projects)
+    new Project(projects[key])
 }
 
 window.onload = init

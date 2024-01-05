@@ -29,19 +29,14 @@ class Project {
     let
     image = new Image()
     image.draggable = false
-    image.dataset.srcset = `projectData/music/${this.name}/images/coverSmall.jpg 450w, projectData/music/${this.name}/images/coverLarge.jpg 900w`
-    image.src =`projectData/music/${this.name}/images/coverSmall.jpg`
-
-
+    image.src =`projects/${this.name}/images/thumbnail.jpg`
 
     /* so this was some weird hack in the illustration projects */
 
-    // let thumbnailSource = `projectData/design/illustrationDump/${this.image.thumbnail}`
+    // let thumbnailSource = `projects/design/illustrationDump/${this.image.thumbnail}`
     // fetch(thumbnailSource)
     // .then(data => image.src = thumbnailSource)
-    // .catch(data => image.src = `projectData/design/illustrationDump/${this.image.src}`)
-
-
+    // .catch(data => image.src = `projects/design/illustrationDump/${this.image.src}`)
 
     let 
     description = document.createElement("div")
@@ -61,7 +56,7 @@ class Project {
     let
     background = new Image()
     background.classList.add("music-background-image")
-    background.src = `projectData/music/${this.name}/images/background.jpg`
+    background.src = `projects/music/${this.name}/images/background.jpg`
     background.style.filter = "opacity(0)"
     
     let
