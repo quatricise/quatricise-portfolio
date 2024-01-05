@@ -341,8 +341,8 @@ let projects = {
       {
         type: "audio",
         src: [
-          "Jumpout",
-          "Battle",
+          {filename: "Jumpout", description: ""},
+          {filename: "Battle", description: ""},
         ],
       },
       {
@@ -353,16 +353,51 @@ let projects = {
       },
     ]
   },
-  /** This project will be an exception that it generates many thumbnails per each of it's contents */
+  /** 
+   * This project will be an exception that it generates many thumbnails per each of it's contents, but those will only be visible inside the #illustration tag.
+   * Meanwhile, inside Everything, only this main project will be visible. This is weird but it makes sense, I don't want to flood the everything page with a 50+
+   * illustrations, but I want people to be able to quickly see them when they click on #illustration.
+   */
   illustrations: {
     title: "",
-    description: "",
+    description: "A bunch of my illustrations, unsorted.",
     tags: ["illustration"],
     content: [
       {
         type: "images",
         src: [
-          {src: "Img 1.jpg", title: ""},
+          {src: "askern_1.1.jpg",                                       title: "Askern",                               },
+          {src: "castle_1.3.jpg",                                       title: "Castle",                               },
+          {src: "chipa_1.3.jpg",                                        title: "Chipa",                                },
+          {src: "forest_castle_1.8_2k.jpg",                             title: "Forest Castle",                        },
+          {src: "entica_couple_1.9.jpg",                                title: "Entica couple",                        },
+          {src: "metal_valley_revisited_2_1.6.jpg",                     title: "Metal Valley (Revisited) 2",           },
+          {src: "bookmarks_all_(1-4).jpg",                              title: "Futuristic Bookmarks",                 },
+          {src: "abstract_space_cloud_spaceship_crash_1.2.jpg",         title: "Abstract Space Cloud Spaceship Crash", },
+          {src: "alien_cave_1.5.jpg",                                   title: "Alien Cave",                           },
+          {src: "chasm_1.1.jpg",                                        title: "Chasm",                                },
+          {src: "castle_overlooking_the_valley_of_fire_1.2_square.jpg", title: "Castle in the Valley of Fire",         },
+          {src: "flat_city_1_-_the_castle_1.0_square.jpg",              title: "Flat City 1",                          },
+          {src: "flat_city_2_-_bubble_pillars_1.0_square.jpg",          title: "Flat City 2",                          },
+          {src: "flat_city_3_-_sandstone_1.2_square.jpg",               title: "Flat city 3",                          },
+          {src: "metal_valley_revisited_1.0.jpg",                       title: "Metal Valley (Revisited) 1",           },
+          {src: "forest_grove_1.1_fullres_normal.jpg",                  title: "Forest Grove",                         },
+          {src: "mesa_1.1_square.jpg",                                  title: "Mesa",                                 },
+          {src: "journey_inspired_landscape_1_v3.jpg",                  title: "Desert of Journey",                    },
+          {src: "a_sprawling_solarpunk_city_1.0_normal.jpg",            title: "Sprawling Solarpunk City",             },
+          {src: "entica_greenhouse_5.jpg",                              title: "Solarpunk Shady Street",               },
+          {src: "entica_shady_street_1.10_2k.jpg",                      title: "Greenhouse No. 5",                     },
+          {src: "perfect_life_1.6.jpg",                                 title: "Solarpunk Corner",                     },
+          {src: "polyporus_city_1.4.jpg",                               title: "Polyporus City",                       },
+          {src: "shrike_humanoid_1.0w.jpg",                             title: "Shrike",                               },
+          {src: "tesla_forest_1.4_square.jpg",                          title: "Tesla Forest",                         },
+          {src: "sky_inferno_1.1_square.jpg",                           title: "Sky Inferno",                          },
+          {src: "stone_hut_in_a_forest_1.3_vertical.jpg",               title: "Stone Hut",                            },
+          {src: "the_crumbling_chapel_1.1_vertical.jpg",                title: "Crumbling Chapel",                     },
+          {src: "the_moonlit_monoliths_1.1_square.jpg",                 title: "Moonlit Monoliths",                    },
+          {src: "the_poisoned_forest_1.1.jpg",                          title: "Poisoned Forest (wallpaper)",          },
+          {src: "the_shattered_domes_and_prism_1.0_vertical.jpg",       title: "Shattered Domes",                      },
+          {src: "the_stone_palace_normal.jpg",                          title: "The Stone Palace",                     },
         ],
       },
     ]

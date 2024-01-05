@@ -228,26 +228,28 @@ function getClickedElement(event) {
     }
   }
 }
+
 function getDuration() {
   document.querySelectorAll('.duration')[0].innerHTML = this.getMinutes(this.currentAudio.duration)
 }
+
 function getAudioFileURL(albumName, trackIndex) {
   return "projectData/music/" + albumName + "/tracks/" + projects.music[albumName].tracks[trackIndex] + ".mp3"
 }
-function refreshAudioPlayer(audioName) {
-  let audioData = projects.music[audioName]
+
+function refreshAudioPlayer(audioData) {
   currentListAudio = audioData
   currentAudioName = audioName
   document.querySelector('#project-detail-tracklist').innerHTML = ''
-  for (var i = 0; i < audioData.tracks.length; i++) {
-    createTrackItem(i, audioData.tracks[i], audioData.tracks[i].duration)
+  for (var i = 0; i < audioData.src.length; i++) {
+    createTrackItem(i, audioData.src[i], audioData.src[i].duration)
   }
   playListItems = document.querySelectorAll(".playlist-track-ctn")
   for (let i = 0; i < playListItems.length; i++){
     playListItems[i].addEventListener("click", getClickedElement.bind(this))
   }
   document.querySelector('#source-audio').src = getAudioFileURL(audioName, 0)
-  document.querySelector('.title').innerHTML = "01: " + audioData.tracks[0]
+  document.querySelector('.title').innerHTML = "01: " + audioData.src[0]
   currentAudio.load()
   currentAudio.onloadedmetadata = getDuration.bind(this)
 }

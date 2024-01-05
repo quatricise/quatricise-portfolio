@@ -31,12 +31,13 @@ class Project {
     image.draggable = false
     image.src =`projects/${this.name}/images/thumbnail.jpg`
 
-    /* so this was some weird hack in the illustration projects */
-
-    // let thumbnailSource = `projects/design/illustrationDump/${this.image.thumbnail}`
-    // fetch(thumbnailSource)
-    // .then(data => image.src = thumbnailSource)
-    // .catch(data => image.src = `projects/design/illustrationDump/${this.image.src}`)
+    /* hack all projects with the tag #illustration and have their images individually appear inside the #illustration tag in project gallery. */
+    if(this.tags.has("illustration")) {
+      let thumbnailSource = `projects/${this.image.thumbnail}`
+      fetch(thumbnailSource)
+      .then(data => image.src = thumbnailSource)
+      .catch(data => image.src = `projects/design/illustrationDump/${this.image.src}`)
+    }
 
     let 
     description = document.createElement("div")
@@ -117,6 +118,29 @@ class Project {
     Q("#project-detail-type").append(tagsHTML)
 
     Q("#project-detail-description").innerHTML = this.data.description
+
+    /* process the data.content */
+    this.data.content.forEach(con => {
+
+      switch(con.type) {
+        case "audio": {
+          
+          break
+        }
+        case "images": {
+
+          break
+        }
+        case "text": {
+
+          break
+        }
+        default: {
+          throw "Missing content label: images, audio, text"
+        }
+      }
+
+    })
 
     Project.selected = this
   }

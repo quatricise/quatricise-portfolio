@@ -76,3 +76,14 @@ Array.prototype.empty = function() {
   while(this.length)
     this.shift()
 }
+
+String.prototype.bool = function() {
+  if(this.includes("false")) return false
+  if(this.includes("true")) return true
+}
+
+Array.prototype.remove = function(...children) {
+  children.forEach(child => {
+    this.splice(this.indexOf(child), 1)
+  })
+}

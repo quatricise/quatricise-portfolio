@@ -381,32 +381,3 @@ function rgb_to_hex(rgb) {
   })
   return "#" + b[0] + b[1] + b[2]
 }
-
-String.prototype.cap = function() {
-  return this.charAt(0).toLocaleUpperCase() + this.slice(1)
-}
-String.prototype.rev = function() {
-  let array = this.split('')
-  let string = array.reverse().join('')
-  return string
-}
-
-String.prototype.bool = function() {
-  if(this.includes("false")) return false
-  if(this.includes("true")) return true
-}
-
-String.prototype.bob = function () {
-  return this.replaceAll("bo","bob").replaceAll("mo","bob").replaceAll("do","bob").replaceAll("ko","bob").replaceAll("no","bob").replaceAll("lo","bob").replaceAll("po","bob")
-}
-
-function ArrowFunction() {
-  const f = () => {}
-  return f
-}
-
-Array.prototype.remove = function(...children) {
-  children.forEach(child => {
-    this.splice(this.indexOf(child), 1)
-  })
-}
