@@ -393,14 +393,55 @@ document.addEventListener("keydown", (event) => {
 
 Q("#search-bar").onfocus = () => Search.showSearchBar()
 Q("#search-bar input").onblur = () => {
-  Search.hideSearchBar()  
+  Search.hideSearchBar()
 }
+Q("#background").onclick = () => Project.hideDetail()
 
 function init() {
   Project.init()
 
   for(let key in projects)
-    new Project(projects[key])
+    new Project(key)
+
+  let searchQuery = window.location.search.replace("?", "")
+  let pairs = searchQuery.split("+")
+  pairs.forEach(pair => {
+    let [key, value] = pair.split("=")
+    
+    switch(key) {
+      case "tag": {
+        Project.showByTags(value)
+        break
+      }
+    }
+  })
 }
+
+/** Animation of arrows in the project detail */
+let arrowAnimation = null
+
+/* project detail arrow hiding */
+Q("#project-detail-artwork-side").onmouseleave = () => {
+
+  setTimeout(() => {
+
+    arrowAnimation = Q("#project-detail-image-arrows").animate([
+      {filter: "opacity(1)"},
+      {filter: "opacity(0)"},
+    ], {
+      duration: 1500,
+      easing: "ease-in-out"
+    })
+    arrowAnimation.onfinish = () => {
+      Q("#project-detail-image-arrows").style.filter = "opacity(0)"
+    }
+
+  }, 800)
+}
+Q("#project-detail-artwork-side").onmouseenter = () => {
+  arrowAnimation?.cancel()
+  Q("#project-detail-image-arrows").style.filter = ""
+}
+
 
 window.onload = init

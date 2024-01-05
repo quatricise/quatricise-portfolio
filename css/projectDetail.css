@@ -54,25 +54,61 @@
 
 #project-detail-arrows .arrow {
   position: absolute;
-  width:  60px;
-  height: 60px;
+  width:  40px;
+  height: 40px;
   padding: 20px;
   background-image: url(/images/icon_arrow.png);
-  background-size: 38px;
-  border-radius: 10px;
+  background-size: 32px;
   background-repeat: no-repeat;
   background-position: center;
+  border-radius: 10px;
   cursor: pointer;
   pointer-events: all;
 }
+
 #project-detail-arrows .arrow:hover {
   background-color: rgba(255, 255, 255, 0.125);
 }
+
 #project-detail-arrows .arrow.left {
   left: 20px;
 }
+
 #project-detail-arrows .arrow.right {
   right: 20px;
+}
+
+#project-detail-image-arrows {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.project-detail-image-arrow {
+  position: absolute;
+  top: calc(50% - 12px);
+  width: 40px;
+  height: 40px;
+  background-image: url(/images/icon_arrow.png);
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.project-detail-image-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.125);
+}
+
+.project-detail-image-arrow.right {
+  right: 10px;
+}
+
+.project-detail-image-arrow.left {
+  left: 10px;
+  transform: scaleX(-1);
 }
 
 #project-detail-content {
@@ -89,15 +125,22 @@
   width: max-content;
   font-size: 1.2rem;
 }
+
 #project-detail-description {
   position: relative;
   font-size: 1.2rem;
   margin-bottom: 30px;
   margin-right: 20px;
+  padding: 0 2px;
 }
 
 #project-detail-artwork-side {
+  position: relative;
   width: 60%;
+  overflow-y: auto;
+}
+#project-detail-artwork-side:hover .project-detail-image-arrow {
+  background-color: black;
 }
 #project-detail-text-side {
   display: flex;
@@ -187,7 +230,6 @@
   width: 100%;
   height: 100%;
   font-size: 1.2rem;
-  /* padding: 5px; */
   opacity: 0;
   filter: opacity(0);
   transition: filter 0.1s ease-in-out;
@@ -221,4 +263,43 @@
 
 .tag-button:hover {
   background-color:rgba(255, 255, 255, 0.125);
+}
+
+.audio-track-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.audio-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  background-color: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  color: rgb(163, 163, 163);
+  transition: background-color 0.05s cubic-bezier(0.4, 0.0, 1.0, 1.0), transform 0.05s, padding 0.05s, color 0.02s;
+  cursor: pointer;
+}
+
+.audio-track:hover {
+  background-color:rgba(255, 255, 255, 0.125);
+}
+
+.audio-track-play-state-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.audio-track-play-state-icon.play {
+  background-image: url(../images/play_icon.png);
+}
+
+.audio-track-play-state-icon.pause {
+  background-image: url(../images/pause_icon.png);
+}
+
+.audio-track-duration {
+  font-size: 1.2rem;
 }

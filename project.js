@@ -1,12 +1,14 @@
 class Project {
-  constructor(/** @type Object */ data) {
+  constructor(projectIdentifier) {
+    /** The actual key inside projects{} */
+    this.projectIdentifier = projectIdentifier
+
+    /** @type Object - Raw data of the project, such as image and music links, and text. */
+    this.data = projects[projectIdentifier]
 
     /** @type Set<String> - Set of tags that describe the project, e.g.: music, code, illustration, design */
     this.tags = new Set()
-    data.tags.forEach(t => this.tags.add(t))
-
-    /** @type Object - Raw data of the project, such as image and music links, and text. */
-    this.data = data
+    this.data.tags.forEach(t => this.tags.add(t))
 
     /** @type Map<String, HTMLElement> - Contains refs to HTML elements that are part of this project. */
     this.elements = new Map()
@@ -27,9 +29,9 @@ class Project {
     item.onclick = () => this.select()
 
     let
-    image = new Image()
-    image.draggable = false
-    image.src =`projects/${this.name}/images/thumbnail.jpg`
+    thumbnail = new Image()
+    thumbnail.draggable = false
+    thumbnail.src =`projects/${this.projectIdentifier}/thumbnail.jpg`
 
     let 
     description = document.createElement("div")
@@ -54,27 +56,14 @@ class Project {
     thumbnailTextLabel.classList.add("project-gallery-item-label")
 
     thumbnailTextLabel.append(projectTag, description)
-    item.append(image, thumbnailTextLabel)
+    item.append(thumbnail, thumbnailTextLabel)
     
     Q("#projects-gallery").append(item)
 
     this.elements.set("item", item)
-    this.elements.set("albumCover", image)
+    this.elements.set("albumCover", thumbnail)
     this.elements.set("description", description)
     this.elements.set("background", background)
-
-    {
-      /* sooo this happens inside the AudioProject, and needs to be somehow standardized. */
-
-      // Q("#projects-gallery").append(container)
-      // Q("#project-detail-description").append(description)
-      // Q("#background-container").append(background)
-
-      // this.elements.albumContainer = container
-      // this.elements.albumCover = image
-      // this.elements.description = description
-      // this.elements.background = background
-    }
   }
 
   /* Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
@@ -83,11 +72,16 @@ class Project {
 
     if(Project.selected === this) return
     Project.selected?.deselect()
+    
 
-    Q("#project-detail-title").innerHTML = this.data.title
+    /* clear project detail panel */
+    Q("#project-detail-type").innerHTML = ""
+    Qa(".artwork-side-image").forEach(img => img.remove())
 
+
+
+    /* tags */
     let tagsHTML = El("div", "tag-container")
-
     /* fill the tag container with interactive tag buttons */
     Array.from(this.data.tags).forEach(tag => {
       let button = El("span", "tag-button")
@@ -102,22 +96,32 @@ class Project {
 
       tagsHTML.append(button)
     })
-
-    Q("#project-detail-type").innerHTML = ""
     Q("#project-detail-type").append(tagsHTML)
+    
 
+    /* title */
+    Q("#project-detail-title").innerHTML = this.data.title
+
+    /* description */
     Q("#project-detail-description").innerHTML = this.data.description
 
-    /* process the data.content */
+    /* process data.content */
     this.data.content.forEach(content => {
 
       switch(content.type) {
         case "audio": {
-          AudioPlayer.loadTracklist(content)
+          AudioPlayer.loadTracklist(this.projectIdentifier, content)
           break
         }
         case "images": {
+          content.src.forEach((img, index) => {
+            let image = El("img", "artwork-side-image", [["src", this.generateFileURL(img.src)],["title", img.title ?? ""]])
 
+            if(index === 0)
+            Q("#project-detail-artwork-side").append(image)
+
+            /* the rest of the images will be stored somewhere, but not shown yet */
+          })
           break
         }
         case "text": {
@@ -137,6 +141,9 @@ class Project {
   /* Close project detail and also reset the background to be the regular shade of black. Does not clear the project detail. */
   deselect() {
     Project.selected = null
+
+    /* remove generated audio tracks */
+    Qa(".audio-track-container").forEach(c => c.remove())
   }
 
   /** Hide the background element with the darkened thumbnail. */
@@ -146,6 +153,10 @@ class Project {
   /** Show the background element with the darkened thumbnail. */
   showBackground() {
     this.elements.background.style.filter = "opacity(1)"
+  }
+  /** Returns the full URL to a source file such as image or audio file */
+  generateFileURL(filename) {
+    return `projects/${this.projectIdentifier}/${filename}`
   }
   
   //#region static

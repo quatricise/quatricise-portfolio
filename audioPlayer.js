@@ -51,13 +51,22 @@ class AudioPlayer {
   static currentTrackIndex = 0
 
   /** This function loads a tracklist and then creates the HTML and appends it to the proper UI container. */
-  static loadTracklist(content) {
+  static loadTracklist(projectIdentifier, content) {
+    const trackContainer = El("div", "audio-track-container")
+    Q("#project-detail-text-side").append(trackContainer)
+
     content.src.forEach(source => {
-      this.createTrackItem()
+      let audio = new Audio(`projects/${projectIdentifier}/${source.filename}.mp3`)
+      let item = this.createTrackItem(source.title ?? source.filename)
+      trackContainer.append(item)
+
+      audio.onloadedmetadata = () => {
+        item.querySelector(".audio-track-duration").innerText = this.secondsToMinutes(audio.duration)
+      }
     })
   }
 
-  static createTrackItem() {
+  static createTrackItem(title) {
     let
     container = El("div", "audio-track", [], )
 
@@ -65,13 +74,13 @@ class AudioPlayer {
     icon = El("div", "audio-track-play-state-icon", [], )
 
     let
-    trackTitle = El("div", "audio-track-title", [], "Test")
+    trackTitle = El("div", "audio-track-title", [], title)
 
     let
     trackDuration = El("div", "audio-track-duration", [], )
 
     container.append(icon, trackTitle, trackDuration)
-    Q("#project-detail-text-side").append(container)
+    return container
   }
 
   static play() {

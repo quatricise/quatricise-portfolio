@@ -228,12 +228,10 @@ const PI = Math.PI
 const TAU = Math.PI*2
 
 class Vector {
-  constructor(x = 0, y, data = {}) {
+  constructor(x = 0, y) {
     this.x = x
     if(y === undefined) this.y = x
     else this.y = y
-    if(data === true) this.data = {}
-    else this.data = _.cloneDeep(data)
   }
   length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)

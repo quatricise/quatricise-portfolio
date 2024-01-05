@@ -359,7 +359,7 @@ let projects = {
    * illustrations, but I want people to be able to quickly see them when they click on #illustration.
    */
   illustrations: {
-    title: "",
+    title: "Illustrations",
     description: "A bunch of my illustrations, unsorted.",
     tags: ["illustration"],
     content: [

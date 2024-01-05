@@ -91,6 +91,15 @@
     <div id="project-detail-content">
       <div id="project-detail-artwork-side">
         <img class="artwork-side-image" src="projectData/music/flowerized/images/coverLarge.jpg" alt="">
+
+        <div id="project-detail-image-arrows">
+          <div class="project-detail-image-arrow right"></div>
+          <div class="project-detail-image-arrow left"></div>
+        </div>
+
+        <div id="project-detail-bubbles">
+          <!-- these will be generated upon filling the gallery with images, the same number of bubbles as images -->
+        </div>
       </div>
       <div id="project-detail-text-side">
         <div id="project-detail-type">This will be a list of tags, not category</div>
@@ -165,9 +174,8 @@
     <div class="about-text">
         <p class="aboutParagraph">
           <span class="paragraph-section">
-            Hi, my name isn't quatricise, I don't even know how to pronounce that word, anyways... <br> <br>
-            I do various things, including music production, illustration and programming/web design.
-            You should find some of those things here. If not, I have social media too.
+            I do music production, illustration and programming/web design.
+            You should find some of those things here.
           </span>
           <span class="paragraph-section">
             If you want to license any music, get in touch.
@@ -185,19 +193,20 @@
           <br>
         </span>
         <span class="music-links">
+          <a target="_blank" rel="noopener" class="" href="https://youtube.com/@quatricise"><i class="fab fa-youtube"></i></a>
           <a target="_blank" rel="noopener" class="" href="https://quatricise.bandcamp.com"><i class="fab fa-bandcamp"></i></a>
           <a target="_blank" rel="noopener" class="" href="https://soundcloud.com"><i class="fab fa-soundcloud"></i></a>
           <a target="_blank" rel="noopener" class="" href="https://open.spotify.com/artist/5Zs4jYGAgMBNVEx4znSTxp?si=VauChTQFRoGvJXgQ8F7OLA"><i class="fab fa-spotify"></i></a>
-          <a target="_blank" rel="noopener" class="" href="https://app.matter.online/@quatricise"><img class="matter-logo" src="images/matter_logo_white.png" alt=""></a>
         </span>
         <span class="paragraph-section">
           Art 
           <br>
         </span>
         <span class="social-media-links">
-          <a target="_blank" title="Behance" rel="noopener" href='https://behance.net/quatricise'><i class="fab fa-behance-square"></i></a></a>
           <a target="_blank" title="Instagram" rel="noopener" class="tooltip" href = "https://instagram.com/quatricise"><i class="fab fa-instagram"></i></a>
+          <a target="_blank" title="Behance" rel="noopener" href='https://behance.net/quatricise'><i class="fab fa-behance-square"></i></a></a>
           <a target="_blank" title="Twitter" rel="noopener" class="tooltip" href = "https://twitter.com/quatricise"><i class="fab fa-twitter"></i></a>
+          <a target="_blank" title="Tumblr" rel="noopener" class="tooltip" href = "https://tumblr.com/quatricise"><i class="fab fa-tumblr"></i></a>
         </span>
         <span class="paragraph-section">
           Contact me
@@ -240,8 +249,7 @@
 <script type="text/javascript" src="utility.js"></script>
 <script type="text/javascript" src="extensions.js"></script>
 <script type="text/javascript" src="mouse.js"></script>
-<script type="text/javascript" src="vanillaTilt.js"></script>
-<script type="text/javascript" src="touchSupport.js"></script>
+<script type="text/javascript" src="touch.js"></script>
 
 <!-- new not-so-stupid code -->
 <script type="text/javascript" src="projects.js"></script>
@@ -255,9 +263,7 @@
 <!-- <script type="text/javascript" src="audio.js"></script> -->
 
 <script type="text/javascript" src="audioPlayer.js"></script>
-
 <script type="text/javascript" src="search.js"></script>
-<script type="text/javascript" src="lightbox.js"></script>
 <script type="text/javascript" src="main.js"></script>
 
 </body>

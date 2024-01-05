@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 h2 {
@@ -106,6 +106,44 @@ h2 {
   background: rgba(255,255,255, 1);
 }
 
+
+.header {
+  width: 100vw;
+  min-height: min-content;
+  display: block;
+  position: fixed;
+  position: sticky;
+  z-index: 10000;
+}
+.navbar {
+  padding-bottom: 20px;
+  padding-top: 15px;
+  display: flex;
+  align-content: stretch;
+  justify-content: space-between;
+  max-width: 1000px;
+  width: 95vw;
+  margin: auto;
+}
+
+.logo-holder {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  max-width: 190px;
+  width: 100%;
+  margin: 23px 10px 20px 0px;
+  transition: background-image 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.logo {
+  max-width: 210px;
+  width: 100%;
+  margin: 20px 20px;
+  opacity: 0;
+}
 
 .browser-mode-check {
   display: none;
@@ -468,6 +506,7 @@ input[type="text"] {
 }
 #projects-page-main-heading {
   color: white;
+  margin-bottom: 10px;
 }
 .project-type-switch {
   display: flex;
@@ -1164,44 +1203,6 @@ button {
   height: 1900px;
 }
 
-.header {
-  width: 100vw;
-  min-height: min-content;
-  display: block;
-  position: fixed;
-  position: sticky;
-  z-index: 10000;
-}
-.navbar {
-  /* padding-bottom: 25px; */
-  padding-top: 15px;
-  display: flex;
-  align-content: stretch;
-  justify-content: space-between;
-  max-width: 1000px;
-  width: 95vw;
-  margin: auto;
-}
-
-.logo-holder {
-  display: inline-block;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  max-width: 190px;
-  width: 100%;
-  margin: 23px 10px 20px 0px;
-  transition: background-image 0.4s ease-in-out;
-  cursor: pointer;
-}
-
-.logo {
-  max-width: 210px;
-  width: 100%;
-  margin: 20px 20px;
-  opacity: 0;
-}
-
 .buttonCell {
   display: flex;
   justify-content: space-between;
@@ -1642,18 +1643,19 @@ input:checked + .slider:before {
   color: inherit;
 }
 
-.fa-bandcamp {
+.fa-bandcamp,
+.fa-soundcloud,
+.fa-spotify,
+.fa-youtube,
+.fa-tumblr {
   font-size: 1.5em;
   color: inherit;
 }
-.fa-soundcloud {
-  font-size: 1.5em;
-  color: inherit;
+
+.fa-tumblr {
+  margin-top: 10px;
 }
-.fa-spotify {
-  font-size: 1.5em;
-  color: inherit;
-}
+
 .color-night--white {
   color: rgb(255, 255, 255)!important;
 }
