@@ -31,28 +31,17 @@ class Project {
     image.draggable = false
     image.src =`projects/${this.name}/images/thumbnail.jpg`
 
-    /* hack all projects with the tag #illustration and have their images individually appear inside the #illustration tag in project gallery. */
-    if(this.tags.has("illustration")) {
-      let thumbnailSource = `projects/${this.image.thumbnail}`
-      fetch(thumbnailSource)
-      .then(data => image.src = thumbnailSource)
-      .catch(data => image.src = `projects/design/illustrationDump/${this.image.src}`)
-    }
-
     let 
     description = document.createElement("div")
     description.classList.add("project-gallery-item-description")
     description.innerText = this.data.title
 
     let 
-    projectType = document.createElement("div")
-    projectType.classList.add("project-gallery-item-project-type")
-    
-    /** Let the project visually only show the main tag inside the gallery thumbnail. */
+    projectTag = document.createElement("div")
+    projectTag.classList.add("project-gallery-item-project-type")
+    /** @type String - Let the project visually only show the main tag inside the gallery thumbnail. */
     let firstTag = this.tags.values().next().value
-    projectType.innerText = firstTag
-
-    console.log(firstTag)
+    projectTag.innerText = firstTag
 
     let
     background = new Image()
@@ -64,7 +53,7 @@ class Project {
     thumbnailTextLabel = document.createElement("div")
     thumbnailTextLabel.classList.add("project-gallery-item-label")
 
-    thumbnailTextLabel.append(projectType, description)
+    thumbnailTextLabel.append(projectTag, description)
     item.append(image, thumbnailTextLabel)
     
     Q("#projects-gallery").append(item)
@@ -120,11 +109,11 @@ class Project {
     Q("#project-detail-description").innerHTML = this.data.description
 
     /* process the data.content */
-    this.data.content.forEach(con => {
+    this.data.content.forEach(content => {
 
-      switch(con.type) {
+      switch(content.type) {
         case "audio": {
-          
+          AudioPlayer.loadTracklist(content)
           break
         }
         case "images": {

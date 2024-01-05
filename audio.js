@@ -1,7 +1,6 @@
 //#region audio player core logic
 var timer = document.getElementsByClassName('timer')[0]
 var barProgress = document.getElementById("myBar");
-var width = 0;
 var isSeeking = false;
 var progressbar = document.querySelector('#my-progress-hitbox') 
 var volumeBar = document.querySelector('#volume-bar');
@@ -71,8 +70,8 @@ function onTimeUpdate() {
     }
   }
 }
-function setBarProgress(){
-  var progress = (this.currentAudio.currentTime / this.currentAudio.duration) * 100
+function setBarProgress() {
+  var progress = ( this.currentAudio.currentTime / this.currentAudio.duration ) * 100
   document.getElementById("myBar").style.width = progress + "%"
   document.getElementById('myBarCircle').style.left = progress + "%"
 }

@@ -51,34 +51,47 @@ class AudioPlayer {
   static currentTrackIndex = 0
 
   /** This function loads a tracklist and then creates the HTML and appends it to the proper UI container. */
-  static loadTracklist() {
-
+  static loadTracklist(content) {
+    content.src.forEach(source => {
+      this.createTrackItem()
+    })
   }
 
   static createTrackItem() {
     let
-    container = document.createElement("div")
-    container.classList.add("audio-track")
+    container = El("div", "audio-track", [], )
 
     let
-    trackTitle = document.createElement("div")
-    trackTitle.classList.add("audio-track-title")
+    icon = El("div", "audio-track-play-state-icon", [], )
 
     let
-    trackDuration = document.createElement("div")
-    trackDuration.classList.add("audio-track-duration")
+    trackTitle = El("div", "audio-track-title", [], "Test")
 
     let
-    icon = document.createElement("div")
-    icon.classList.add("audio-track-play-state-icon")
+    trackDuration = El("div", "audio-track-duration", [], )
 
     container.append(icon, trackTitle, trackDuration)
     Q("#project-detail-text-side").append(container)
   }
+
   static play() {
 
   }
+
   static pause() {
 
+  }
+
+  /** @returns String */
+  static secondsToMinutes(time) {
+    var min = parseInt(parseInt(time) / 60);
+    var sec = parseInt(time % 60);
+    if (sec < 10) {
+      sec = "0"+ sec
+    }
+    if (min < 10) {
+      min = "0"+ min
+    }
+    return min + ":" + sec
   }
 }
