@@ -31,13 +31,13 @@
     <div tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);">
     </div>
     <div class='buttonCell hidden'>
-      <div class='disablePointerEvents' id='dayNightSwitchCell'>
+      <!-- <div id='dayNightSwitchCell' class='disablePointerEvents'>
         <label class="disablePointerEvents dayNightSwitch">
           <input tabindex="-1" class='disablePointerEvents' type="checkbox" id='dayNightCheckbox'>
           <span class="disablePointerEvents, slider round"></span>
         </label>
-      </div>
-      <button tabindex="0" class='brightness-mode-switch-text'onclick='toggleCheckbox()'>LIGHT MODE</button>
+      </div> -->
+      <!-- <button tabindex="0" class='brightness-mode-switch-text'onclick='toggleCheckbox()'>LIGHT MODE</button> -->
       <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">projects</button>
       <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">about</button>
     </div>
@@ -51,6 +51,7 @@
 
 <div id="search-results-page" class="hidden">
   <div id="search-results-wrapper">
+    <button id="close-search" onclick="setPage(projectsPage)">Close search</button>
     <div id="search-results"></div>
   </div>
 </div>
@@ -90,7 +91,6 @@
     <!-- <div id="project-detail-hide-button" onclick="Project.hideDetail()">Hide</div> -->
     <div id="project-detail-content">
       <div id="project-detail-artwork-side">
-        <img class="artwork-side-image" src="projectData/music/flowerized/images/coverLarge.jpg" alt="">
 
         <div id="project-detail-image-arrows">
           <div class="project-detail-image-arrow left" onclick="Project.current?.showPreviousImage()"></div>
@@ -198,18 +198,8 @@
 <script type="text/javascript" src="extensions.js"></script>
 <script type="text/javascript" src="mouse.js"></script>
 <script type="text/javascript" src="touch.js"></script>
-
-<!-- new not-so-stupid code -->
 <script type="text/javascript" src="projects.js"></script>
 <script type="text/javascript" src="project.js"></script>
-
-<!-- OLD CODE -->
-<!-- <script type="text/javascript" src="projectManager.js"></script> -->
-<!-- <script type="text/javascript" src="illustrationProject.js"></script> -->
-<!-- <script type="text/javascript" src="designProject.js"></script> -->
-<!-- <script type="text/javascript" src="audioProject.js"></script> -->
-<!-- <script type="text/javascript" src="audio.js"></script> -->
-
 <script type="text/javascript" src="audioTrack.js"></script>
 <script type="text/javascript" src="audioPlayer.js"></script>
 <script type="text/javascript" src="search.js"></script>

@@ -74,6 +74,13 @@ h2 {
   font-size: 4rem;
 }
 
+a.clickable {
+
+}
+a.clickable:hover {
+  text-decoration: underline;
+}
+
 *::-moz-selection {
   color: rgb(255, 255, 255);
   background: rgba(163,43,255,1);
@@ -101,11 +108,9 @@ h2 {
   border-radius: 20px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255,255,255, 1);
 }
-
 
 .header {
   width: 100vw;
@@ -133,7 +138,7 @@ h2 {
   background-size: contain;
   max-width: 190px;
   width: 100%;
-  margin: 23px 10px 20px 0px;
+  margin: 23px 10px 20px -4px;
   transition: background-image 0.4s ease-in-out;
   cursor: pointer;
 }
@@ -424,7 +429,9 @@ input[type="text"] {
 
 #search-results-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   max-height: 92vh;
   max-width: 1000px;
   width: 1000px;
@@ -445,8 +452,14 @@ input[type="text"] {
   width: 100%;
   height: 120px;
   padding: 20px;
+  border: 2px solid transparent;
   border-radius: 10px;
   background-color: rgba(34, 34, 34, 0.5);
+  cursor: pointer;
+}
+
+.search-result-element:hover {
+  border: 2px solid white;
 }
 
 .search-result-image {
@@ -456,6 +469,25 @@ input[type="text"] {
 
 .search-result-title {
   font-size: 1.2rem;
+}
+
+#close-search {
+  /* position: fixed; */
+  /* bottom: 50px; */
+  width: max-content;
+  padding: 5px 10px;
+  border: 2px solid hsl(0, 0%, 100%, 0.5);
+  color: hsl(0, 0%, 100%, 0.5);
+  background-color: transparent;
+  font-family: "darker";
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#close-search:hover {
+  color: white;
+  border-color: white;
 }
 
 .splash-screen {

@@ -17,25 +17,31 @@ class AudioTrack {
     }
   }
   play() {
-    if(AudioTrack.current !== this) AudioTrack.current?.pause()
+    if(AudioTrack.current !== this) AudioTrack.current?.stop()
     AudioTrack.current = this
     this.audio.play()
+
+    /* visuals */
+    this.item.classList.add("active")
+  }
+  stop() {
+    this.audio.currentTime = 0
+    this.audio.pause()
+    
+    /* visuals */
+    this.item.classList.remove("active")
   }
   pause() {
     this.audio.pause()
   }
   createTrackItem(title) {
-    let
-    container = El("div", "audio-track", [], )
+    let container = El("div", "audio-track", [], )
 
-    let
-    icon = El("div", "audio-track-play-state-icon", [], )
+    let icon = El("div", "audio-track-play-state-icon", [], )
 
-    let
-    trackTitle = El("div", "audio-track-title", [], title)
+    let trackTitle = El("div", "audio-track-title", [], title)
 
-    let
-    trackDuration = El("div", "audio-track-duration", [], )
+    let trackDuration = El("div", "audio-track-duration", [], )
 
     container.append(icon, trackTitle, trackDuration)
     container.onclick = () => this.play()

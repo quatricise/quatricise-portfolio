@@ -273,8 +273,8 @@
 
 .audio-track {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 5px;
   padding: 0 10px;
   background-color: rgba(255,255,255,0.06);
   border-radius: 2px;
@@ -287,9 +287,19 @@
   background-color:rgba(255, 255, 255, 0.125);
 }
 
+.audio-track.active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
 .audio-track-play-state-icon {
   width: 24px;
   height: 24px;
+  background-position: center;
+  background-size: 24px;
+}
+
+.audio-track:hover .audio-track-play-state-icon {
+  background-image: url(../images/play_icon.png);
 }
 
 .audio-track-play-state-icon.play {

@@ -1,5 +1,5 @@
 class AudioPlayer {
-  /** @type Map<String, Array> - */
+  /** @type Map<String, Array>*/
   static lists = new Map()
 
   /** @type Set<AudioTrack> */
@@ -17,13 +17,5 @@ class AudioPlayer {
       let track = new AudioTrack(project, source)
       trackContainer.append(track.item)
     })
-  }
-
-  static play() {
-
-  }
-
-  static pause() {
-
   }
 }

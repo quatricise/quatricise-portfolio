@@ -140,6 +140,8 @@ class Project {
     Project.current = this
   }
 
+
+  /** Only relates to the image gallery inside project detail panel. */
   showNextImage() {
     let index = this.images.indexOf(this.currentImage)
     let nextImage = this.images[index + 1]
@@ -149,6 +151,8 @@ class Project {
       this.currentImage = nextImage
     }
   }
+
+  /** Only relates to the image gallery inside project detail panel. */
   showPreviousImage() {
     let index = this.images.indexOf(this.currentImage)
     let previousImage = this.images[index - 1]
@@ -159,11 +163,11 @@ class Project {
     }
   }
 
-  /* Close project detail and also reset the background to be the regular shade of black. Does not clear the project detail. */
+  /** Close project detail and also reset the background to be the regular shade of black. Does not clear the project detail. */
   deselect() {
     Project.current = null
 
-    /* remove generated audio tracks */
+    /* remove generated audio track containers */
     Qa(".audio-track-container").forEach(c => c.remove())
   }
 
@@ -171,10 +175,12 @@ class Project {
   hideBackground() {
     this.elements.background.style.filter = "opacity(0)"
   }
+
   /** Show the background element with the darkened thumbnail. */
   showBackground() {
     this.elements.background.style.filter = "opacity(1)"
   }
+
   /** Returns the full URL to a source file such as image or audio file */
   generateFileURL(filename) {
     return `projects/${this.projectIdentifier}/${filename}`
@@ -263,6 +269,11 @@ class Project {
 
   /** @type Project - Currently selected project, regardless of whether the detail panel is visible. */
   static current = null
+
+  static select(/** @type String */ projectIdentifier) {
+    let project = Array.from(this.list).find(p => p.projectIdentifier === projectIdentifier)
+    project.select()
+  }
 
   //#endregion static
 }

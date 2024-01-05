@@ -1,33 +1,38 @@
 class Search {
-  static results = new Set()
+  /** @type Map<ProjectIdentifier, Object> */
+  static results = new Map()
   static currentDataBlock = null
-  static currentProjectType = null
+  static currentProject = null
   static searchBarVisible = false
+
   static showSearchBar() {
     Q("#search-bar").classList.add("active")
     Q("#search-bar input").focus()
     Q("#project-categories").classList.add("hidden")
     this.searchBarVisible = true
   }
+
   static hideSearchBar() {
     Q("#search-bar").classList.remove("active")
     Q("#search-bar input").blur()
     Q("#project-categories").classList.remove("hidden")
     this.searchBarVisible = false
   }
+
   static toggleSearchBar() {
     this.searchBarVisible ? this.hideSearchBar() : this.showSearchBar()
   }
-  static search(/** @type String */ searchQuery) {
-    this.currentProjectType = "music" 
 
-    //this is shit currently, the results do not store information of project type, 
-    //so the only thing that can be searched is music
+  static search(/** @type String */ searchQuery) {
+    if(searchQuery === "") return
+
+    Q("#search-bar input").value = ""
 
     this.results.clear()
-    let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks"]
-    for(let key in projects.music) {
-      let dataBlock = projects.music[key]
+    let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks", "content"]
+    for(let key in projects) {
+      let dataBlock = projects[key]
+      this.currentProject = key
       this.currentDataBlock = dataBlock
       for(let prop of searchProperties) {
         this.searchData(dataBlock[prop], searchQuery)
@@ -35,6 +40,7 @@ class Search {
     }
     this.showResults()
   }
+
   static getActualDatatype(data) {
     let dataType = null
     if(Array.isArray(data))
@@ -47,14 +53,16 @@ class Search {
       dataType = "null"
     return dataType
   }
+
   static searchData(data, searchQuery) {
     let dataType = this.getActualDatatype(data)
     let match = this["search" + dataType.capitalize()]?.(data, searchQuery)
     if(match) 
-      this.results.add(this.currentDataBlock)
+      this.results.set(this.currentProject, this.currentDataBlock)
       
     return match
   }
+
   static searchArray(array, searchQuery) {
     for(let child of array) {
       if(this.searchData(child, searchQuery))
@@ -62,6 +70,7 @@ class Search {
     }
     return false
   }
+
   static searchObject(object, searchQuery) {
     for(let key in object) {
       if(key.includes(searchQuery))
@@ -71,17 +80,20 @@ class Search {
     }
     return false
   }
+
   static searchString(string, searchQuery) {
     return string.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
   }
+
   static searchNull() {
     return false
   }
+
   //#region visual logic
   static showResults() {
     Q("#search-results").innerHTML = ""
-    this.results.forEach(result => {
-      let element = this["createSearchElement" + this.currentProjectType.capitalize()](result)
+    this.results.forEach((result, projectIdentifier) => {
+      let element = this.createSearchElement(result, projectIdentifier)
       Q("#search-results").append(element)
     })
     setPage(searchResultsPage)
@@ -89,10 +101,11 @@ class Search {
   static hideResults() {
     setPage(projectsPage)
   }
-  static createSearchElementMusic(dataBlock) {
+  static createSearchElement(dataBlock, projectIdentifier) {
     let 
     element = document.createElement("div")
     element.classList.add("search-result-element")
+    element.onclick = () => Project.select(projectIdentifier)
 
     let
     title = document.createElement("div")
@@ -102,14 +115,11 @@ class Search {
     let
     cover = new Image()
     cover.draggable = false
-    cover.src = `projectData/music/${dataBlock.blockName}/images/coverSmall.jpg`
+    cover.src = `projects/${projectIdentifier}/thumbnail.jpg`
     cover.classList.add("search-result-image")
 
     element.append(cover, title)
     return element
-  }
-  static createSearchElementArtwork() {
-
   }
   //#endregion
 }

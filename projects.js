@@ -331,7 +331,11 @@ let projects = {
     description:
     `Soundtrack for the game Jumpout.
     <br><br>
-    Jumpout is a mysterious online multiplayer videogame. Your ship has become stranded in an uncharted area of space, you must collect resources to construct a Jump Drive that will get you out of this mess.
+    Jumpout is an online multiplayer videogame. Your ship has become stranded in an uncharted area of space. Fight enemy ships, and collect resources to construct a Jump Drive that will get you out of this mess.
+    <br><br>
+    Demo of the game is available here:
+    <br>
+    <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
     `,
     tags: ["music"],
     colors: {
