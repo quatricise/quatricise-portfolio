@@ -6,6 +6,12 @@ class Project {
     /** @type Object - Raw data of the project, such as image and music links, and text. */
     this.data = projects[projectIdentifier]
 
+    /** Crappy solution to displaying images - just push them here. */
+    this.images = []
+
+    /** @type HTMLImageElement */
+    this.currentImage = null
+
     /** @type Set<String> - Set of tags that describe the project, e.g.: music, code, illustration, design */
     this.tags = new Set()
     this.data.tags.forEach(t => this.tags.add(t))
@@ -46,12 +52,6 @@ class Project {
     projectTag.innerText = firstTag
 
     let
-    background = new Image()
-    background.classList.add("music-background-image")
-    background.src = `projects/music/${this.name}/images/background.jpg`
-    background.style.filter = "opacity(0)"
-    
-    let
     thumbnailTextLabel = document.createElement("div")
     thumbnailTextLabel.classList.add("project-gallery-item-label")
 
@@ -61,17 +61,16 @@ class Project {
     Q("#projects-gallery").append(item)
 
     this.elements.set("item", item)
-    this.elements.set("albumCover", thumbnail)
+    this.elements.set("thumbnail", thumbnail)
     this.elements.set("description", description)
-    this.elements.set("background", background)
   }
 
   /* Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
   select() {
     Project.showDetail()
 
-    if(Project.selected === this) return
-    Project.selected?.deselect()
+    if(Project.current === this) return
+    Project.current?.deselect()
     
 
     /* clear project detail panel */
@@ -99,13 +98,14 @@ class Project {
     Q("#project-detail-type").append(tagsHTML)
     
 
+    
     /* title */
     Q("#project-detail-title").innerHTML = this.data.title
 
     /* description */
     Q("#project-detail-description").innerHTML = this.data.description
 
-    /* process data.content */
+    /* Process data.content push the generated images into an array of content stored on this class. */
     this.data.content.forEach(content => {
 
       switch(content.type) {
@@ -117,15 +117,17 @@ class Project {
           content.src.forEach((img, index) => {
             let image = El("img", "artwork-side-image", [["src", this.generateFileURL(img.src)],["title", img.title ?? ""]])
 
-            if(index === 0)
-            Q("#project-detail-artwork-side").append(image)
+            if(index === 0) {
+              this.currentImage = image
+              Q("#project-detail-artwork-side").append(image)
+            }
 
-            /* the rest of the images will be stored somewhere, but not shown yet */
+            this.images.push(image)
           })
           break
         }
         case "text": {
-
+          
           break
         }
         default: {
@@ -135,12 +137,31 @@ class Project {
 
     })
 
-    Project.selected = this
+    Project.current = this
+  }
+
+  showNextImage() {
+    let index = this.images.indexOf(this.currentImage)
+    let nextImage = this.images[index + 1]
+    if(nextImage && nextImage instanceof HTMLImageElement) {
+      Q("#project-detail-artwork-side").append(nextImage) 
+      this.currentImage.remove()
+      this.currentImage = nextImage
+    }
+  }
+  showPreviousImage() {
+    let index = this.images.indexOf(this.currentImage)
+    let previousImage = this.images[index - 1]
+    if(previousImage && previousImage instanceof HTMLImageElement) {
+      Q("#project-detail-artwork-side").append(previousImage) 
+      this.currentImage.remove()
+      this.currentImage = previousImage
+    }
   }
 
   /* Close project detail and also reset the background to be the regular shade of black. Does not clear the project detail. */
   deselect() {
-    Project.selected = null
+    Project.current = null
 
     /* remove generated audio tracks */
     Qa(".audio-track-container").forEach(c => c.remove())
@@ -241,7 +262,7 @@ class Project {
   static list = new Set()
 
   /** @type Project - Currently selected project, regardless of whether the detail panel is visible. */
-  static selected = null
+  static current = null
 
   //#endregion static
 }

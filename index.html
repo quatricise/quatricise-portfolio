@@ -93,8 +93,8 @@
         <img class="artwork-side-image" src="projectData/music/flowerized/images/coverLarge.jpg" alt="">
 
         <div id="project-detail-image-arrows">
-          <div class="project-detail-image-arrow right"></div>
-          <div class="project-detail-image-arrow left"></div>
+          <div class="project-detail-image-arrow left" onclick="Project.current?.showPreviousImage()"></div>
+          <div class="project-detail-image-arrow right" onclick="Project.current?.showNextImage()"></div>
         </div>
 
         <div id="project-detail-bubbles">
@@ -262,6 +262,7 @@
 <!-- <script type="text/javascript" src="audioProject.js"></script> -->
 <!-- <script type="text/javascript" src="audio.js"></script> -->
 
+<script type="text/javascript" src="audioTrack.js"></script>
 <script type="text/javascript" src="audioPlayer.js"></script>
 <script type="text/javascript" src="search.js"></script>
 <script type="text/javascript" src="main.js"></script>

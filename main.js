@@ -363,10 +363,10 @@ function animateCircle() {
 document.addEventListener("keydown", (event) => {
   if(lightboxFull.style.opacity !== '0') {
     if(event.code  === "ArrowLeft") {
-      getPrevImage()
+      Project.current?.showPreviousImage()
     } 
     if(event.code === "ArrowRight") {
-      getNextImage()
+      Project.current?.showNextImage()
     } 
     if(event.code === "ArrowUp") {
       lightboxFull.scrollTo(0,0);

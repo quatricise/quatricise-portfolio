@@ -47,6 +47,8 @@
 class AudioPlayer {
   /** @type Map<String, Array> - */
   static lists = new Map()
+
+  /** @type Set<AudioTrack> */
   static currentTracklist = new Set()
   static currentTrackIndex = 0
 
@@ -64,23 +66,6 @@ class AudioPlayer {
         item.querySelector(".audio-track-duration").innerText = this.secondsToMinutes(audio.duration)
       }
     })
-  }
-
-  static createTrackItem(title) {
-    let
-    container = El("div", "audio-track", [], )
-
-    let
-    icon = El("div", "audio-track-play-state-icon", [], )
-
-    let
-    trackTitle = El("div", "audio-track-title", [], title)
-
-    let
-    trackDuration = El("div", "audio-track-duration", [], )
-
-    container.append(icon, trackTitle, trackDuration)
-    return container
   }
 
   static play() {
