@@ -1,5 +1,4 @@
 let hamburger = document.querySelector(".hamburger")
-
 let checkbox = Q('#dayNightCheckbox')
 let background = Q('#background')
 
@@ -7,7 +6,6 @@ let lightboxFull = Q('#lightboxFull')
 let lightboxFullImage = Q('#lightboxFullImage')
 let lightboxDescription = Q('#lightbox-description')
 let lightboxTitle = Q('#lightbox-title')
-
 let lightboxAlbum = Q('#lightbox-album')
 let lightboxAlbumImage = Q('#lightbox-album--image')
 
@@ -43,6 +41,7 @@ let pages = [
   aboutPage,
   searchResultsPage,
 ]
+
 function setPage(page) {
   if(page === currentPage) return
 
@@ -197,35 +196,35 @@ function changeToDark() {
   }
 }
 
-function openLightboxFull() {
-  lightboxFull.classList.remove('opacity-zero', 'z-index-minus100');
-  lightboxFull.style.pointerEvents = 'initial';
-  lightboxFullImage.classList.remove('pointerEventsNoneBlock');
-  lightboxFull.classList.remove('hidden');
-  lightboxFull.scrollTo(0,0);
-}
+// function openLightboxFull() {
+//   lightboxFull.classList.remove('opacity-zero', 'z-index-minus100');
+//   lightboxFull.style.pointerEvents = 'initial';
+//   lightboxFullImage.classList.remove('pointerEventsNoneBlock');
+//   lightboxFull.classList.remove('hidden');
+//   lightboxFull.scrollTo(0,0);
+// }
 
-function closeLightboxFull() {
-  lightboxFull.classList.add('opacity-zero', 'z-index-minus100');
-  lightboxFull.style.pointerEvents = 'none';
-  lightboxFullImage.classList.add('pointerEventsNoneBlock');
-  setTimeout(function () {lightboxFull.classList.add('hidden')}, 1000);
-}
+// function closeLightboxFull() {
+//   lightboxFull.classList.add('opacity-zero', 'z-index-minus100');
+//   lightboxFull.style.pointerEvents = 'none';
+//   lightboxFullImage.classList.add('pointerEventsNoneBlock');
+//   setTimeout(function () {lightboxFull.classList.add('hidden')}, 1000);
+// }
 
-function openLightboxAlbum() {
-  lightboxAlbum.classList.remove('opacity-zero', 'z-index-minus100', 'hidden');
-  lightboxAlbum.classList.add('z-index-100000');
-  lightboxAlbum.style.pointerEvents = 'initial';
-  lightboxAlbumImage.classList.remove('pointerEventsNoneBlock');
-  lightboxAlbum.scrollTo(0,0);
-}
+// function openLightboxAlbum() {
+//   lightboxAlbum.classList.remove('opacity-zero', 'z-index-minus100', 'hidden');
+//   lightboxAlbum.classList.add('z-index-100000');
+//   lightboxAlbum.style.pointerEvents = 'initial';
+//   lightboxAlbumImage.classList.remove('pointerEventsNoneBlock');
+//   lightboxAlbum.scrollTo(0,0);
+// }
 
-function closeLightboxAlbum() {
-  lightboxAlbum.classList.add('opacity-zero', 'z-index-minus100');
-  lightboxAlbum.style.pointerEvents = 'none';
-  lightboxAlbumImage.classList.add('pointerEventsNoneBlock');
-  setTimeout(function () {lightboxAlbum.classList.add('hidden');lightboxAlbum.classList.remove('z-index-100000');}, 1000);
-}
+// function closeLightboxAlbum() {
+//   lightboxAlbum.classList.add('opacity-zero', 'z-index-minus100');
+//   lightboxAlbum.style.pointerEvents = 'none';
+//   lightboxAlbumImage.classList.add('pointerEventsNoneBlock');
+//   setTimeout(function () {lightboxAlbum.classList.add('hidden');lightboxAlbum.classList.remove('z-index-100000');}, 1000);
+// }
 
 var artwork = Qa('.artwork');
 var allDescriptions = Qa('.artwork-description');
@@ -256,21 +255,21 @@ srcsetObserver.observe(targetNode, observeSrcset);
 lightboxFullImage.onload = function () {
   isLoaded = true
   this.classList.remove('opacity-zero')
-  circleLoading.classList.remove('spinning')
-  circleLoading.classList.add('hidden')
+  loadingCircle.classList.remove('spinning')
+  loadingCircle.classList.add('hidden')
 }
 
-if(lightboxFull) 
-  lightboxFull.onclick = closeLightboxFull;
-if(lightboxAlbum) 
-  lightboxAlbum.onclick = closeLightboxAlbum;
+// if(lightboxFull) 
+//   lightboxFull.onclick = closeLightboxFull;
+// if(lightboxAlbum) 
+//   lightboxAlbum.onclick = closeLightboxAlbum;
 
-let albums = [
-  "ancient-cycles",
-  "metal-valley",
-  "flowerized",
-  "midnight-bowling"
-]
+// let albums = [
+//   "ancient-cycles",
+//   "metal-valley",
+//   "flowerized",
+//   "midnight-bowling"
+// ]
 
 function createAlbumCover(albumName) {
   let cont = El("div", "cover-container" + " " + albumName)
@@ -282,82 +281,84 @@ function createAlbumCover(albumName) {
   cont.append(icon_cont, strip)
 }
 
-for (let i = 0; i < albums.length; i++) {
-  createAlbumCover(albums[i])
-}
+// for (let i = 0; i < albums.length; i++) {
+//   createAlbumCover(albums[i])
+// }
 
-function setDaytimeForTracks() {
-    var fas = Qa('.fas');
-    var infotrack = Qa('.audio-track-title')
-    var duration = Qa('.playlist-duration')
+// function setDaytimeForTracks() {
+//     var fas = Qa('.fas');
+//     var infotrack = Qa('.audio-track-title')
+//     var duration = Qa('.playlist-duration')
 
-    if(daytime == "bright") {
-      console.log("Changed track color to reflect bright mode")
+//     if(daytime == "bright") {
+//       console.log("Changed track color to reflect bright mode")
 
-      for(var i = 0; i < fas.length; i++) {
-        fas[i].classList.add('color-night--white')
-      }
-      for(var i = 0; i < infotrack.length; i++) {
-        infotrack[i].classList.add('color-night--white')
-      }
-      for(var i = 0; i < duration.length; i++) {
-        duration[i].classList.add('color-night--white')
-      }
-    }  
-}
+//       for(var i = 0; i < fas.length; i++) {
+//         fas[i].classList.add('color-night--white')
+//       }
+//       for(var i = 0; i < infotrack.length; i++) {
+//         infotrack[i].classList.add('color-night--white')
+//       }
+//       for(var i = 0; i < duration.length; i++) {
+//         duration[i].classList.add('color-night--white')
+//       }
+//     }  
+// }
 
-let descriptionExpandState = "closed";
+// function hideSplash() {
+//   var splash = document.querySelector('.splash-screen')
+//   splash.classList.add('opacity-zero', 'slide-up', 'pointerEventsNoneBlock')
+//   setTimeout(() => {
+//     splash.classList.add('z-index-minus100');splash.classList.remove('z-index-100');splash.classList.remove('display-flex');splash.classList.add('hidden')}
+//   ,1100)
+// }
 
-function hideSplash() {
-  var splash = document.querySelector('.splash-screen')
-  splash.classList.add('opacity-zero', 'slide-up', 'pointerEventsNoneBlock')
-  setTimeout(() => {
-    splash.classList.add('z-index-minus100');splash.classList.remove('z-index-100');splash.classList.remove('display-flex');splash.classList.add('hidden')}
-  ,1100)
-}
-function slideMusicFromBottom () {
-  projectsPage.classList.remove('slide-from-bottom');
-  console.log('Music slid from bottom.')
-}
-function enlargeAlbumCover(albumName) {
-  openLightboxAlbum();
-  lightboxAlbumImage.srcset = document.querySelector(albumName).getAttribute("data-srcset");
-}
-function updateLightboxImage() {
-  lightboxFullImage.srcset = artwork[lightboxImageNumber].dataset.srcset2 
-  lightboxDescription.innerHTML = allDescriptions[lightboxImageNumber].innerHTML
-  lightboxTitle.innerHTML = allTitles[lightboxImageNumber].innerHTML
+// function slideMusicFromBottom() {
+//   projectsPage.classList.remove('slide-from-bottom');
+//   console.log('Music slid from bottom.')
+// }
 
-  setTimeout(() => {
-    if(!isLoaded)
-      lightboxFullImage.classList.add('opacity-zero')
-  }, 50)
-}
-function getNextImage() {
-  if(lightboxImageNumber < (artwork.length - 1)) 
-    lightboxImageNumber++;
-  else 
-  if(lightboxImageNumber == (artwork.length - 1)) 
-    lightboxImageNumber = 0
+// function enlargeAlbumCover(albumName) {
+//   openLightboxAlbum();
+//   lightboxAlbumImage.srcset = document.querySelector(albumName).getAttribute("data-srcset");
+// }
+// function updateLightboxImage() {
+//   lightboxFullImage.srcset = artwork[lightboxImageNumber].dataset.srcset2 
+//   lightboxDescription.innerHTML = allDescriptions[lightboxImageNumber].innerHTML
+//   lightboxTitle.innerHTML = allTitles[lightboxImageNumber].innerHTML
 
-  updateLightboxImage()
-}
-function getPrevImage() {
-  if(lightboxImageNumber > 0) 
-    lightboxImageNumber--
-  else 
-  if(lightboxImageNumber == 0) 
-    lightboxImageNumber = artwork.length - 1
+//   setTimeout(() => {
+//     if(!isLoaded)
+//       lightboxFullImage.classList.add('opacity-zero')
+//   }, 50)
+// }
 
-  updateLightboxImage()
-}
+// function getNextImage() {
+//   if(lightboxImageNumber < (artwork.length - 1)) 
+//     lightboxImageNumber++;
+//   else 
+//   if(lightboxImageNumber == (artwork.length - 1)) 
+//     lightboxImageNumber = 0
 
-let circleLoading = document.querySelector('.circle-loading')
+//   updateLightboxImage()
+// }
+
+// function getPrevImage() {
+//   if(lightboxImageNumber > 0) 
+//     lightboxImageNumber--
+//   else 
+//   if(lightboxImageNumber == 0) 
+//     lightboxImageNumber = artwork.length - 1
+
+//   updateLightboxImage()
+// }
+
+let loadingCircle = document.querySelector('.circle-loading')
 
 function animateCircle() {
   isLoaded = false
-  circleLoading.classList.add('spinning')
-  circleLoading.classList.remove('hidden')
+  loadingCircle.classList.add('spinning')
+  loadingCircle.classList.remove('hidden')
 }
 
 document.addEventListener("keydown", (event) => {
@@ -421,7 +422,7 @@ function init() {
 let arrowAnimation = null
 
 /* project detail arrow hiding */
-Q("#project-detail-artwork-side").onmouseleave = () => {
+Q("#project-detail-artwork-side").onmouseout = () => {
 
   setTimeout(() => {
 
@@ -438,7 +439,7 @@ Q("#project-detail-artwork-side").onmouseleave = () => {
 
   }, 800)
 }
-Q("#project-detail-artwork-side").onmouseenter = () => {
+Q("#project-detail-artwork-side").onmouseover = () => {
   arrowAnimation?.cancel()
   Q("#project-detail-image-arrows").style.filter = ""
 }

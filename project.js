@@ -110,7 +110,7 @@ class Project {
 
       switch(content.type) {
         case "audio": {
-          AudioPlayer.loadTracklist(this.projectIdentifier, content)
+          AudioPlayer.loadTracklist(this, content)
           break
         }
         case "images": {

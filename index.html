@@ -84,10 +84,10 @@
 
 <div id="project-detail" class="">
   <div id="background-container" class='fullscreen-fixed'>
-    <div id='background' class='background-dark background-ancient-cycles'></div>
+    <div id='background' class='background-dark background-ancient-cycles' title="Click to hide detail."></div>
   </div>
   <div id="project-detail-panel">
-    <div id="project-detail-hide-button" onclick="Project.hideDetail()">Hide</div>
+    <!-- <div id="project-detail-hide-button" onclick="Project.hideDetail()">Hide</div> -->
     <div id="project-detail-content">
       <div id="project-detail-artwork-side">
         <img class="artwork-side-image" src="projectData/music/flowerized/images/coverLarge.jpg" alt="">
@@ -108,58 +108,6 @@
           Some data
         </div>
         <div id="project-detail-tracklist"></div>
-      </div>
-    </div>
-      <div id="audio-player">
-        <div class="player-control-panel">
-          <div class="infos-ctn">
-          <div style='width: 50px' class="timer">00:00</div>
-          <div class="title"></div>
-          <div class="duration">00:00</div>
-        </div>
-        <div id="my-progress-hitbox">
-          <div id="myProgress" class="bg-color--purple-bright04">
-            <div id="myBar" style='width: 0%'>
-              <div id="myBarCircle" style="left: 0%"></div>
-              <div class='myBarColor'></div>
-            </div>
-          </div>
-        </div>
-        <div class="display-flex">
-        <div class="btn-ctn">
-          <div class="btn-action first-btn hover-day" onclick="previous()">
-            <div id="btn-faws-back">
-              <i class='fas fa-step-backward'></i>
-            </div>
-          </div>
-          <div class="btn-action third-btn hover-day" onclick="toggleAudio()">
-            <div id="btn-faws-play-pause">
-              <i class='fas fa-play' id="icon-play"></i>
-              <i class='fas fa-pause' id="icon-pause" style="display: none"></i>
-            </div>
-          </div>
-          <div class="btn-action fifth-btn hover-day" onclick="next()">
-            <div id="btn-faws-next">
-              <i class='fas fa-step-forward'></i>
-            </div>
-          </div>
-          <div class="volume-slider">
-            <div class="btn-volume seventh-btn btn-action hover-day" id="volume-slider" onclick="toggleMute()">
-              <div id="btn-faws-volume-slider" class="">
-                <i id="icon-vol" class='fas fa-volume-up'></i>
-                <i id="icon-vol-mute" class='fas fa-volume-mute' style="display: none"></i>
-              </div>
-            </div >
-              <div id="volume-bar" >
-                <div id="volume-bar--bg"></div>
-                <div id="volume-bar--inner">
-                  <img id="volumeCircle" src='images/my_bar_circle_white.png'></img>
-                </div>
-            </div>
-          </div>
-        </div>
-        <span class="navbar--music-links"></span>
-      </div>
       </div>
     </div>
     <div id="project-detail-arrows">

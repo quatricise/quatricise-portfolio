@@ -379,3 +379,16 @@ function rgb_to_hex(rgb) {
   })
   return "#" + b[0] + b[1] + b[2]
 }
+
+  /** @returns String */
+function secondsToMinutes(time) {
+  var min = parseInt(parseInt(time) / 60);
+  var sec = parseInt(time % 60);
+  if (sec < 10) {
+    sec = "0"+ sec
+  }
+  if (min < 10) {
+    min = "0"+ min
+  }
+  return min + ":" + sec
+}
