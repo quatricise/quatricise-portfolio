@@ -212,13 +212,133 @@
   border: none;
 }
 
+
+
 #audio-player {
+  position: fixed;
+  bottom: 10px;
+  left: calc(50% - 560 / 2);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 560px;
+  height: 80px;
+  padding: 10px;
+  user-select: none;
+  background-color: rgb(29, 29, 29);
+  border-radius: 5px;
+  z-index: 100000;
+}
+
+.audio-player-cover {
+  height: 100%;
+  width: auto;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.audio-player-cover:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  filter: brightness(1.2);
+}
+
+.audio-player-track {
   position: relative;
   display: flex;
-  justify-content: center;
-  width: 1000px;
-  user-select: none;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  padding: 2px 10px 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 1.2rem;
+  background-color: rgb(15, 15, 15);
+  color: white;
 }
+
+.audio-player-track:hover {
+  background-color: rgb(20, 20, 20);
+}
+
+.audio-player-track-name {
+  text-shadow: 1px 1px 2px red;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audio-player-track-number {
+  font-weight: 600;
+}
+
+.audio-player-controls {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: max-content;
+  padding: 5px 20px;
+}
+
+.audio-player-progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 45%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(51, 109, 136, 0.25);
+}
+
+.audio-player-playhead {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 2px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 0 10px 1px white;
+}
+.audio-player-playhead.ghost {
+  opacity: 0.5;
+}
+
+.audio-player-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  cursor: pointer;
+}
+
+.audio-player-button:hover {
+  border-color: white;
+}
+
+.audio-player-button.next-track {
+  background-image: url(../images/next_track_icon.png);
+}
+
+.audio-player-button.previous-track {
+  background-image: url(../images/next_track_icon.png);
+  transform: scaleX(-1);
+}
+
+.audio-player-button.play {
+  background-image: url(../images/play_icon.png);
+}
+
+.audio-player-button.volume {
+  background-image: url(../images/volume_icon.png);
+}
+
+
 
 .project-gallery-item-label {
   position: absolute;

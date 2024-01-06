@@ -63,24 +63,6 @@ window.addEventListener('load', () => {
   quitPreloader();
 })
 
-const targetNode = lightboxFullImage
-const observeSrcset = {
-  childList: false,
-  attributes: true,
-  subtree: false,
-  attributeFilter: ["srcset"]
-}
-
-const srcsetObserver = new MutationObserver(animateCircle);
-srcsetObserver.observe(targetNode, observeSrcset);
-
-lightboxFullImage.onload = function () {
-  isLoaded = true
-  this.classList.remove('opacity-zero')
-  loadingCircle.classList.remove('spinning')
-  loadingCircle.classList.add('hidden')
-}
-
 let loadingCircle = document.querySelector('.circle-loading')
 
 function animateCircle() {
@@ -176,6 +158,10 @@ function init() {
       case "project": {
         let project = Array.from(Project.list).find(p => p.projectIdentifier === value)
         project.select()
+        break
+      }
+      case "search": {
+        Search.search(value)
         break
       }
     }

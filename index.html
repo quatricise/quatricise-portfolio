@@ -31,13 +31,6 @@
     <div tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);">
     </div>
     <div class='buttonCell hidden'>
-      <!-- <div id='dayNightSwitchCell' class='disablePointerEvents'>
-        <label class="disablePointerEvents dayNightSwitch">
-          <input tabindex="-1" class='disablePointerEvents' type="checkbox" id='dayNightCheckbox'>
-          <span class="disablePointerEvents, slider round"></span>
-        </label>
-      </div> -->
-      <!-- <button tabindex="0" class='brightness-mode-switch-text'onclick='toggleCheckbox()'>LIGHT MODE</button> -->
       <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">projects</button>
       <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">about</button>
     </div>
@@ -74,12 +67,9 @@
         </div>
       </div>
     </div>
-  <div id="projects-gallery-wrapper">
-    <div id="projects-gallery"></div>
-  </div>
-  <audio id="active-audio-element" ontimeupdate="onTimeUpdate()">
-    <source id="source-audio" src="" type="audio/mpeg">
-  </audio>
+    <div id="projects-gallery-wrapper">
+      <div id="projects-gallery"></div>
+    </div>
   </div>
 </div>
 
@@ -102,10 +92,10 @@
         </div>
       </div>
       <div id="project-detail-text-side">
-        <div id="project-detail-type">This will be a list of tags, not category</div>
+        <div id="project-detail-type">List of tags</div>
         <h2  id="project-detail-title">Project name</h2>
         <div id="project-detail-description">
-          Some data
+          Project description.
         </div>
         <div id="project-detail-tracklist"></div>
       </div>
@@ -166,30 +156,6 @@
         <div style="height: 1px;"></div>
       <br>
       </div>
-    </div>
-  </div>
-</div>
-
-<div id='lightboxFull' class='display-flex opacity-zero z-index-minus100 hidden no-scrollbar pointerEventsNoneBlock'>
-  <img src="images/circle_loading.png" alt="" class="circle-loading">
-  <div class="lightbox-full--page" id="lightboxFullPage"
-       ontouchstart="touchStart(event,'lightboxFullPage');" 
-       ontouchend="touchEnd(event);" 
-       ontouchmove="touchMove(event);" 
-       ontouchcancel="touchCancel(event);"
-    >
-    <div class="imgContainer" id="lightboxImageContainer"> 
-      <img id='lightboxFullImage' srcset=''>  
-    </div>
-    <p id="lightbox-title"></p>
-    <p id='lightbox-description'></p>
-  </div>
-</div>
-
-<div id='lightbox-album' class='opacity-zero z-index-minus100 hidden no-scrollbar'>
-  <div class="lightbox-album--page">
-    <div class="imgContainer"> 
-      <img id='lightbox-album--image' srcset=''>
     </div>
   </div>
 </div>

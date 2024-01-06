@@ -430,7 +430,7 @@ input[type="text"] {
 #search-results-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 20px;
   align-items: center;
   max-height: 92vh;
   max-width: 1000px;
