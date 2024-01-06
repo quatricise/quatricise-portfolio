@@ -201,6 +201,9 @@ class Project {
   static hideDetail() {
     Q("#project-detail").classList.add("hidden")
     this.projectDetailVisible = false
+
+    /* collapse audio player */
+    AudioPlayer.collapseHTML()
   }
 
   /** Toggles the bottom-docked panel. */

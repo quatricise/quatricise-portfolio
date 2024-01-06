@@ -54,8 +54,8 @@
 
 #project-detail-arrows .arrow {
   position: absolute;
-  width:  40px;
-  height: 40px;
+  width:  48px;
+  height: 48px;
   padding: 20px;
   background-image: url(/images/icon_arrow.png);
   background-size: 32px;
@@ -230,6 +230,11 @@
   z-index: 100000;
 }
 
+#audio-player.collapsed {
+  height: unset;
+  padding: 5px;
+}
+
 .audio-player-cover {
   height: 100%;
   width: auto;
@@ -257,6 +262,11 @@
   cursor: pointer;
 }
 
+.audio-player-track.collapsed {
+  height: 10px;
+  width: 100%;
+}
+
 .audio-player-track:hover {
   background-color: rgb(20, 20, 20);
 }
@@ -265,10 +275,12 @@
   text-shadow: 1px 1px 2px red;
   text-overflow: ellipsis;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 .audio-player-track-number {
   font-weight: 600;
+  pointer-events: none;
 }
 
 .audio-player-controls {
@@ -299,6 +311,7 @@
   height: 100%;
   background-color: white;
   box-shadow: 0 0 10px 1px white;
+  pointer-events: none;
 }
 .audio-player-playhead.ghost {
   opacity: 0.5;
@@ -346,6 +359,27 @@
 
 .audio-player-button.volume.muted {
   background-image: url(../images/volume_icon_muted.png);
+}
+
+.audio-player-close-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  background-image: url(../images/close_icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  cursor: pointer;
+}
+
+.audio-player-close-button.collapsed {
+  width: 24px;
+  height: 24px;
+  background-size: 20px;
+}
+
+.audio-player-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.125);
 }
 
 
@@ -405,7 +439,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 0 10px;
+  padding: 0 10px 0 6px;
   background-color: rgba(255,255,255,0.06);
   border-radius: 2px;
   color: rgb(163, 163, 163);

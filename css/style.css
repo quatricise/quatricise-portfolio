@@ -54,27 +54,6 @@
   text-shadow: 2px 2px 1px rgba(255, 65, 8, 0.5), -2px 2px 1px rgba(0, 47, 255, 0.5);
   margin: 0;
   padding: 0;
-  /* box-shadow: 1px 1px 2px 1px rgba(0, 0, 255, 0.377); */
-  animation-name: matrix;
-  animation-play-state: running;
-  animation-iteration-count: infinite;
-  animation-duration: 3s;
-  animation-direction: alternate-reverse;
-}
-
-@keyframes matrix {
-  0% 
-  {
-    box-shadow: 1px 1px 2px 1px rgba(0, 0, 255, 0.1);
-  }
-  50%
-  {
-    box-shadow: -1px 1px 3px 1px rgba(0, 0, 255, 0.15);
-  }
-  100%
-  {
-    box-shadow: -10px 5px 1px 5px rgba(0, 0, 255, 0.1);
-  }
 }
 
 body {

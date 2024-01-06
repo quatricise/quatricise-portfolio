@@ -72,23 +72,29 @@ function animateCircle() {
 }
 
 document.addEventListener("keydown", (event) => {
+
   if(event.code  === "ArrowLeft") {
     Project.current?.showPreviousImage()
   } 
+
   if(event.code === "ArrowRight") {
     Project.current?.showNextImage()
   }
+
   if(event.code === "Escape") {
     Search.hideSearchBar()
     Search.hideResults()
     Project.hideDetail()
   }
+
   if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
     Search.hideSearchBar()
   }
+
   if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement == Q("#search-bar input")) {
     Search.search(Q("#search-bar-input").value)
   }
+
 })
 
 document.addEventListener("keyup", (event) => {
@@ -139,7 +145,7 @@ Q("#project-detail-artwork-side").onmouseover = () => {
 
 
 document.addEventListener("mousemove", (event) => {
-  Mouse.clientPosition.set(event.clientX, event.clientY)
+  Mouse.update(event)
 })
 
 

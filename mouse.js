@@ -5,7 +5,7 @@ class Mouse {
     1: false,
     2: false,
   }
-  static update(event) {
+  static update(/** @type MouseEvent */ event) {
     this.clientPosition.set(event.clientX, event.clientY)
   }
 }
