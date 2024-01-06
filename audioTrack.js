@@ -9,17 +9,22 @@ class AudioTrack {
     /** @type String */
     this.title = src.title ?? src.filename
 
+    /** @type String */
+    this.description = src.description ?? ""
+
     /** @type Integer - Index in the tracklist this is part of. */
     this.index = index
 
     /** @type HTMLAudioElement */
     this.audio = new Audio(`projects/${project.projectIdentifier}/${src.filename}.mp3`)
 
-    /** @type HTMLDivElement */
-    this.item = this.createTrackItem(src.title ?? src.filename)
+    /** @type Map<String, HTMLElement> */
+    this.elements = new Map()
+
+    this.createTrackItem()
 
     this.audio.onloadedmetadata = () => {
-      this.item.querySelector(".audio-track-duration").innerText = secondsToMinutes(this.audio.duration)
+      this.elements.get("trackDuration").innerText = secondsToMinutes(this.audio.duration)
     }
   }
   play() {
@@ -28,7 +33,7 @@ class AudioTrack {
     this.audio.play()
 
     /* visuals */
-    this.item.classList.add("active")
+    this.elements.get("container").classList.add("active")
 
     /* trigger audioplayer to open */
     /* so far it recreates the html every time, later it will only do so when loading the project first, or something */
@@ -44,7 +49,7 @@ class AudioTrack {
     this.audio.onended = ""
 
     /* visuals */
-    this.item.classList.remove("active")
+    this.elements.get("container").classList.remove("active")
   }
   pause() {
     this.audio.pause()
@@ -52,16 +57,28 @@ class AudioTrack {
   toggle() {
     this.audio.paused ? this.play() : this.pause()
   }
-  createTrackItem(title) {
+  createTrackItem() {
     let container = El("div", "audio-track", [], )
     let icon = El("div", "audio-track-play-state-icon", [], )
-    let trackTitle = El("div", "audio-track-title", [], title)
+    let trackTitle = El("div", "audio-track-title", [], this.title)
     let trackDuration = El("div", "audio-track-duration", [], )
+    
+    if(this.description) {
+      /* expander for info about the track */
+      let trackInfoLink = El("div", "audio-track-info-button", [], "info")
+      let trackDescription = El("div", "audio-track-description hidden", [], "ff")
+
+      container.after(trackDescription)
+      trackTitle.after(trackInfoLink)
+    }
 
     container.append(icon, trackTitle, trackDuration)
     container.onclick = () => this.play()
-    return container
+    
+    this.elements.set("container", container)
+    this.elements.set("trackDuration", trackDuration)
   }
+  
   /** @type AudioTrack - Only one can be playing at the same time. This is a limitation I can accept. */
   static current = null
 }

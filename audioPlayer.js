@@ -1,4 +1,5 @@
 class AudioPlayer {
+
   /** @type Map<String, Array> */
   static tracklists = new Map()
 
@@ -13,13 +14,15 @@ class AudioPlayer {
 
   /** This function loads a tracklist and then creates the HTML and appends it to the proper UI container. */
   static loadTracklist(/** @type Project */ project, content) {
+    
+    /* Create a new track container element */
     const trackContainer = El("div", "audio-track-container")
     Q("#project-detail-text-side").append(trackContainer)
 
     const tracks = []
     content.src.forEach((source, index) => {
       let track = new AudioTrack(project, source, index)
-      trackContainer.append(track.item)
+      trackContainer.append(track.elements.get("container"))
       tracks.push(track)
     })
 
@@ -41,7 +44,7 @@ class AudioPlayer {
 
   static createHTML(/** @type Project */ project) {
     let container =     El("div", "audio-player", [["id", "audio-player"]])
-    let cover =         El("img", "audio-player-cover", [["src", "projects/jumpout/cover.jpg"]])
+    let cover =         El("img", "audio-player-cover", [["src", `projects/${project.projectIdentifier}/cover.jpg`]])
     let track =         El("div", "audio-player-track")
     let trackName =     El("div", "audio-player-track-name", [], AudioTrack.current.title)
     let trackNumber =   El("div", "audio-player-track-number")
@@ -127,6 +130,7 @@ class AudioPlayer {
     }
 
     track.onclick = () => {
+      
       /* calculate mouse offset */
       let bb = track.getBoundingClientRect()
       let offsetPX = Mouse.clientPosition.x - bb.left
@@ -136,6 +140,7 @@ class AudioPlayer {
     }
 
     track.onmousemove = () => {
+
       /* calculate mouse offset */
       let bb = track.getBoundingClientRect()
       let offsetPX = Mouse.clientPosition.x - bb.left
@@ -181,6 +186,7 @@ class AudioPlayer {
     this.elements.get("playheadGhost").classList.add("hidden")
   }
 
+  /** Stop music and close the player. */
   static close() {
     this.elements.get("container").remove()
     AudioTrack.current?.stop()

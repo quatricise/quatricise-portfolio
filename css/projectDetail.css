@@ -435,6 +435,14 @@
   gap: 4px;
 }
 
+
+.audio-track-info-button {
+  font-size: 1rem;
+}
+.audio-track-info-button:hover {
+  background-color: rgba(255, 255, 255, 0.125);
+}
+
 .audio-track {
   display: flex;
   align-items: center;

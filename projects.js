@@ -357,6 +357,41 @@ let projects = {
       },
     ]
   },
+  revenantEarth: {
+    title: "Revenant Earth",
+    description:
+    `Soundtrack for a videogame Revenant Earth.
+    <br><br>
+    Annotation.
+    <br><br>
+    Demo of the game is available here:
+    <br>
+    <a class="clickable" target="_blank" href=https://mylapqn.github.io/revenant-earth/> https://mylapqn.github.io/revenant-earth/ <a/>
+    `,
+    tags: ["music"],
+    colors: {
+      gradient: ["#000000", "#000000"]
+    },
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Urban Ruins", description: ""},
+          {filename: "Industrial Wasteland", description: ""},
+          {filename: "Ancient Battlefield", description: ""},
+          {filename: "Melted Mountains", description: ""},
+          {filename: "Dead Forest", description: ""},
+          {filename: "Dead Forest - Battle", description: "Battle variant of the dead forest track."},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.png", title: "Revenant Earth Album Cover"},
+        ],
+      },
+    ]
+  },
   /** 
    * This project will be an exception that it generates many thumbnails per each of it's contents, but those will only be visible inside the #illustration tag.
    * Meanwhile, inside Everything, only this main project will be visible. This is weird but it makes sense, I don't want to flood the everything page with a 50+
