@@ -23,6 +23,12 @@ class AudioPlayer {
     content.src.forEach((source, index) => {
       let track = new AudioTrack(project, source, index)
       trackContainer.append(track.elements.get("container"))
+
+      /* append description in case it was */
+      if(track.elements.has("trackDescription")) {
+        trackContainer.append(track.elements.get("trackDescription"))
+      }
+
       tracks.push(track)
     })
 
@@ -97,7 +103,7 @@ class AudioPlayer {
     container.projectIdentifier = project.projectIdentifier
 
 
-
+  
     /* functionality */
 
     /* auto-collapsing */
@@ -130,7 +136,7 @@ class AudioPlayer {
     }
 
     track.onclick = () => {
-      
+
       /* calculate mouse offset */
       let bb = track.getBoundingClientRect()
       let offsetPX = Mouse.clientPosition.x - bb.left
@@ -149,6 +155,7 @@ class AudioPlayer {
       playheadGhost.style.left = (offsetFactor * 100) + "%"
       playheadGhost.classList.remove("hidden")
     }
+
     track.onmouseout = () => {
       playheadGhost.classList.add("hidden")
     }

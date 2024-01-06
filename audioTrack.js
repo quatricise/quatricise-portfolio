@@ -63,22 +63,38 @@ class AudioTrack {
     let trackTitle = El("div", "audio-track-title", [], this.title)
     let trackDuration = El("div", "audio-track-duration", [], )
     
-    if(this.description) {
-      /* expander for info about the track */
-      let trackInfoLink = El("div", "audio-track-info-button", [], "info")
-      let trackDescription = El("div", "audio-track-description hidden", [], "ff")
-
-      container.after(trackDescription)
-      trackTitle.after(trackInfoLink)
+    container.append(icon, trackTitle, trackDuration)
+    container.onclick = (ev) => {
+      if(ev.target?.closest(".audio-track-info-button")) return
+      
+      this.play()
     }
 
-    container.append(icon, trackTitle, trackDuration)
-    container.onclick = () => this.play()
+    if(this.description) {
+      /* expander for info about the track */
+      let trackInfoButton = El("div", "audio-track-info-button", [], "info")
+      let trackDescription = El("div", "audio-track-description hidden", [], this.description)
+
+      container.after(trackDescription)
+      trackTitle.after(trackInfoButton)
+
+      this.elements.set("trackInfoButton", trackInfoButton)
+      this.elements.set("trackDescription", trackDescription)
+
+
+
+      /* functionality */
+      
+      trackInfoButton.onclick = () => {
+        trackDescription.classList.toggle("hidden")
+      }
+
+    }
     
     this.elements.set("container", container)
     this.elements.set("trackDuration", trackDuration)
   }
-  
+
   /** @type AudioTrack - Only one can be playing at the same time. This is a limitation I can accept. */
   static current = null
 }

@@ -376,7 +376,7 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Urban Ruins", description: ""},
+          {filename: "Urban Ruins", description: "First track that plays when you enter the game."},
           {filename: "Industrial Wasteland", description: ""},
           {filename: "Ancient Battlefield", description: ""},
           {filename: "Melted Mountains", description: ""},
