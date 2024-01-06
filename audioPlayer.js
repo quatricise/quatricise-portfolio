@@ -59,11 +59,11 @@ class AudioPlayer {
     track.append(trackNumber, trackName, progressBar, playhead)
 
     /* Controls: prev, play/pause, next, volume */
-    let controls =      El("div", "audio-player-controls")
-    let prevButton =    El("div", "audio-player-button previous-track")
-    let nextButton =    El("div", "audio-player-button next-track")
-    let playButton =    El("div", "audio-player-button play")
-    let volumeButton =  El("div", "audio-player-button volume")
+    let controls =      El("div",     "audio-player-controls")
+    let prevButton =    El("button",  "audio-player-button previous-track")
+    let nextButton =    El("button",  "audio-player-button next-track")
+    let playButton =    El("button",  "audio-player-button play paused")
+    let volumeButton =  El("button",  "audio-player-button volume")
 
     controls.append(prevButton, playButton, nextButton, volumeButton)
 
@@ -78,19 +78,46 @@ class AudioPlayer {
     this.elements.set("prevButton", prevButton)
     this.elements.set("nextButton", nextButton)
     this.elements.set("playButton", playButton)
+    this.elements.set("progressBar", progressBar)
+    this.elements.set("playhead", playhead)
 
     container.projectIdentifier = project.projectIdentifier
 
 
+
     /* functionality */
-    playButton.onclick = () => AudioTrack.current.toggle()
+
+    playButton.onclick = () => {
+      AudioTrack.current.toggle()
+      playButton.classList.toggle("paused")
+    }
+
     nextButton.onclick = () => this.playNext()
+
     prevButton.onclick = () => this.playPrevious()
+
+    volumeButton.onclick = () => {
+      AudioTrack.current.audio.volume == 0 ? AudioTrack.current.audio.volume = 1 : AudioTrack.current.audio.volume = 0
+      volumeButton.classList.toggle("muted")
+    }
+
+    track.onclick = () => {
+      let bb = track.getBoundingClientRect()
+      let offsetPX = Mouse.clientPosition.x - bb.left
+      let offsetFactor = (offsetPX / bb.width)
+      
+      /* set duration according to percentage offset */
+      AudioTrack.current.audio.currentTime = AudioTrack.current.audio.duration * offsetFactor
+    }
+
+    cover.onclick = () => Project.showDetail()
   }
 
   /** This method updates the player element, according to the current track being played. */
   static updateHTML() {
-
+    let offset = (AudioTrack.current.audio.currentTime / AudioTrack.current.audio.duration) * 100 + "%"
+    this.elements.get("progressBar").style.width = offset
+    this.elements.get("playhead").style.left = offset
   }
 
   /** @type HTMLDivElement */

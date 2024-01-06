@@ -256,8 +256,8 @@ class Vector {
     this.y = this.y - vector.y
     return this
   }
-  clone(discard_data) {
-    return new Vector(this.x, this.y, discard_data || this.data)
+  get copy() {
+    return new Vector(this.x, this.y)
   }
   mult(magnitude) {
     this.x = this.x * magnitude
@@ -356,11 +356,6 @@ class Vector {
     return new Vector(avg(...x), avg(...y))
   }
 }
-
-function world_to_client_pos(window, pos) {
-  return pos.clone().sub(window.camera.pos).add(new Vector(cw/2, ch/2))
-}
-
 
 function f(id) {
   return entities.find(e => e.id === +id)

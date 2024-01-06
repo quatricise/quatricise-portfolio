@@ -138,6 +138,12 @@ Q("#project-detail-artwork-side").onmouseover = () => {
 
 
 
+document.addEventListener("mousemove", (event) => {
+  Mouse.clientPosition.set(event.clientX, event.clientY)
+})
+
+
+
 function init() {
   Project.init()
 

@@ -254,6 +254,7 @@
   font-size: 1.2rem;
   background-color: rgb(15, 15, 15);
   color: white;
+  cursor: pointer;
 }
 
 .audio-player-track:hover {
@@ -284,7 +285,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 45%;
+  width: 0%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.25);
   background-color: rgba(51, 109, 136, 0.25);
@@ -293,7 +294,7 @@
 .audio-player-playhead {
   position: absolute;
   top: 0;
-  left: 45%;
+  left: 0%;
   width: 2px;
   height: 100%;
   background-color: white;
@@ -315,6 +316,7 @@
   background-repeat: no-repeat;
   background-size: 28px;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .audio-player-button:hover {
@@ -334,8 +336,16 @@
   background-image: url(../images/play_icon.png);
 }
 
+.audio-player-button.play.paused {
+  background-image: url(../images/pause_icon.png);
+}
+
 .audio-player-button.volume {
   background-image: url(../images/volume_icon.png);
+}
+
+.audio-player-button.volume.muted {
+  background-image: url(../images/volume_icon_muted.png);
 }
 
 

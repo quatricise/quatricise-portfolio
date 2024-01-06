@@ -31,12 +31,18 @@ class AudioTrack {
     this.item.classList.add("active")
 
     /* trigger audioplayer to open */
+    /* so far it recreates the html every time, later it will only do so when loading the project first, or something */
     AudioPlayer.createHTML(this.project)
+    this.audio.ontimeupdate = () => AudioPlayer.updateHTML()
+    this.audio.onended = () => AudioPlayer.playNext()
   }
   stop() {
     this.audio.currentTime = 0
     this.audio.pause()
     
+    this.audio.ontimeupdate = ""
+    this.audio.onended = ""
+
     /* visuals */
     this.item.classList.remove("active")
   }
