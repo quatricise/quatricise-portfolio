@@ -217,7 +217,7 @@
 #audio-player {
   position: fixed;
   bottom: 10px;
-  left: calc(50% - 560 / 2);
+  left: calc(50% - 560px / 2);
   display: flex;
   gap: 10px;
   align-items: center;
@@ -308,12 +308,12 @@
   align-items: center;
   justify-content: center;
   border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 5px;
-  width: 32px;
-  height: 32px;
+  border-radius: 50px;
+  width: 36px;
+  height: 36px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 30px;
+  background-size: 28px;
   cursor: pointer;
 }
 

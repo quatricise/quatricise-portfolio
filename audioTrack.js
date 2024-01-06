@@ -1,10 +1,16 @@
 class AudioTrack {
-  constructor(project, src) {
+  constructor(project, src, index) {
     /** @type Project */
     this.project = project
 
     /** @type String */
     this.src = src
+
+    /** @type String */
+    this.title = src.title ?? src.filename
+
+    /** @type Integer - Index in the tracklist this is part of. */
+    this.index = index
 
     /** @type HTMLAudioElement */
     this.audio = new Audio(`projects/${project.projectIdentifier}/${src.filename}.mp3`)
@@ -23,6 +29,9 @@ class AudioTrack {
 
     /* visuals */
     this.item.classList.add("active")
+
+    /* trigger audioplayer to open */
+    AudioPlayer.createHTML(this.project)
   }
   stop() {
     this.audio.currentTime = 0
@@ -33,6 +42,9 @@ class AudioTrack {
   }
   pause() {
     this.audio.pause()
+  }
+  toggle() {
+    this.audio.paused ? this.play() : this.pause()
   }
   createTrackItem(title) {
     let container = El("div", "audio-track", [], )
@@ -47,6 +59,6 @@ class AudioTrack {
     container.onclick = () => this.play()
     return container
   }
-  /** @type AudioTrack */
+  /** @type AudioTrack - Only one can be playing at the same time. This is a limitation I can accept. */
   static current = null
 }
