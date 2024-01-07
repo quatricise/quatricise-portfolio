@@ -33,6 +33,7 @@ class Project {
     item.style.height = Project.gallery.itemHeight + "px"
     item.dataset.tags = Array.from(this.tags).join(" ")
     item.onclick = () => this.select()
+    item.tabIndex = 0
 
     let
     thumbnail = new Image()
@@ -77,6 +78,8 @@ class Project {
     Q("#project-detail-type").innerHTML = ""
     Qa(".artwork-side-image").forEach(img => img.remove())
 
+    /* clear images, it's simpler that way */
+    this.images = []
 
 
     /* tags */
@@ -140,7 +143,7 @@ class Project {
 
 
     /* process options */
-    
+
     /* this adjusts the entire project-detail panel to have centered images */
     if(this.data.options?.collapseTextSide) {
       Q("#project-detail-text-side").classList.add("hidden")
@@ -260,10 +263,10 @@ class Project {
     }
 
     /* Un-highlight all switches. This is not ideal but so far is simple enough so I'm ignoring the "multiple tag visible" option */
-    Qa(".project-switch-item").forEach(item => item.classList.remove("active"))
+    Qa(".project-tag-switch").forEach(item => item.classList.remove("active"))
 
     /* highlight the correct switches */
-    Qa(`.project-switch-item`).forEach(sw => {
+    Qa(`.project-tag-switch`).forEach(sw => {
       if(sw.dataset.tag.isAny(...tags)) {
         sw.classList.add("active")
       }
@@ -272,12 +275,6 @@ class Project {
 
   /** Setup the gallery and other random shit that needs to be done on page load. */
   static init() {
-
-    /* add functions to tag switches */
-    Qa(".project-switch-item").forEach(item => {
-      item.onclick = () => this.showByTags(item.dataset.tag)
-    })
-
     /* setup gallery */
     let galleryDimensions = Q("#projects-gallery").getBoundingClientRect()
     this.gallery.width = galleryDimensions.width
@@ -285,6 +282,27 @@ class Project {
     this.gallery.itemWidth = (this.gallery.width / this.gallery.columns) - this.gallery.gap 
     this.gallery.itemHeight = (this.gallery.width / this.gallery.columns) - this.gallery.gap
     Q("#projects-gallery").style.gridTemplateColumns = `repeat(${this.gallery.columns}, 1fr)`
+
+    /* generate tag buttons */
+    let tags = new Set()
+    for(let key in projects) {
+      projects[key].tags.forEach(t => tags.add(t))
+    }
+    tags.forEach(t => {
+      let tagButton = El("div", "project-tag-switch", [], t)
+      tagButton.tabIndex = 0
+      tagButton.dataset.tag = t
+      Q("#project-tags").append(tagButton)
+    })
+
+    /* select the "*" tag */
+    this.showByTags("*")
+
+    /* add functions to tag switches */
+    Qa(".project-tag-switch").forEach(item => {
+      item.onclick = () => this.showByTags(item.dataset.tag)
+    })
+    
   }
 
   /** Visual styling of the project gallery, this is used to initialize the element.*/

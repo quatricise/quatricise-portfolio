@@ -8,14 +8,14 @@ class Search {
   static showSearchBar() {
     Q("#search-bar").classList.add("active")
     Q("#search-bar input").focus()
-    Q("#project-categories").classList.add("hidden")
+    Q("#project-tags").classList.add("hidden")
     this.searchBarVisible = true
   }
 
   static hideSearchBar() {
     Q("#search-bar").classList.remove("active")
     Q("#search-bar input").blur()
-    Q("#project-categories").classList.remove("hidden")
+    Q("#project-tags").classList.remove("hidden")
     this.searchBarVisible = false
   }
 

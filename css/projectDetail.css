@@ -311,11 +311,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   pointer-events: none;
+  z-index: 1;
 }
 
 .audio-player-track-number {
   font-weight: 600;
   pointer-events: none;
+  z-index: 1;
 }
 
 .audio-player-controls {

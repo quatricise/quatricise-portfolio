@@ -71,6 +71,8 @@ function animateCircle() {
   loadingCircle.classList.remove('hidden')
 }
 
+
+
 document.addEventListener("keydown", (event) => {
 
   if(event.code  === "ArrowLeft") {
@@ -90,9 +92,16 @@ document.addEventListener("keydown", (event) => {
   if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
     Search.hideSearchBar()
   }
+  
+  if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
+    Search.hideSearchBar()
+  }
 
   if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement == Q("#search-bar input")) {
     Search.search(Q("#search-bar-input").value)
+  }
+  if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement.classList.contains("project-thumbnail")) {
+    document.activeElement.click()
   }
 
 })
@@ -109,15 +118,15 @@ document.addEventListener("click", (event) => {
   if(event.target.closest(".search-bar-icon") && Search.searchBarVisible) {
     Search.search(Q("#search-bar-input").value)
   }
-  
+
 })
 
-Q("#search-bar").onfocus = () => Search.showSearchBar()
+Q("#search-bar").onfocus =      () => Search.showSearchBar()
 Q("#search-bar input").onblur = () => Search.hideSearchBar()
-Q("#background").onclick = () => Project.hideDetail()
+Q("#background").onclick =      () => Project.hideDetail()
 
 
-/** @type Animation Animation instance of the arrow container in the project detail. */
+/** @type Animation - Animation instance of the arrow container in the project detail. */
 let arrowAnimation = null
 
 /* project detail arrow hiding */

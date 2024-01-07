@@ -76,7 +76,7 @@ class AudioPlayer {
     }
     trackNumber.innerText = indexText
 
-    track.append(trackNumber, trackName, progressBar, playhead, playheadGhost)
+    track.append(progressBar, trackNumber, trackName, playhead, playheadGhost)
 
     /* Controls: prev, play/pause, next, volume */
     let controls =      El("div",     "audio-player-controls")
@@ -110,7 +110,6 @@ class AudioPlayer {
     container.projectIdentifier = project.projectIdentifier
 
 
-  
     /* functionality */
 
     /* auto-collapsing */
@@ -186,6 +185,7 @@ class AudioPlayer {
     this.elements.get("playhead").style.left = offset
   }
 
+  /** Turns the player into a tiny bar. */
   static collapseHTML() {
     if(!this.generatedHTML) return
 
@@ -207,6 +207,7 @@ class AudioPlayer {
 
     let container = this.elements.get("container")
     container.classList.remove("collapsed", "hidden")
+    
     let elements = container.querySelectorAll(".collapsed, .hidden")
     Array.from(elements).forEach(e => e.classList.remove("collapsed", "hidden"))
 
