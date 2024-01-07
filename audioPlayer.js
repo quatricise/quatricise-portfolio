@@ -12,6 +12,9 @@ class AudioPlayer {
   /** @type Number */
   static collapseTimer = 0
 
+  /** @type Boolean */
+  static generatedHTML = false
+
   /** This function loads a tracklist and then creates the HTML and appends it to the proper UI container. */
   static loadTracklist(/** @type Project */ project, content) {
     
@@ -49,6 +52,10 @@ class AudioPlayer {
   }
 
   static createHTML(/** @type Project */ project) {
+
+    /* maybe i can go dirty and literally recreate the player each time it needs updating, this would resolve some jankiness */
+    if(this.elements.get("container")) this.elements.get("container").remove()
+
     let container =     El("div", "audio-player", [["id", "audio-player"]])
     let cover =         El("img", "audio-player-cover", [["src", `projects/${project.projectIdentifier}/cover.jpg`]])
     let track =         El("div", "audio-player-track")
@@ -160,17 +167,28 @@ class AudioPlayer {
       playheadGhost.classList.add("hidden")
     }
 
-    cover.onclick = () => Project.showDetail()
+    cover.onclick = () => {
+      if(Project.current === project)
+        Project.showDetail()
+      else
+        Project.select(project.projectIdentifier)
+    }
+
+    this.generatedHTML = true
   }
 
-  /** This method updates the player element, according to the current track being played. */
-  static updateHTML() {
+  /** This method updates the visual for track duration, according to the current track being played. */
+  static tickDurationHTML() {
+    if(!this.generatedHTML) return
+    
     let offset = (AudioTrack.current.audio.currentTime / AudioTrack.current.audio.duration) * 100 + "%"
     this.elements.get("progressBar").style.width = offset
     this.elements.get("playhead").style.left = offset
   }
 
   static collapseHTML() {
+    if(!this.generatedHTML) return
+
     this.elements.get("container").classList.add("collapsed")
     this.elements.get("track").classList.add("collapsed")
     
@@ -185,6 +203,8 @@ class AudioPlayer {
 
   /** This function assumes that all elements that have class "hidden" and "collapsed" will have those classes removed. */
   static expandHTML() {
+    if(!this.generatedHTML) return
+
     let container = this.elements.get("container")
     container.classList.remove("collapsed", "hidden")
     let elements = container.querySelectorAll(".collapsed, .hidden")

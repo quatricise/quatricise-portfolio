@@ -76,6 +76,10 @@ h2 {
   font-size: 4rem;
 }
 
+img {
+  user-select: none;
+}
+
 a.clickable {
 
 }
@@ -541,6 +545,7 @@ input[type="text"] {
 #projects-page-main-heading {
   color: white;
   margin-bottom: 10px;
+  user-select: none;
 }
 .project-type-switch {
   display: flex;
@@ -997,7 +1002,6 @@ h5 {
   z-index: 100;
 }
 button {
-  /* outline: none; */
   transition: transform 0.04s, color 0.22s, background-color 0.1s;
 }
 .hamburger {
@@ -1335,6 +1339,10 @@ input:checked + .slider:before {
   min-width: 50px;
 }
 
+.filler {
+  flex-grow: 1;
+}
+
 .bandcampPlayer {
   border: 0;
   
@@ -1596,10 +1604,6 @@ input:checked + .slider:before {
 .playlist-track-ctn > div {
   margin: 8px 8px;
 }
-.audio-track-title {
-  width: 80%;
-  text-align: left;
-}
 .playlist-duration {
   user-select: none;
   transition: color 0.5s;
@@ -1612,7 +1616,7 @@ input:checked + .slider:before {
 .audio-track-title,
 .playlist-duration {
   padding: 2px 0 4px;
-  font-size: 1.3em;
+  font-size: 1.4em;
   pointer-events: none;
   transition: color 0.5s;
   user-select: none;

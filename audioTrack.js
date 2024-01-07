@@ -31,14 +31,13 @@ class AudioTrack {
     if(AudioTrack.current !== this) AudioTrack.current?.stop()
     AudioTrack.current = this
     this.audio.play()
+    this.audio.volume = 1
 
     /* visuals */
     this.elements.get("container").classList.add("active")
 
-    /* trigger audioplayer to open */
-    /* so far it recreates the html every time, later it will only do so when loading the project first, or something */
     AudioPlayer.createHTML(this.project)
-    this.audio.ontimeupdate = () => AudioPlayer.updateHTML()
+    this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
   }
   stop() {
@@ -66,7 +65,7 @@ class AudioTrack {
     container.append(icon, trackTitle, trackDuration)
     container.onclick = (ev) => {
       if(ev.target?.closest(".audio-track-info-button")) return
-      
+
       this.play()
     }
 
@@ -87,6 +86,7 @@ class AudioTrack {
       
       trackInfoButton.onclick = () => {
         trackDescription.classList.toggle("hidden")
+        trackInfoButton.innerHTML == "info" ? trackInfoButton.innerHTML = "hide&nbsp;info" : trackInfoButton.innerHTML = "info"
       }
 
     }

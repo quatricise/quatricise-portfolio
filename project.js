@@ -127,7 +127,7 @@ class Project {
           break
         }
         case "text": {
-          
+          throw "not done"
           break
         }
         default: {
@@ -136,6 +136,33 @@ class Project {
       }
 
     })
+
+
+
+    /* process options */
+    
+    /* this adjusts the entire project-detail panel to have centered images */
+    if(this.data.options?.collapseTextSide) {
+      Q("#project-detail-text-side").classList.add("hidden")
+
+      Q("#project-detail-artwork-side").classList.add("alt-layout")
+      Q("#project-detail-content").classList.add("alt-layout")
+    }
+    else {
+      Q("#project-detail-text-side").classList.remove("hidden")
+
+      Q("#project-detail-artwork-side").classList.remove("alt-layout")
+      Q("#project-detail-content").classList.remove("alt-layout")
+    }
+
+
+
+    /* hide arrows in the project detail gallery if only 1 image is there */
+    if(this.images.length <= 1)
+      Q("#project-detail-image-arrows").classList.add("hidden")
+    else
+      Q("#project-detail-image-arrows").classList.remove("hidden")
+
 
     Project.current = this
   }
@@ -150,6 +177,8 @@ class Project {
       this.currentImage.remove()
       this.currentImage = nextImage
     }
+
+    /* adjust layout so the image fits in nicely */
   }
 
   /** Only relates to the image gallery inside project detail panel. */
@@ -244,7 +273,7 @@ class Project {
   /** Setup the gallery and other random shit that needs to be done on page load. */
   static init() {
 
-    /* add functions to category switches */
+    /* add functions to tag switches */
     Qa(".project-switch-item").forEach(item => {
       item.onclick = () => this.showByTags(item.dataset.tag)
     })

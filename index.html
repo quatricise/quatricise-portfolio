@@ -74,20 +74,15 @@
 
 <div id="project-detail" class="">
   <div id="background-container" class='fullscreen-fixed'>
+    <div id="project-detail-hide-button" onclick="Project.hideDetail()">❌</div>
     <div id='background' class='background-dark background-ancient-cycles' title="Click to hide detail."></div>
   </div>
   <div id="project-detail-panel">
-    <!-- <div id="project-detail-hide-button" onclick="Project.hideDetail()">Hide</div> -->
     <div id="project-detail-content">
       <div id="project-detail-artwork-side">
-
         <div id="project-detail-image-arrows">
           <div class="project-detail-image-arrow left" onclick="Project.current?.showPreviousImage()"></div>
           <div class="project-detail-image-arrow right" onclick="Project.current?.showNextImage()"></div>
-        </div>
-
-        <div id="project-detail-bubbles">
-          <!-- these will be generated upon filling the gallery with images, the same number of bubbles as images -->
         </div>
       </div>
       <div id="project-detail-text-side">
@@ -98,10 +93,6 @@
         </div>
         <div id="project-detail-tracklist"></div>
       </div>
-    </div>
-    <div id="project-detail-arrows">
-      <div tabindex="0" class="arrow left" title="Previous project"></div>
-      <div tabindex="0" class="arrow right" title="Next project"></div>
     </div>
   </div>
 </div>

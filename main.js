@@ -109,6 +109,7 @@ document.addEventListener("click", (event) => {
   if(event.target.closest(".search-bar-icon") && Search.searchBarVisible) {
     Search.search(Q("#search-bar-input").value)
   }
+  
 })
 
 Q("#search-bar").onfocus = () => Search.showSearchBar()
@@ -174,6 +175,11 @@ function init() {
       }
       case "search": {
         Search.search(value)
+        break
+      }
+      case "carouselindex": {
+        for(let i = 0; i < value; i++)
+        Project.current?.showNextImage()
         break
       }
     }

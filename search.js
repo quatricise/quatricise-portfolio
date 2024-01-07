@@ -29,7 +29,7 @@ class Search {
     Q("#search-bar input").value = ""
 
     this.results.clear()
-    let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks", "content"]
+    let searchProperties = ["title", "releaseDate", "description", "projectType", "projectState", "genres", "tracks", "content", "src"]
     for(let key in projects) {
       let dataBlock = projects[key]
       this.currentProject = key

@@ -337,7 +337,7 @@ let projects = {
     <br>
     <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
     `,
-    tags: ["music"],
+    tags: ["music", "wip"],
     colors: {
       gradient: ["#000000", "#000000"]
     },
@@ -360,15 +360,15 @@ let projects = {
   revenantEarth: {
     title: "Revenant Earth",
     description:
-    `Soundtrack for a videogame Revenant Earth.
+    `Soundtrack for the videogame Revenant Earth.
     <br><br>
-    Annotation.
+    Revenant Earth is a game about planet restoration. In the past, humanity considered saving Earth to be a lost cause. Eventually, technological advancement made it a viable option and so was born project UNERA - United Nations Earth Restoration Agency. Your goal is simple - restore life on Earth.
     <br><br>
-    Demo of the game is available here:
+    Play a limited demo of the game here:
     <br>
     <a class="clickable" target="_blank" href=https://mylapqn.github.io/revenant-earth/> https://mylapqn.github.io/revenant-earth/ <a/>
     `,
-    tags: ["music"],
+    tags: ["music", "wip"],
     colors: {
       gradient: ["#000000", "#000000"]
     },
@@ -377,11 +377,10 @@ let projects = {
         type: "audio",
         src: [
           {filename: "Urban Ruins", description: "First track that plays when you enter the game."},
-          {filename: "Industrial Wasteland", description: ""},
+          {filename: "Industrial Wasteland", description: "Čtyři hráči, čtyři skryté identity a žádná slova. Dokážete pouze pomocí předávání karet zjistit, kdo je spojenec a kdo nepřítel? Všechny symboly mohou mít nesčetně významů a je jen na vás, jakým způsobem je použijete k domluvě, lsti, pomoci či zradě - ale dávejte si pozor, abyste zůstali incognito."},
           {filename: "Ancient Battlefield", description: ""},
           {filename: "Melted Mountains", description: ""},
           {filename: "Dead Forest", description: ""},
-          {filename: "Dead Forest - Battle", description: "Battle variant of the dead forest track."},
         ],
       },
       {
@@ -401,6 +400,9 @@ let projects = {
     title: "Illustrations",
     description: "A bunch of my illustrations, unsorted.",
     tags: ["illustration"],
+    options: {
+      collapseTextSide: true
+    },
     content: [
       {
         type: "images",
