@@ -339,7 +339,7 @@ let projects = {
     `,
     tags: ["music", "wip"],
     colors: {
-      gradient: ["#000000", "#000000"]
+      gradient: ["#0b232b", "#4cf4fe"]
     },
     content: [
       {
@@ -362,7 +362,9 @@ let projects = {
     description:
     `Soundtrack for the videogame Revenant Earth.
     <br><br>
-    Revenant Earth is a game about planet restoration. In the past, humanity considered saving Earth to be a lost cause. Eventually, technological advancement made it a viable option and so was born project UNERA - United Nations Earth Restoration Agency. Your goal is simple - restore life on Earth.
+    It’s 2130. Earth is dead. The last survivors in space are sending a single agent to each region of the planet to explore, restore, and clean it up.
+    <br><br>
+    One of those agents is you. Can you revive planet Earth?
     <br><br>
     Play a limited demo of the game here:
     <br>
@@ -370,7 +372,7 @@ let projects = {
     `,
     tags: ["music", "wip"],
     colors: {
-      gradient: ["#000000", "#000000"]
+      gradient: ["#171234", "#f77259"]
     },
     content: [
       {
@@ -439,6 +441,28 @@ let projects = {
           {src: "the_poisoned_forest_1.1.jpg",                          title: "Poisoned Forest (wallpaper)",          },
           {src: "the_shattered_domes_and_prism_1.0_vertical.jpg",       title: "Shattered Domes",                      },
           {src: "the_stone_palace_normal.jpg",                          title: "The Stone Palace",                     },
+        ],
+      },
+    ]
+  },
+  memoryStrata: {
+    title: "Memory Strata",
+    description: 
+    `Short series of digital collages that I created as submissions to an online contest on <a class="clickable" href=https://displate.com/quatricise>displate.com</a>. The overall themes I decided to explore are memories, anxiety and nostalgia, how our brains deform memories over time, how people become shadows and maybe some more..
+    <br><br>
+    Memory strata (plural of 'stratum') is a term I came up with myself to describe the layers of memories compressed together over long periods of time. What happens is that many of the things we remember become 'floating' - difficult to pinpoint when they actually happened, but still there, at the back of your mind, like ghosts.
+    `,
+    tags: ["illustration", "digital-art"],
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.webp",                                       title: "",                               },
+          {src: "2.webp",                                       title: "",                               },
+          {src: "3.webp",                                       title: "",                               },
+          {src: "4.webp",                                       title: "",                               },
+          {src: "5.webp",                                       title: "",                               },
+          {src: "6.webp",                                       title: "",                               },
         ],
       },
     ]
