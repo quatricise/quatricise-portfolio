@@ -54,7 +54,8 @@
 }
 
 #project-detail-title {
-  margin-top: -10px;
+  margin-bottom: 10px;
+  line-height: 100%;
 }
 
 #project-detail-arrows {
@@ -205,6 +206,7 @@
   object-fit: contain;
   margin: 0;
   vertical-align: middle;
+  border-radius: 5px;
 }
 
 #projects-gallery-wrapper {
