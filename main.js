@@ -193,5 +193,24 @@ function init() {
       }
     }
   })
+
+  /* rudimentary warning not ready for mobile */
+  if(window.innerWidth < window.innerHeight) {
+    let coverUpElement = El("div", "cover-up-element", undefined, "Mobile version not finished. Coming soon.")
+    coverUpElement.style.width  = "100vw"
+    coverUpElement.style.height = "100vh"
+    coverUpElement.style.left = "0"
+    coverUpElement.style.top = "0"
+    coverUpElement.style.position = "absolute"
+    coverUpElement.style.zIndex = "1000000"
+    coverUpElement.style.backgroundColor = "#000000"
+    coverUpElement.style.color = "#ffffff"
+    coverUpElement.style.fontSize = "24px"
+    coverUpElement.style.textAlign = "center"
+    coverUpElement.style.display = "flex"
+    coverUpElement.style.alignItems = "center"
+    coverUpElement.style.justifyContent = "center"
+    document.body.append(coverUpElement)
+  }
 }
 window.onload = init
