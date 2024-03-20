@@ -132,6 +132,29 @@ let projects = {
       },
     ]
   },
+  sandLands: {
+    title: "Sand Lands",
+    description: 
+    `WIP
+    `,
+    tags: ["music", "illustration", "digital-art"],
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Off to the Desert", description: ""},
+          {filename: "Sand Lands", description: ""},
+          {filename: "Trapping the Castle", description: ""},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Sand Lands Album Cover"},
+        ],
+      },
+    ]
+  },
   memoryStrata: {
     title: "Memory Strata",
     description: 
