@@ -64,9 +64,9 @@ let projects = {
     ]
   },
   confusion: {
-    title: "Confusion",
+    title: "Impassive",
     description:
-    `Electronic instrumental album in the style of bubbly pop.
+    `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
     `,
     tags: ["music", "wip"],
     colors: {

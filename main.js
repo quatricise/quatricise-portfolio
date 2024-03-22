@@ -26,16 +26,16 @@ let pages = [
 ]
 
 function setPage(/** @type HTMLDivElement */ page) {
+  if(isOrientationPortrait) {
+    toggleNavlinks(false)
+  }
+
   if(page === currentPage) return
 
   currentPage = page
   pages.forEach(p => p.classList.add("hidden"))
   page.classList.remove("hidden")
-  console.log(page.classList.contains("hidden"))
 
-  if(isOrientationPortrait) {
-    toggleNavlinks(false)
-  }
 
   if(page === projectsPage) {
     logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
@@ -121,7 +121,7 @@ document.addEventListener("keydown", (event) => {
   if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement == Q("#search-bar input")) {
     Search.search(Q("#search-bar-input").value)
   }
-  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement.classList.contains("project-thumbnail")) {
+  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement.classList.contains("project-gallery-item")) {
     document.activeElement.click()
   }
 

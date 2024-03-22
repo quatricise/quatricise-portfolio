@@ -28,10 +28,11 @@ class Project {
   createGalleryItem() {
     let 
     item = document.createElement("div")
-    item.classList.add("project-thumbnail")
+    item.classList.add("project-gallery-item")
     item.style.width = Project.gallery.itemWidth + "px"
     item.style.height = Project.gallery.itemHeight + "px"
     item.dataset.tags = Array.from(this.tags).join(" ")
+    item.dataset.project = this.projectIdentifier
     item.onclick = () => this.select()
     item.tabIndex = 0
 
@@ -39,6 +40,10 @@ class Project {
     thumbnail = new Image()
     thumbnail.draggable = false
     thumbnail.src =`projects/${this.projectIdentifier}/thumbnail.jpg`
+
+    let
+    thumbnailCircle = document.createElement("div")
+    thumbnailCircle.classList.add("thumbnail-overlay-circle", "hidden")
 
     let 
     description = document.createElement("div")
@@ -57,12 +62,13 @@ class Project {
     thumbnailTextLabel.classList.add("project-gallery-item-label")
 
     thumbnailTextLabel.append(projectTag, description)
-    item.append(thumbnail, thumbnailTextLabel)
+    item.append(thumbnail, thumbnailCircle, thumbnailTextLabel)
     
     Q("#projects-gallery").append(item)
 
     this.elements.set("item", item)
     this.elements.set("thumbnail", thumbnail)
+    this.elements.set("thumbnailCircle", thumbnailCircle)
     this.elements.set("description", description)
   }
 
@@ -114,6 +120,10 @@ class Project {
       switch(content.type) {
         case "audio": {
           AudioPlayer.loadTracklist(this, content)
+
+          /* add space at the bottom so the description can scroll far enough */
+          Q("#project-detail-text-side").style.paddingBottom = "120px"
+
           break
         }
         case "images": {
@@ -217,6 +227,59 @@ class Project {
   generateFileURL(filename) {
     return `projects/${this.projectIdentifier}/${filename}`
   }
+
+  galleryItemToggle(...tags) {
+    
+    //do mobile without animations
+    if(this.elements.get("item").dataset.tags.includesAny(...tags)) {
+      isOrientationPortrait ? this.galleryItemShowInstant() : this.galleryItemShow()
+    }
+    else {
+      isOrientationPortrait ? this.galleryItemHideInstant() : this.galleryItemHide()
+    }
+  }
+  async galleryItemShow() {
+    const 
+    item = this.elements.get("item")
+    item.classList.remove("hidden")
+    item.style.pointerEvents =  ""
+    item.style.opacity =        ""
+    this.elements.get("thumbnailCircle").classList.add("hidden")
+
+    Project.animations.forEach(a => a.cancel())
+  }
+  async galleryItemHide() {
+      const delay = Math.round(Math.random() * 260)
+      await waitFor(delay)
+
+      Project.projectsToHide.push(this)
+      
+      const duration = 750 - delay/2
+      const circle = this.elements.get("thumbnailCircle")
+      const item = this.elements.get("item")
+
+      circle.classList.remove("hidden")
+      item.style.pointerEvents = "none"
+
+      Project.animations.push(
+        animateScale(circle, 0, 0, 1, 1, duration - 100, "cubic-bezier(0.75, 0.5, 0.5, 1.0)"))
+      Project.animations.push(
+        animateScale(item, 1, 1, 1.12, 1.12, duration, "cubic-bezier(0.75, 0.5, 0.5, 1.0)"))
+
+      const fltranim = animateFilter(item, "blur(0px) brightness(1) opacity(1)", "blur(5px) brightness(0.5) opacity(0.0)", duration, "cubic-bezier(0.0, 0.5, 0.5, 1.0)")
+      fltranim.onfinish = () => {
+        item.style.opacity = 0
+        Project.numItemsReadyToHide += 1
+        Project.galleryReflow()
+      }
+      Project.animations.push(fltranim)
+  }
+  galleryItemShowInstant() {
+    this.elements.get("item").classList.remove("hidden")
+  }
+  galleryItemHideInstant() {
+    this.elements.get("item").classList.add("hidden")
+  }
   
   //#region static
   
@@ -237,8 +300,11 @@ class Project {
   static showDetail() {
     this.projectDetailVisible = true
 
-    let dur = 500
-    let easing = "cubic-bezier(0.0, 0.5, 0.5, 1.0)"
+    this.animations.forEach(a => a.cancel())
+    this.animations = []
+
+    let duration = 350
+    let easing = "cubic-bezier(0.0, 0.7, 0.2, 1.0)"
     
     Q("#project-detail-panel").style.filter = ""
     Q("#project-detail-panel").style.opacity = ""
@@ -249,37 +315,42 @@ class Project {
     Q("#project-detail").classList.remove("hidden")
 
     Q("#project-detail-content").scrollTo({top: 0, behavior: "auto"})
+    Q("#project-detail-hide-button").classList.remove("hidden")
 
-
-    this.animations.forEach(a => a.cancel())
-    this.animations = []
+    animateTranslate(
+      Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing)
+    animateFilter(
+      Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing)
   }
 
   /** Closes the bottom-docked panel. */
   static hideDetail() {
     this.projectDetailVisible = false
 
-    let dur = 1200
+    let duration = 1050
     let easing = "cubic-bezier(0.1, 0.5, 0.5, 1.0)"
 
+    let blurAmt = 100
+    if(!isOrientationPortrait) blurAmt = 500
 
     this.animations.push(
       animateFade(
-      Q("#project-detail-panel"), 1, 0, dur, easing, "none", () => {Q("#project-detail").classList.add("hidden")}))
+      Q("#project-detail-panel"), 1, 0, duration, easing, "none", () => {Q("#project-detail").classList.add("hidden")}))
     this.animations.push(
       animateTranslate(
-      Q("#project-detail-panel"), new AnimOffset(0, 0, 0, 300), dur, easing))
+      Q("#project-detail-panel"), new AnimOffset(0, 0, 0, 300), duration, easing))
     this.animations.push(
       animateScale(
-      Q("#project-detail-panel"), 1.0, 1.0, 1.5, 1.25, dur, easing))
+      Q("#project-detail-panel"), 1.0, 1.0, 1.5, 1.25, duration, easing))
     this.animations.push(
       animateColor(
-      Q("#project-detail"), "rgba(0, 0, 0, 0.5)", "rgba(0, 0, 0, 0)", null, null, dur, easing))
+      Q("#project-detail"), "rgba(0, 0, 0, 0.75)", "rgba(0, 0, 0, 0)", null, null, duration, easing))
     this.animations.push(
       animateFilter(
-      Q("#project-detail-panel"), "brightness(1) contrast(1) saturate(1) blur(0)", "brightness(0.75) contrast(5) saturate(1.5) blur(50px)", dur, easing))
+      Q("#project-detail-panel"), "brightness(1) contrast(1) saturate(1) blur(0)", `brightness(0.75) contrast(5) saturate(1.5) blur(${blurAmt}px)`, duration, easing))
 
     Q("#project-detail").style.pointerEvents = "none"
+    Q("#project-detail-hide-button").classList.add("hidden")
 
     /* collapse audio player */
     AudioPlayer.collapseHTML()
@@ -293,24 +364,27 @@ class Project {
   }
 
   /** Filter the project gallery by tags. */
-  static showByTags( /** @type String[] */ ...tags) {
+  static showByTags(
+    /** @type String[] */ ...tags
+  ) {
+
+    /* cancel all animations */
 
     /* show everything */
     if(tags[0] === "*") {
-      Qa(".project-thumbnail").forEach(thumbnail => thumbnail.classList.remove("hidden"))
+      this.list.forEach(project => {
+        project.galleryItemShow()
+      })
     }
 
     /* Show all thumbnails whose dataset.tags includes any tags selected */
     else {
-      Qa(".project-thumbnail").forEach(thumbnail => {
-        if(thumbnail.dataset.tags.includesAny(...tags)) 
-          thumbnail.classList.remove("hidden")
-        else
-          thumbnail.classList.add("hidden")
+      this.list.forEach(project => {
+        project.galleryItemToggle(...tags)
       })
     }
 
-    /* Un-highlight all switches. This is not ideal but so far is simple enough so I'm ignoring the "multiple tag visible" option */
+    /* Un-highlight all switches. @todo This is not ideal but so far is simple enough so I'm ignoring the "multiple tag visible" option */
     Qa(".project-tag-switch").forEach(item => item.classList.remove("active"))
 
     /* highlight the correct switches */
@@ -326,11 +400,14 @@ class Project {
 
     if(isOrientationPortrait) {
       Q("#projects-gallery-wrapper").classList.add("no-scrollbar")
+      Q("#projects-gallery").classList.add("no-scrollbar")
       Q("#project-detail-content").classList.add("no-scrollbar")
-      Q("#project-detail-hide-button").classList.add("hidden")
+      Q("#project-detail-hide-button").classList.add("portrait-mode")
       this.gallery.gap = 0
     }
     
+
+
     /* setup gallery */
     let galleryDimensions = Q("#projects-gallery").getBoundingClientRect()
     this.gallery.width = galleryDimensions.width
@@ -339,11 +416,16 @@ class Project {
     this.gallery.itemHeight = (this.gallery.width / this.gallery.columns) - this.gallery.gap
     Q("#projects-gallery").style.gridTemplateColumns = `repeat(${this.gallery.columns}, 1fr)`
 
+
+
     /* generate tag buttons */
+
     let tags = new Set()
+
     for(let key in projects) {
       projects[key].tags.forEach(t => tags.add(t))
     }
+
     tags.forEach(t => {
       let tagButton = El("div", "project-tag-switch", [], t)
       tagButton.tabIndex = 0
@@ -351,14 +433,17 @@ class Project {
       Q("#project-tags").append(tagButton)
     })
 
+
+
     /* select the "*" tag */
     this.showByTags("*")
 
+
+    
     /* add functions to tag switches */
     Qa(".project-tag-switch").forEach(item => {
       item.onclick = () => this.showByTags(item.dataset.tag)
     })
-    
   }
 
   /** Visual styling of the project gallery, this is used to initialize the element.*/
@@ -370,6 +455,15 @@ class Project {
     desiredCellWidth: 250,
   }
 
+  /* After all items have been marked for removal, remove them at the same time, preventing glitches. */
+  static galleryReflow() {
+    if(this.numItemsReadyToHide === this.projectsToHide.length) {
+      this.projectsToHide.forEach(p => p.elements.get("item").classList.add("hidden"))
+      this.projectsToHide.empty()
+      this.numItemsReadyToHide = 0
+    }
+  }
+
   /** @type Set<Project> */
   static list = new Set()
 
@@ -378,6 +472,12 @@ class Project {
 
   /** @type Array<Animation> */
   static animations = []
+
+  /** @type Number */
+  static numItemsReadyToHide = 0
+
+  /** @type Array<Project> */
+  static projectsToHide = []
 
   static select(/** @type String */ projectIdentifier) {
     let project = Array.from(this.list).find(p => p.projectIdentifier === projectIdentifier)

@@ -12,7 +12,7 @@ class AudioProject {
   createGalleryItemHTML() {
     let 
     item = document.createElement("div")
-    item.classList.add("project-thumbnail")
+    item.classList.add("project-gallery-item")
     item.style.width = Project.gallery.itemWidth + "px"
     item.style.height = Project.gallery.itemHeight + "px"
     item.dataset.category = this.category
@@ -57,7 +57,7 @@ class AudioProject {
   createHTML() {
     let 
     container = document.createElement("div")
-    container.classList.add("project-thumbnail", `cover-container--${this.name}`, "box-shadow--dark-generic", "hide-gradient")
+    container.classList.add("project-gallery-item", `cover-container--${this.name}`, "box-shadow--dark-generic", "hide-gradient")
     container.style.background = `linear-gradient(90deg, ${this.projectData.colors.gradient[0]} 0%, ${this.projectData.colors.gradient[1]} 100%)`
     container.onclick = () => this.load()
   

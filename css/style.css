@@ -481,7 +481,7 @@ input[type="text"] {
   /* position: fixed; */
   /* bottom: 50px; */
   width: max-content;
-  padding: 5px 10px;
+  padding: 5px 10px 7px;
   border: 2px solid hsl(0, 0%, 100%, 0.5);
   color: hsl(0, 0%, 100%, 0.5);
   background-color: transparent;
@@ -2005,6 +2005,9 @@ input:checked + .slider:before {
   .circle-loading {
     top: 20%;
     left: 45%;
+  }
+  #search-results-page {
+    padding: 20px;
   }
 }
 

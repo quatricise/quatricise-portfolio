@@ -1,6 +1,8 @@
+/** @returns HTMLElement */
 function Q(query) {
   return document.querySelector(query)
 }
+/** @returns Array<HTMLElement> */
 function Qa(query) {
   return Array.from(document.querySelectorAll(query))
 }
@@ -388,6 +390,14 @@ function secondsToMinutes(time) {
   return min + ":" + sec
 }
 
+function waitFor(durationMS) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, durationMS);
+  });
+}
+
 
 
 /* animation utilities */
@@ -472,7 +482,7 @@ function animateTranslate(
   ],
   {
     duration: duration,
-    easing: easing
+    easing: easing,
   })
   anim.onfinish = () => {
 
