@@ -222,17 +222,64 @@ class Project {
   
   /** Whether you can see the bottom-docked panel. */
   static projectDetailVisible = false
+
+  static onScroll() {
+    if(!this.projectDetailVisible) return
+
+    let offset = Q("#project-detail-content").scrollTop
+    let opacity = clamp((offset - 100) / 160, 0, 1)
+
+    Q("#project-detail-top-shadow").style.opacity = opacity
+    Q("#project-detail-top-line").style.opacity = opacity
+  }
   
   /** Opens a bottom-docked panel with images, music and text contained within the project's data. */
   static showDetail() {
-    Q("#project-detail").classList.remove("hidden")
     this.projectDetailVisible = true
+
+    let dur = 500
+    let easing = "cubic-bezier(0.0, 0.5, 0.5, 1.0)"
+    
+    Q("#project-detail-panel").style.filter = ""
+    Q("#project-detail-panel").style.opacity = ""
+
+    Q("#project-detail").style.opacity = ""
+    Q("#project-detail").style.pointerEvents = ""
+
+    Q("#project-detail").classList.remove("hidden")
+
+    Q("#project-detail-content").scrollTo({top: 0, behavior: "auto"})
+
+
+    this.animations.forEach(a => a.cancel())
+    this.animations = []
   }
 
   /** Closes the bottom-docked panel. */
   static hideDetail() {
-    Q("#project-detail").classList.add("hidden")
     this.projectDetailVisible = false
+
+    let dur = 1200
+    let easing = "cubic-bezier(0.1, 0.5, 0.5, 1.0)"
+
+
+    this.animations.push(
+      animateFade(
+      Q("#project-detail-panel"), 1, 0, dur, easing, "none", () => {Q("#project-detail").classList.add("hidden")}))
+    this.animations.push(
+      animateTranslate(
+      Q("#project-detail-panel"), new AnimOffset(0, 0, 0, 300), dur, easing))
+    this.animations.push(
+      animateScale(
+      Q("#project-detail-panel"), 1.0, 1.0, 1.5, 1.25, dur, easing))
+    this.animations.push(
+      animateColor(
+      Q("#project-detail"), "rgba(0, 0, 0, 0.5)", "rgba(0, 0, 0, 0)", null, null, dur, easing))
+    this.animations.push(
+      animateFilter(
+      Q("#project-detail-panel"), "brightness(1) contrast(1) saturate(1) blur(0)", "brightness(0.75) contrast(5) saturate(1.5) blur(50px)", dur, easing))
+
+    Q("#project-detail").style.pointerEvents = "none"
 
     /* collapse audio player */
     AudioPlayer.collapseHTML()
@@ -252,6 +299,7 @@ class Project {
     if(tags[0] === "*") {
       Qa(".project-thumbnail").forEach(thumbnail => thumbnail.classList.remove("hidden"))
     }
+
     /* Show all thumbnails whose dataset.tags includes any tags selected */
     else {
       Qa(".project-thumbnail").forEach(thumbnail => {
@@ -275,6 +323,14 @@ class Project {
 
   /** Setup the gallery and other random shit that needs to be done on page load. */
   static init() {
+
+    if(isOrientationPortrait) {
+      Q("#projects-gallery-wrapper").classList.add("no-scrollbar")
+      Q("#project-detail-content").classList.add("no-scrollbar")
+      Q("#project-detail-hide-button").classList.add("hidden")
+      this.gallery.gap = 0
+    }
+    
     /* setup gallery */
     let galleryDimensions = Q("#projects-gallery").getBoundingClientRect()
     this.gallery.width = galleryDimensions.width
@@ -319,6 +375,9 @@ class Project {
 
   /** @type Project - Currently selected project, regardless of whether the detail panel is visible. */
   static current = null
+
+  /** @type Array<Animation> */
+  static animations = []
 
   static select(/** @type String */ projectIdentifier) {
     let project = Array.from(this.list).find(p => p.projectIdentifier === projectIdentifier)

@@ -375,7 +375,7 @@ function rgb_to_hex(rgb) {
   return "#" + b[0] + b[1] + b[2]
 }
 
-  /** @returns String */
+/** @returns String */
 function secondsToMinutes(time) {
   var min = parseInt(parseInt(time) / 60);
   var sec = parseInt(time % 60);
@@ -386,4 +386,177 @@ function secondsToMinutes(time) {
     min = "0"+ min
   }
   return min + ":" + sec
+}
+
+
+
+/* animation utilities */
+
+function animateFade(/** @type HTMLElement */ element, fromOpacity, toOpacity, duration, easing = "linear", onfinish = "none", onfinishFunc = () => {}) {
+
+  /* auto show if going from 0 opacity */
+  if(fromOpacity === 0) {
+    element.classList.remove("hidden")
+  }
+
+  const anim = element.animate([
+    {opacity: fromOpacity},
+    {opacity: toOpacity},
+  ],
+  {
+    duration: duration,
+    easing: easing
+  })
+
+  switch(onfinish) {
+    case "none": {
+      anim.onfinish = () => {
+        onfinishFunc()
+      }
+      break
+    }
+    case "hide": {
+      anim.onfinish = () => {
+        // element.style.opacity = 0
+        // element.style.filter = "opacity(0)"
+        element.classList.add("hidden")
+        onfinishFunc()
+      }
+      break
+    }
+    case "show": {
+      anim.onfinish = () => {
+        element.classList.remove("hidden")
+        onfinishFunc()
+      }
+      break
+    }
+  }
+  return anim
+}
+
+class AnimOffset {
+  constructor(fromX, toX, fromY, toY) {
+    /** @type Number */ this.fromX =  fromX   ?? null
+    /** @type Number */ this.toX =    toX     ?? null
+    /** @type Number */ this.fromY =  fromY   ?? null
+    /** @type Number */ this.toY =    toY     ?? null
+  }
+}
+
+function animateTranslate(
+  /** @type HTMLElement */  element, 
+  /** @type AnimOffset */   animOffset, 
+  duration, 
+  easing = "linear"
+) {
+  let transFrom = ""
+  let transTo =   ""
+
+  if(animOffset.fromX !== null) {
+    transFrom += animOffset.fromX + "px "
+  }
+  if(animOffset.fromY !== null) {
+    transFrom += animOffset.fromY + "px "
+  }
+  if(animOffset.toX !== null) {
+    transTo += animOffset.toX + "px "
+  }
+  if(animOffset.toY !== null) {
+    transTo += animOffset.toY + "px "
+  }
+
+  const anim = element.animate([
+    {translate: transFrom},
+    {translate: transTo},
+  ],
+  {
+    duration: duration,
+    easing: easing
+  })
+  anim.onfinish = () => {
+
+  }
+  return anim
+}
+
+function animateScale(
+  /** @type HTMLElement */  element, 
+  scaleXFrom,
+  scaleYFrom,
+  scaleXTo,
+  scaleYTo,
+  duration,
+  easing = "linear"
+) {
+  let from = ""
+  let to = ""
+
+  if(scaleXFrom || scaleXTo) {
+    from += scaleXFrom + " "
+    to += scaleXTo + " "
+  }
+  if(scaleYFrom || scaleYTo) {
+    from += scaleYFrom + " "
+    to += scaleYTo + " "
+  }
+  const anim = element.animate([
+    {scale: from},
+    {scale: to},
+  ],
+  {
+    duration: duration,
+    easing: easing
+  })
+  return anim
+}
+
+function animateFilter(
+  /** @type HTMLElement */  element, 
+  filterFrom,
+  filterTo,
+  duration,
+  easing = "linear"
+) {
+  const anim = element.animate([
+    {filter: filterFrom},
+    {filter: filterTo},
+  ],
+  {
+    duration: duration,
+    easing: easing
+  })
+  return anim
+}
+
+function animateColor(
+  /** @type HTMLElement */  element, 
+  bgFrom,
+  bgTo,
+  colorFrom,
+  colorTo,
+  duration,
+  easing = "linear"
+) {
+
+  let from = {}
+  let to = {}
+
+  if(bgFrom || bgTo) {
+    from.backgroundColor = bgFrom
+    to.backgroundColor = bgTo
+  }
+  if(colorFrom || colorTo) {
+    from.color = colorFrom
+    to.color = colorTo
+  }
+  const anim = element.animate([
+    from,
+    to,
+  ],
+  {
+    duration: duration,
+    easing: easing
+  })
+  return anim
 }

@@ -33,7 +33,7 @@ let projects = {
   letGoOfTheCity: {
     title: "Let Go of the City",
     description:
-    `Solarpunk album, follows the story of Dawn, a city dweller who goes on a vacation to discover a better place where she could live.
+    `Solarpunk album, follows the story of Dawn, a city dweller who goes on a vacation to discover a better place to live.
     `,
     tags: ["music", "wip"],
     colors: {
@@ -137,7 +137,7 @@ let projects = {
     description: 
     `WIP
     `,
-    tags: ["music", "illustration", "digital-art"],
+    tags: ["music", "illustration"],
     content: [
       {
         type: "audio",
@@ -162,7 +162,7 @@ let projects = {
     <br><br>
     Memory strata (plural of 'stratum') is a term I came up with to describe the layers of memories compressed together over long periods of time. What happens is that many of the things we remember become 'floating' - difficult to pinpoint when they actually happened, but still there, at the back of your mind, like ghosts.
     `,
-    tags: ["illustration", "digital-art"],
+    tags: ["illustration"],
     content: [
       {
         type: "images",

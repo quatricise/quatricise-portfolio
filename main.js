@@ -15,6 +15,10 @@ let searchResultsPage = Q('#search-results-page');
 /** @type HTMLDivElement */
 let currentPage = projectsPage;
 
+const isOrientationPortrait = window.innerWidth < window.innerHeight
+
+let navlinksVisible = false
+
 let pages = [
   projectsPage,
   aboutPage,
@@ -27,9 +31,11 @@ function setPage(/** @type HTMLDivElement */ page) {
   currentPage = page
   pages.forEach(p => p.classList.add("hidden"))
   page.classList.remove("hidden")
+  console.log(page.classList.contains("hidden"))
 
-  if(window.innerHeight >= window.innerWidth)
-    hamburger.click()
+  if(isOrientationPortrait) {
+    toggleNavlinks(false)
+  }
 
   if(page === projectsPage) {
     logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
@@ -43,10 +49,25 @@ function setPage(/** @type HTMLDivElement */ page) {
   }
 }
 
-function toggleNavlinks() {
-  currentPage.classList.toggle("hidden")
-  navbarButtonCell.classList.toggle("hidden")
-  hamburger.classList.toggle("selected")
+function toggleNavlinks(/** @type Boolean */ value) {
+  if(value === true) {
+    currentPage.classList.add("hidden")
+    navbarButtonCell.classList.remove("hidden")
+    hamburger.classList.remove("selected")
+  }
+  else if(value === false) {
+    currentPage.classList.remove("hidden")
+    navbarButtonCell.classList.add("hidden")
+    hamburger.classList.add("selected")
+  }
+  else if(value === undefined) {
+    currentPage.classList.toggle("hidden")
+    navbarButtonCell.classList.toggle("hidden")
+    hamburger.classList.toggle("selected")
+  }
+  else {
+    throw "Value incorrect"
+  }
 }
 
 hamburger.onclick = () => toggleNavlinks()
@@ -57,7 +78,7 @@ function quitPreloader() {
 }
 
 window.addEventListener('load', () => {
-  if(window.innerHeight <= window.innerWidth) {
+  if(!isOrientationPortrait) {
     navbarButtonCell.classList.remove("hidden")
   }
   quitPreloader();
@@ -97,10 +118,10 @@ document.addEventListener("keydown", (event) => {
     Search.hideSearchBar()
   }
 
-  if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement == Q("#search-bar input")) {
+  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement == Q("#search-bar input")) {
     Search.search(Q("#search-bar-input").value)
   }
-  if((event.code === "Enter" || event.code === "NumpadEnter") && document.activeElement.classList.contains("project-thumbnail")) {
+  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement.classList.contains("project-thumbnail")) {
     document.activeElement.click()
   }
 
@@ -193,24 +214,5 @@ function init() {
       }
     }
   })
-
-  /* rudimentary warning not ready for mobile */
-  if(window.innerWidth < window.innerHeight) {
-    let coverUpElement = El("div", "cover-up-element", undefined, "Mobile version not finished. Coming soon.")
-    coverUpElement.style.width  = "100vw"
-    coverUpElement.style.height = "100vh"
-    coverUpElement.style.left = "0"
-    coverUpElement.style.top = "0"
-    coverUpElement.style.position = "absolute"
-    coverUpElement.style.zIndex = "1000000"
-    coverUpElement.style.backgroundColor = "#000000"
-    coverUpElement.style.color = "#ffffff"
-    coverUpElement.style.fontSize = "24px"
-    coverUpElement.style.textAlign = "center"
-    coverUpElement.style.display = "flex"
-    coverUpElement.style.alignItems = "center"
-    coverUpElement.style.justifyContent = "center"
-    document.body.append(coverUpElement)
-  }
 }
 window.onload = init

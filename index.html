@@ -57,7 +57,8 @@
     <div class="projects-page-header">
       <h1 id="projects-page-main-heading">Projects</h1>
       <div class="project-type-switch">
-        <div id="project-tags">
+        <div id="project-tags" class="no-scrollbar">
+          <div id="project-tags-expand-button"></div>
           <div tabindex="0" class="project-tag-switch" data-tag="*">Everything</div>
         </div>
         <div tabindex="0" id="search-bar" class="search-bar" onclick="Search.showSearchBar()">
@@ -78,7 +79,9 @@
     <div id='background' class='background-dark background-ancient-cycles' title="Click to hide detail."></div>
   </div>
   <div id="project-detail-panel">
-    <div id="project-detail-content">
+    <div id="project-detail-content" onscroll="Project.onScroll()">
+      <div id="project-detail-top-shadow" style="opacity: 0;"></div>
+      <div id="project-detail-top-line" style="opacity: 0;"></div>
       <div id="project-detail-artwork-side">
         <div id="project-detail-image-arrows">
           <div class="project-detail-image-arrow left" onclick="Project.current?.showPreviousImage()"></div>
@@ -110,9 +113,7 @@
             I accept art and soundtrack commissions too.
             Please message me via email or Instagram.
             <br><br>
-            stepantrvaj@gmail.com
-            <br>
-            instagram.com/quatricise
+            <span onclick="navigator.clipboard.writeText('stepantrvaj@gmail.com'); alert('💌 Copied email to clipboard. 💌')"><b><u> stepantrvaj@gmail.com</u></b></span>
           </span>
       </p>
       <div class="aboutParagraph">
