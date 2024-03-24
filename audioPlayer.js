@@ -53,7 +53,7 @@ class AudioPlayer {
 
   static createHTML(/** @type Project */ project) {
 
-    /* maybe i can go dirty and literally recreate the player each time it needs updating, this would resolve some jankiness */
+    /* go dirty and literally recreate the player each time it needs updating, this would resolve some jankiness */
     if(this.elements.get("container")) this.elements.get("container").remove()
 
     let container =     El("div", "audio-player", [["id", "audio-player"]])
@@ -86,7 +86,7 @@ class AudioPlayer {
     let nextButton =      El("button",  "audio-player-button next-track")
     let playButton =      El("button",  "audio-player-button play paused")
     let volumeButton =    El("button",  "audio-player-button volume")
-    let toggleControls =  El("button",  "audio-player--button-show-audio-controls")
+    let toggleControls =  El("button",  "audio-player--button-show-audio-controls hidden")
 
     controls.append(prevButton, playButton, nextButton, volumeButton)
 
@@ -183,7 +183,9 @@ class AudioPlayer {
 
     this.generatedHTML = true
 
-    this.HTMLDesktopToMobile()
+    if(isOrientationPortrait) {
+      this.HTMLDesktopToMobile()
+    }
   }
 
   /** This method updates the visual for track duration, according to the current track being played. */
@@ -229,15 +231,17 @@ class AudioPlayer {
     this.elements.get("playheadGhost").classList.add("hidden")
   }
 
-  /** change the layout to desktop. */
+  /** change the layout to desktop, by only reverting changes made by the mobile conversion, the default player state is the exact desktop variant. */
   static HTMLMobileToDesktop() {
-
+    this.elements.forEach(e => e.classList.remove("layout--mobile"))
+    this.elements.get("toggleControls").classList.add("hidden")
   }
 
   /** change the layout to mobile. */
   static HTMLDesktopToMobile() {
     this.elements.forEach(e => e.classList.add("layout--mobile"))
 
+    this.elements.get("toggleControls").classList.remove("hidden")
     this.elements.get("cover").after(this.elements.get("trackName"))
     this.elements.get("trackName").before(this.elements.get("trackNumber"))
 
@@ -266,8 +270,10 @@ class AudioPlayer {
     }
   }
 
-  /** creates a canvas and samples kind of the average color of the cover image of an album */
+  /** creates a canvas and samples kind of the average color of the cover image of an album, then stores that into the project. */
   static getAudioPlayerTrackColor() {
+    if(Project.current?.trackColor) return Project.current.trackColor
+
     const src = Q(".artwork-side-image")
     const [x, y] = [src?.naturalWidth, src?.naturalHeight ]
 
@@ -290,8 +296,9 @@ class AudioPlayer {
       multFactor = Math.min(110 / c, multFactor)
     }
     const finalColor = color.map(c => c * multFactor)
-
-    return `rgba(${finalColor[0]}, ${finalColor[1]}, ${finalColor[2]}, 1.0)`
+    const css = `rgba(${finalColor[0]}, ${finalColor[1]}, ${finalColor[2]}, 1.0)`
+    Project.current.trackColor = css
+    return css
   }
 
   /** Stop music and close the player. */

@@ -12,6 +12,9 @@ class Project {
     /** @type HTMLImageElement */
     this.currentImage = null
 
+    /** The CSS color declaration used for audio player */
+    this.trackColor = null
+
     /** @type Set<String> - Set of tags that describe the project, e.g.: music, code, illustration, design */
     this.tags = new Set()
     this.data.tags.forEach(t => this.tags.add(t))
@@ -302,9 +305,13 @@ class Project {
         Project.galleryReflow()
       }
   }
+
+  /** Simple method for mobile layouts */
   galleryItemShowInstant() {
     this.elements.get("item").classList.remove("hidden")
   }
+  
+  /** Simple method for mobile layouts */
   galleryItemHideInstant() {
     this.elements.get("item").classList.add("hidden")
   }

@@ -46,7 +46,10 @@ class AudioTrack {
       AudioPlayer.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
       /* @todo very inefficient lmao */
       AudioPlayer.elements.get("progressBar").style.backgroundColor = AudioPlayer.getAudioPlayerTrackColor()
-      AudioPlayer.toggleControls(true)
+      
+      if(isOrientationPortrait) {
+        AudioPlayer.toggleControls(true)
+      }
     }
   }
   stop() {
