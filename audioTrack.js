@@ -36,9 +36,18 @@ class AudioTrack {
     /* visuals */
     this.elements.get("container").classList.add("active")
 
+    /* @todo it recreates the entire player again, which will lead to more and more bugs as I add features */
     AudioPlayer.createHTML(this.project)
+
     this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
+
+    if(AudioPlayer.generatedHTML) {
+      AudioPlayer.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
+      /* @todo very inefficient lmao */
+      AudioPlayer.elements.get("progressBar").style.backgroundColor = AudioPlayer.getAudioPlayerTrackColor()
+      AudioPlayer.toggleControls(true)
+    }
   }
   stop() {
     this.audio.currentTime = 0

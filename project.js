@@ -106,7 +106,8 @@ class Project {
     })
     Q("#project-detail-type").append(tagsHTML)
     
-
+    /* scroll-up button */
+    Q("#project-detail-button-scroll-up").classList.add("hidden")
     
     /* title */
     Q("#project-detail-title").innerHTML = this.data.title
@@ -130,7 +131,11 @@ class Project {
           content.src.forEach((img, index) => {
             let image = El("img", "artwork-side-image", [["src", this.generateFileURL(img.src)],["title", img.title ?? ""]])
 
-            if(index === 0) {
+            /* append all images if option singleImageView == false */
+            if(
+              index === 0 || 
+              this.data.options?.singleImageView == false
+            ) {
               this.currentImage = image
               Q("#project-detail-artwork-side").append(image)
             }
@@ -152,6 +157,14 @@ class Project {
 
 
 
+    /* hide arrows in the project detail gallery if only 1 image is there */
+    if(this.images.length <= 1)
+      Q("#project-detail-image-arrows").classList.add("hidden")
+    else
+      Q("#project-detail-image-arrows").classList.remove("hidden")
+
+
+
     /* process options */
 
     /* this adjusts the entire project-detail panel to have centered images */
@@ -168,13 +181,23 @@ class Project {
       Q("#project-detail-content").classList.remove("alt-layout")
     }
 
-
-
-    /* hide arrows in the project detail gallery if only 1 image is there */
-    if(this.images.length <= 1)
+    if(this.data.options?.singleImageView) {
+      
+      if(isOrientationPortrait) {
+        Q("#project-detail-artwork-side").after(Q("#project-detail-text-side"))
+        Q("#project-detail-artwork-side").style.height = ""
+        Q("#project-detail-text-side").style.paddingTop = ""
+      }
+    }
+    else {
       Q("#project-detail-image-arrows").classList.add("hidden")
-    else
-      Q("#project-detail-image-arrows").classList.remove("hidden")
+      
+      if(isOrientationPortrait) {
+        Q("#project-detail-text-side").after(Q("#project-detail-artwork-side"))
+        Q("#project-detail-artwork-side").style.height = "unset"
+        Q("#project-detail-text-side").style.paddingTop = "20px"
+      }
+    }
 
 
     Project.current = this
@@ -229,12 +252,19 @@ class Project {
   }
 
   galleryItemToggle(...tags) {
+
+    /* reset state on each toggle, this is error-prone as shit */
+    Project.galleryAnimations.forEach(a => a.cancel())
+    Project.galleryAnimations.empty()
+    Project.numItemsReadyToHide = 0
+    Project.projectsToHide.empty()
     
-    //do mobile without animations
     if(this.elements.get("item").dataset.tags.includesAny(...tags)) {
+      //do mobile without animations
       isOrientationPortrait ? this.galleryItemShowInstant() : this.galleryItemShow()
     }
     else {
+      //do mobile without animations
       isOrientationPortrait ? this.galleryItemHideInstant() : this.galleryItemHide()
     }
   }
@@ -245,8 +275,6 @@ class Project {
     item.style.pointerEvents =  ""
     item.style.opacity =        ""
     this.elements.get("thumbnailCircle").classList.add("hidden")
-
-    Project.animations.forEach(a => a.cancel())
   }
   async galleryItemHide() {
       const delay = Math.round(Math.random() * 260)
@@ -261,18 +289,18 @@ class Project {
       circle.classList.remove("hidden")
       item.style.pointerEvents = "none"
 
-      Project.animations.push(
+      Project.galleryAnimations.push(
         animateScale(circle, 0, 0, 1, 1, duration - 100, "cubic-bezier(0.75, 0.5, 0.5, 1.0)"))
-      Project.animations.push(
+      Project.galleryAnimations.push(
         animateScale(item, 1, 1, 1.12, 1.12, duration, "cubic-bezier(0.75, 0.5, 0.5, 1.0)"))
 
       const fltranim = animateFilter(item, "blur(0px) brightness(1) opacity(1)", "blur(5px) brightness(0.5) opacity(0.0)", duration, "cubic-bezier(0.0, 0.5, 0.5, 1.0)")
+      Project.galleryAnimations.push(fltranim)
       fltranim.onfinish = () => {
         item.style.opacity = 0
         Project.numItemsReadyToHide += 1
         Project.galleryReflow()
       }
-      Project.animations.push(fltranim)
   }
   galleryItemShowInstant() {
     this.elements.get("item").classList.remove("hidden")
@@ -294,10 +322,18 @@ class Project {
 
     Q("#project-detail-top-shadow").style.opacity = opacity
     Q("#project-detail-top-line").style.opacity = opacity
+    
+    if(offset > window.innerHeight * 1.5) {
+      Q("#project-detail-button-scroll-up").classList.remove("hidden")
+    }
+    else if(offset < window.innerHeight / 2) {
+      Q("#project-detail-button-scroll-up").classList.add("hidden")
+    }
   }
   
   /** Opens a bottom-docked panel with images, music and text contained within the project's data. */
   static showDetail() {
+    console.log("show detail");
     this.projectDetailVisible = true
 
     this.animations.forEach(a => a.cancel())
@@ -317,14 +353,15 @@ class Project {
     Q("#project-detail-content").scrollTo({top: 0, behavior: "auto"})
     Q("#project-detail-hide-button").classList.remove("hidden")
 
-    animateTranslate(
-      Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing)
-    animateFilter(
-      Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing)
+    this.animations.push(animateTranslate(
+      Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing))
+    this.animations.push(animateFilter(
+      Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing))
   }
 
   /** Closes the bottom-docked panel. */
   static hideDetail() {
+    console.log("hide detail");
     this.projectDetailVisible = false
 
     let duration = 1050
@@ -404,6 +441,11 @@ class Project {
       Q("#project-detail-content").classList.add("no-scrollbar")
       Q("#project-detail-hide-button").classList.add("portrait-mode")
       this.gallery.gap = 0
+
+      Q("#project-detail-button-scroll-up").onclick = () => {
+        Q("#project-detail-content").scrollTo({top: 0, behavior: "smooth"})
+      }
+
     }
     
 
@@ -458,9 +500,11 @@ class Project {
   /* After all items have been marked for removal, remove them at the same time, preventing glitches. */
   static galleryReflow() {
     if(this.numItemsReadyToHide === this.projectsToHide.length) {
+      console.log("gallery reflow")
       this.projectsToHide.forEach(p => p.elements.get("item").classList.add("hidden"))
       this.projectsToHide.empty()
       this.numItemsReadyToHide = 0
+      this.galleryAnimations.empty()
     }
   }
 
@@ -472,6 +516,9 @@ class Project {
 
   /** @type Array<Animation> */
   static animations = []
+
+  /** @type Array<Animation> */
+  static galleryAnimations = []
 
   /** @type Number */
   static numItemsReadyToHide = 0

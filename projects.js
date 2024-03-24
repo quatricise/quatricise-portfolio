@@ -11,6 +11,10 @@ let projects = {
     <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
     `,
     tags: ["music", "wip"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
     colors: {
       gradient: ["#0b232b", "#4cf4fe"]
     },
@@ -36,6 +40,10 @@ let projects = {
     `Solarpunk album, follows the story of Dawn, a city dweller who goes on a vacation to discover a better place to live.
     `,
     tags: ["music", "wip"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
     colors: {
       gradient: ["#171234", "#f77259"]
     },
@@ -69,6 +77,10 @@ let projects = {
     `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
     `,
     tags: ["music", "wip"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
     colors: {
       gradient: ["#171234", "#f77259"]
     },
@@ -110,6 +122,10 @@ let projects = {
     <a class="clickable" target="_blank" href=https://mylapqn.github.io/revenant-earth/> https://mylapqn.github.io/revenant-earth/ <a/>
     `,
     tags: ["music", "wip"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
     colors: {
       gradient: ["#171234", "#f77259"]
     },
@@ -138,6 +154,10 @@ let projects = {
     `WIP
     `,
     tags: ["music", "illustration"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
     content: [
       {
         type: "audio",
@@ -163,6 +183,10 @@ let projects = {
     Memory strata (plural of 'stratum') is a term I came up with to describe the layers of memories compressed together over long periods of time. What happens is that many of the things we remember become 'floating' - difficult to pinpoint when they actually happened, but still there, at the back of your mind, like ghosts.
     `,
     tags: ["illustration"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
     content: [
       {
         type: "images",
@@ -178,11 +202,15 @@ let projects = {
     ]
   },
   illustrations: {
-    title: "Illustrations",
-    description: "A bunch of my illustrations, unsorted.",
+    title: "Moebius period: Illustrations",
+    description: `
+    The works were created between 2020-2023, and are all inspired by Moebius, who was a french comicbook artist and painter. Most of these are standalone pieces, some belong to a collection but there's just too many to sort and organize. 
+    <br> <br>
+    Some of these are for sale as prints, but I just don't have this figured out so I kind of sell them to my friends and people in the near vicinity. `,
     tags: ["illustration"],
     options: {
-      collapseTextSide: false
+      collapseTextSide: false,
+      singleImageView: false,
     },
     content: [
       {
@@ -235,10 +263,7 @@ let projects = {
  * The order matters, so music can go before description, but also more music can follow text.
  * Example: Music tracks, some description, music tracks, some more description.
 */
-let contentTypes = [
-
-
-
+const contentTypes = [
   {
     type: "audio",
     src: [
@@ -247,9 +272,6 @@ let contentTypes = [
       "Track 3",
     ]
   },
-
-
-
   {
     type: "images",
     src: [
@@ -258,14 +280,8 @@ let contentTypes = [
       {src: "img 3.png", title: ""},
     ]
   },
-
-
-
   {
     type: "text",
     text: "Some kind of text goes here. Can be template literal: `Text${}`"
   },
-
-
-
 ]

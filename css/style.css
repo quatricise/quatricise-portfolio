@@ -73,7 +73,7 @@ h1 {
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 img {
@@ -144,7 +144,7 @@ a.clickable:hover {
   background-size: contain;
   max-width: 190px;
   width: 100%;
-  margin: 23px 10px 20px -4px;
+  margin: 23px 10px 20px -14px;
   transition: background-image 0.4s ease-in-out;
   cursor: pointer;
 }
@@ -614,8 +614,6 @@ input[type="text"] {
   max-width: 1000px;
 }
 
-
-
 a {
   color: inherit;
   text-decoration: inherit;
@@ -1004,6 +1002,8 @@ h5 {
   z-index: 100;
 }
 button {
+  outline: none;
+  border: none;
   transition: transform 0.04s, color 0.22s, background-color 0.1s;
 }
 .hamburger {
@@ -1910,7 +1910,7 @@ input:checked + .slider:before {
   }
 
   .logo-holder {
-    max-width: 200px;
+    max-width: 145px;
     width: 80%;
     margin: 0px 0px 4px 0px;
     transition: background-image 0.4s ease-in-out;

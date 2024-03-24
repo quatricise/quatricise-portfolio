@@ -64,6 +64,8 @@ class AudioPlayer {
     let progressBar =   El("div", "audio-player-progress-bar")
     let playhead =      El("div", "audio-player-playhead")
     let playheadGhost = El("div", "audio-player-playhead ghost hidden")
+    let currentTime =   El("div", "audio-player-current-time", [], "00:00")
+    let duration =      El("div", "audio-player-duration", [], "00:00")
 
     /* create the visual index with the double digits */
     let index = AudioTrack.current.index + 1
@@ -76,21 +78,22 @@ class AudioPlayer {
     }
     trackNumber.innerText = indexText
 
-    track.append(progressBar, trackNumber, trackName, playhead, playheadGhost)
+    track.append(progressBar, trackNumber, trackName, playhead, playheadGhost, currentTime, duration)
 
     /* Controls: prev, play/pause, next, volume */
-    let controls =      El("div",     "audio-player-controls")
-    let prevButton =    El("button",  "audio-player-button previous-track")
-    let nextButton =    El("button",  "audio-player-button next-track")
-    let playButton =    El("button",  "audio-player-button play paused")
-    let volumeButton =  El("button",  "audio-player-button volume")
+    let controls =        El("div",     "audio-player-controls")
+    let prevButton =      El("button",  "audio-player-button previous-track")
+    let nextButton =      El("button",  "audio-player-button next-track")
+    let playButton =      El("button",  "audio-player-button play paused")
+    let volumeButton =    El("button",  "audio-player-button volume")
+    let toggleControls =  El("button",  "audio-player--button-show-audio-controls")
 
     controls.append(prevButton, playButton, nextButton, volumeButton)
 
     /* separate close button that stops audio and hides the player. */
     let closeButton =   El("div", "audio-player-close-button")
 
-    container.append(cover, track, controls, closeButton)
+    container.append(cover, track, toggleControls, controls, closeButton)
     document.body.append(container)
 
     this.elements.set("container", container)
@@ -106,6 +109,9 @@ class AudioPlayer {
     this.elements.set("track", track)
     this.elements.set("trackName", trackName)
     this.elements.set("trackNumber", trackNumber)
+    this.elements.set("currentTime", currentTime)
+    this.elements.set("duration", duration)
+    this.elements.set("toggleControls", toggleControls)
 
     container.projectIdentifier = project.projectIdentifier
 
@@ -113,15 +119,15 @@ class AudioPlayer {
     /* functionality */
 
     /* auto-collapsing */
-    container.onmouseleave = () => {
-      this.collapseTimer = setTimeout(() => {
-        this.collapseHTML()
-      }, 2500)
-    }
-    container.onmouseover = () => {
-      window.clearTimeout(this.collapseTimer)
-      this.expandHTML()
-    }
+    // container.onmouseleave = () => {
+    //   this.collapseTimer = setTimeout(() => {
+    //     this.collapseHTML()
+    //   }, 2500)
+    // }
+    // container.onmouseover = () => {
+    //   window.clearTimeout(this.collapseTimer)
+    //   this.expandHTML()
+    // }
 
     playButton.onclick = () => {
       AudioTrack.current.toggle()
@@ -140,6 +146,8 @@ class AudioPlayer {
     closeButton.onclick = () => {
       this.close()
     }
+
+    toggleControls.onclick = () => this.toggleControls()
 
     track.onclick = () => {
 
@@ -174,6 +182,8 @@ class AudioPlayer {
     }
 
     this.generatedHTML = true
+
+    this.HTMLDesktopToMobile()
   }
 
   /** This method updates the visual for track duration, according to the current track being played. */
@@ -183,11 +193,15 @@ class AudioPlayer {
     let offset = (AudioTrack.current.audio.currentTime / AudioTrack.current.audio.duration) * 100 + "%"
     this.elements.get("progressBar").style.width = offset
     this.elements.get("playhead").style.left = offset
+    this.elements.get("currentTime").innerText = secondsToMinutesString(AudioTrack.current.audio.currentTime)
+    //@todo inefficient but works
+    this.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
   }
 
   /** Turns the player into a tiny bar. */
   static collapseHTML() {
     if(!this.generatedHTML) return
+    if(isOrientationPortrait) return
 
     this.elements.get("container").classList.add("collapsed")
     this.elements.get("track").classList.add("collapsed")
@@ -204,6 +218,7 @@ class AudioPlayer {
   /** This function assumes that all elements that have class "hidden" and "collapsed" will have those classes removed. */
   static expandHTML() {
     if(!this.generatedHTML) return
+    if(isOrientationPortrait) return
 
     let container = this.elements.get("container")
     container.classList.remove("collapsed", "hidden")
@@ -212,6 +227,71 @@ class AudioPlayer {
     Array.from(elements).forEach(e => e.classList.remove("collapsed", "hidden"))
 
     this.elements.get("playheadGhost").classList.add("hidden")
+  }
+
+  /** change the layout to desktop. */
+  static HTMLMobileToDesktop() {
+
+  }
+
+  /** change the layout to mobile. */
+  static HTMLDesktopToMobile() {
+    this.elements.forEach(e => e.classList.add("layout--mobile"))
+
+    this.elements.get("cover").after(this.elements.get("trackName"))
+    this.elements.get("trackName").before(this.elements.get("trackNumber"))
+
+    this.toggleControls(false)
+  }
+
+  static toggleControls(value) {
+    if(value === undefined) {
+      this.elements.get("controls").classList.toggle("hidden")
+      this.elements.get("toggleControls").classList.toggle("shown")
+      this.elements.get("trackName").classList.toggle("hidden")
+      this.elements.get("trackNumber").classList.toggle("hidden")
+    }
+    else if(value === true) {
+      this.elements.get("controls").classList.remove("hidden")
+      this.elements.get("toggleControls").classList.add("shown")
+      this.elements.get("trackName").classList.add("hidden")
+      this.elements.get("trackNumber").classList.add("hidden")
+  
+    }
+    else if(value === false) {
+      this.elements.get("controls").classList.add("hidden")
+      this.elements.get("toggleControls").classList.remove("shown")
+      this.elements.get("trackName").classList.remove("hidden")
+      this.elements.get("trackNumber").classList.remove("hidden")
+    }
+  }
+
+  /** creates a canvas and samples kind of the average color of the cover image of an album */
+  static getAudioPlayerTrackColor() {
+    const src = Q(".artwork-side-image")
+    const [x, y] = [src?.naturalWidth, src?.naturalHeight ]
+
+    const 
+    canvas = document.createElement("canvas")
+    canvas.width = x
+    canvas.height = y
+
+    const 
+    ctx = canvas.getContext("2d")
+    ctx.filter = "blur(300px)"
+    ctx.drawImage(Q(".artwork-side-image"), 0, 0)
+
+    const imgdata = ctx.getImageData(x/2, y/2, 1, 1)
+    const color = [imgdata.data[0], imgdata.data[1], imgdata.data[2]]
+
+    /* mute overly bright colors */
+    let multFactor = 1
+    for(let c of color) {
+      multFactor = Math.min(110 / c, multFactor)
+    }
+    const finalColor = color.map(c => c * multFactor)
+
+    return `rgba(${finalColor[0]}, ${finalColor[1]}, ${finalColor[2]}, 1.0)`
   }
 
   /** Stop music and close the player. */
