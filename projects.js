@@ -1,4 +1,52 @@
 let projects = {
+  flowerized: {
+    title: "Flowerized Soundtrack",
+    description: 
+    `
+    Flowerized is a 3D story adventure/farming game, where you play as Ilva - former astrobiologist who's lost her job and got demoted to an orbital cleaner position, where she picks up mangled bits of organisms that didn't manage to teleport properly. One day a similar thing happens to her, and she crashes onto an abandoned planet...
+    <br><br>
+    The game isn't out yet, but you can find out more or download a demo here:
+    <br>
+    <a class="clickable" href="https://www.visiongame.cz/hra/flowerized/">visiongame.cz/hra/flowerized/</a>
+    <br><br>
+    Dev instagram: 
+    <br>
+    <a class="clickable" href="https://www.instagram.com/acid.growth.games/">www.instagram.com/acid.growth.games/</a>
+    <br><br>
+    Buy the album here:
+    <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2846970281/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://quatricise.bandcamp.com/album/flowerized-soundtrack">Flowerized Soundtrack by Quatricise</a></iframe>
+    Youtube here soon: 
+    ...
+    `,
+    tags: ["music", "soundtrack", "illustration"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Astro-cleaner", description: ""},
+          {filename: "Dark Forest", description: ""},
+          {filename: "Distress", description: ""},
+          {filename: "Engine Repairs", description: ""},
+          {filename: "Mushroom Prince", description: ""},
+          {filename: "Reflection", description: ""},
+          {filename: "Strange and Desolate Land", description: ""},
+          {filename: "Sunlit Garden", description: ""},
+          {filename: "Wasteland", description: ""},
+          {filename: "Windstorm", description: ""},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Sand Lands Album Cover"},
+        ],
+      },
+    ]
+  },
   jumpout: {
     title: "Jumpout",
     description:
@@ -35,7 +83,7 @@ let projects = {
     ]
   },
   letGoOfTheCity: {
-    title: "Let Go of the City",
+    title: "A City Without Cars",
     description:
     `Solarpunk album, follows the story of Dawn, a city dweller who goes on a vacation to discover a better place to live.
     `,
@@ -148,58 +196,11 @@ let projects = {
       },
     ]
   },
-  flowerized: {
-    title: "Flowerized Soundtrack",
-    description: 
-    `
-    Flowerized is a 3D story adventure/farming game, where you play as Ilva - former astrobiologist who's lost her job and got demoted to an orbital cleaner position, where she picks up mangled bits of organisms that didn't manage to teleport properly. One day a similar thing happens to her, and she crashes onto an abandoned planet...
-    <br><br>
-    The game isn't out yet, but you can find out more or download a demo here:
-    <br>
-    <a class="clickable" href="visiongame.cz/hra/flowerized/">visiongame.cz/hra/flowerized/</a>
-    <br><br>
-    Dev instagram: 
-    <br>
-    <a class="clickable" href="www.instagram.com/acid.growth.games/">www.instagram.com/acid.growth.games/</a>
-    <br><br>
-    Buy the album here:
-    <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2846970281/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://quatricise.bandcamp.com/album/flowerized-soundtrack">Flowerized Soundtrack by Quatricise</a></iframe>
-    Youtube here soon: 
-    ...
-    `,
-    tags: ["music", "soundtrack", "illustration"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: true,
-    },
-    content: [
-      {
-        type: "audio",
-        src: [
-          {filename: "Astro-cleaner", description: ""},
-          {filename: "Dark Forest", description: ""},
-          {filename: "Distress", description: ""},
-          {filename: "Engine Repairs", description: ""},
-          {filename: "Mushroom Prince", description: ""},
-          {filename: "Reflection", description: ""},
-          {filename: "Strange and Desolate Land", description: ""},
-          {filename: "Sunlit Garden", description: ""},
-          {filename: "Wasteland", description: ""},
-          {filename: "Windstorm", description: ""},
-        ],
-      },
-      {
-        type: "images",
-        src: [
-          {src: "cover.jpg", title: "Sand Lands Album Cover"},
-        ],
-      },
-    ]
-  },
   sandLands: {
     title: "Sand Lands",
     description: 
-    `WIP
+    `
+    A composer approaches the Watchers with a tribute piece he's written about one of their games. Will he get a second chance, or will his interpretation of history displease them.
     `,
     tags: ["music", "illustration"],
     options: {
