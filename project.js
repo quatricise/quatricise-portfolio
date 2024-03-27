@@ -285,7 +285,7 @@ class Project {
 
       Project.projectsToHide.push(this)
       
-      const duration = 750 - delay/2
+      const duration = 560 - delay/2
       const circle = this.elements.get("thumbnailCircle")
       const item = this.elements.get("item")
 
@@ -493,6 +493,9 @@ class Project {
     Qa(".project-tag-switch").forEach(item => {
       item.onclick = () => this.showByTags(item.dataset.tag)
     })
+
+    for(let key in projects)
+      new Project(key)
   }
 
   /** Visual styling of the project gallery, this is used to initialize the element.*/

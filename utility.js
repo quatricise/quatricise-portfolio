@@ -102,6 +102,13 @@ function clamp(value, min, max) {
   return val
 }
 
+function radToDeg(rad) {
+  return rad * 180/PI
+}
+function degToRad(deg) {
+  return (deg/180) * PI
+}
+
 function sum(values = []) {
   let result = 0
   values.forEach((val)=> {
@@ -175,7 +182,7 @@ function vectorRotate(x, y, rot) {
   //   x: (cos * x) + (sin * y),
   //   y: (cos * y) - (sin * x)
   // }
-  var newpos = new Vector((cos * x) + (sin * y),(cos * y) - (sin * x))
+  var newpos = new Vector2((cos * x) + (sin * y),(cos * y) - (sin * x))
   return newpos;
 }
 
@@ -240,9 +247,10 @@ function weightedRandom(values = {apple: 1, orange: 2}) {
 }
 
 const PI = Math.PI
+const PI_2 = Math.PI / 2
 const TAU = Math.PI*2
 
-class Vector {
+class Vector2 {
   constructor(x = 0, y) {
     this.x = x
     if(y === undefined) this.y = x
@@ -252,7 +260,7 @@ class Vector {
     return Math.sqrt(this.x * this.x + this.y * this.y)
   }
   distance(vector) {
-    let v = new Vector(
+    let v = new Vector2(
       Math.abs(this.x - vector.x),
       Math.abs(this.y - vector.y)
     )
@@ -272,7 +280,7 @@ class Vector {
     return this
   }
   get copy() {
-    return new Vector(this.x, this.y)
+    return new Vector2(this.x, this.y)
   }
   mult(magnitude) {
     this.x = this.x * magnitude
@@ -300,10 +308,10 @@ class Vector {
     return angle
   }
   result() {
-    return new Vector(this.x, this.y)
+    return new Vector2(this.x, this.y)
   }
   lerp(vector, amount) {
-    return new Vector(
+    return new Vector2(
       this.x + (vector.x - this.x) * amount,
       this.y + (vector.y - this.y) * amount
     )
@@ -325,7 +333,7 @@ class Vector {
     return this
   }
   lerp(target, value) {
-    return new Vector(this.x + (target.x - this.x) * value, this.y + (target.y - this.y) * value)
+    return new Vector2(this.x + (target.x - this.x) * value, this.y + (target.y - this.y) * value)
   }
   inbound(bound) {
     return this.x < bound && this.x > -bound && this.y < bound && this.y > -bound
@@ -360,15 +368,15 @@ class Vector {
     return {x: this.x, y: this.y}
   }
   static zero() {
-    return new Vector(0, 0)
+    return new Vector2(0, 0)
   }
   static fromAngle(rotation) {
-    return new Vector(Math.cos(rotation), Math.sin(rotation))
+    return new Vector2(Math.cos(rotation), Math.sin(rotation))
   }
   static avg(...vectors) {
     let x = [],y = []
     vectors.map(vec => {x.push(vec.x); y.push(vec.y)})
-    return new Vector(avg(...x), avg(...y))
+    return new Vector2(avg(...x), avg(...y))
   }
 }
 

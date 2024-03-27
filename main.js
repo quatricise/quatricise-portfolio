@@ -183,9 +183,7 @@ document.addEventListener("mousemove", (event) => {
 
 function init() {
   Project.init()
-
-  for(let key in projects)
-    new Project(key)
+  Search.init()
 
   /* Process the URL search to allow things such as linking to pre-filtered content or opening a specific project */
   let searchQuery = window.location.search.replace("?", "")

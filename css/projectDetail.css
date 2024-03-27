@@ -721,6 +721,16 @@
   mix-blend-mode: color-burn;
 }
 
+/* GLYPHS */
+#background-shit {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
+
 @media screen and (orientation: portrait) {
   
   #projects-page-main-heading {

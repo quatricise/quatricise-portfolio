@@ -107,10 +107,17 @@ class Search {
     element.classList.add("search-result-element")
     element.onclick = () => Project.select(projectIdentifier)
 
+    let textContainer = El("div", "search-result-text-container", [])
+
     let
     title = document.createElement("div")
     title.classList.add("search-result-title")
     title.innerText = dataBlock.title || "No title"
+
+    let
+    desc = document.createElement("div")
+    desc.classList.add("search-result-description")
+    desc.innerHTML = dataBlock.description || "<Missing description>"
 
     let
     cover = new Image()
@@ -118,8 +125,16 @@ class Search {
     cover.src = `projects/${projectIdentifier}/thumbnail.jpg`
     cover.classList.add("search-result-image")
 
-    element.append(cover, title)
+    textContainer.append(title, desc)
+    element.append(cover, textContainer)
     return element
+  }
+
+  
+  static init() {
+    if(isOrientationPortrait) {
+      Q("#search-results-wrapper").classList.add("no-scrollbar")
+    }  
   }
   //#endregion
 }

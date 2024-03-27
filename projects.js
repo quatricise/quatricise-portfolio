@@ -15,8 +15,9 @@ let projects = {
     <br><br>
     Buy the album here:
     <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2846970281/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://quatricise.bandcamp.com/album/flowerized-soundtrack">Flowerized Soundtrack by Quatricise</a></iframe>
-    Youtube here soon: 
-    ...
+    Youtube
+    <br>
+    <a class="clickable" href="https://youtu.be/ULxFurQYyhA">https://youtu.be/ULxFurQYyhA</a>
     `,
     tags: ["music", "soundtrack", "illustration"],
     options: {
@@ -27,16 +28,16 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Astro-cleaner", description: ""},
-          {filename: "Dark Forest", description: ""},
+          {filename: "Strange and Desolate Land", description: ""},
           {filename: "Distress", description: ""},
+          {filename: "Astro-cleaner", description: ""},
+          {filename: "Sunlit Garden", description: ""},
           {filename: "Engine Repairs", description: ""},
           {filename: "Mushroom Prince", description: ""},
-          {filename: "Reflection", description: ""},
-          {filename: "Strange and Desolate Land", description: ""},
-          {filename: "Sunlit Garden", description: ""},
-          {filename: "Wasteland", description: ""},
           {filename: "Windstorm", description: ""},
+          {filename: "Wasteland", description: ""},
+          {filename: "Dark Forest", description: ""},
+          {filename: "Reflection", description: ""},
         ],
       },
       {
@@ -58,7 +59,7 @@ let projects = {
     <br>
     <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
     `,
-    tags: ["music", "wip"],
+    tags: ["music", "wip", "soundtrack"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -169,7 +170,7 @@ let projects = {
     <br>
     <a class="clickable" target="_blank" href=https://mylapqn.github.io/revenant-earth/> https://mylapqn.github.io/revenant-earth/ <a/>
     `,
-    tags: ["music", "wip"],
+    tags: ["music", "wip", "soundtrack"],
     options: {
       collapseTextSide: false,
       singleImageView: true,

@@ -1,5 +1,5 @@
 class Mouse {
-  static clientPosition = new Vector()
+  static clientPosition = new Vector2()
   static buttons = {
     0: false,
     1: false,

@@ -1,10 +1,10 @@
 class Touch {
   
   /** Where the current finger is touching. */
-  static current = new Vector()
+  static current = new Vector2()
   
   /** Where the current finger began the touch. */
-  static start = new Vector()
+  static start = new Vector2()
   
   /** @type Integer */
   static fingerCount = 0
