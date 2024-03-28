@@ -26,7 +26,7 @@ function glyphLoad(src) {
   )
   sprite.position.set(position.x, position.y)
   sprite.anchor.set(0.5)
-  sprite.scale.set(0.35)
+  sprite.scale.set(0.28)
 
   const 
   filter = new PIXI.ColorMatrixFilter()    
@@ -34,15 +34,15 @@ function glyphLoad(src) {
   sprite.filters = [filter]
 
   sprite.positionDefault = new Vector2(sprite.position.x, sprite.position.y)
-  sprite.velocity = new Vector2()
+  sprite.velocity =        new Vector2()
   sprite.angularVelocity = 0
 
-  const offsetStrength = 0.3
+  const offsetStrength = 0.05
   const offsetFactor = (Math.random() * (offsetStrength/2)) - offsetStrength
   sprite.offsetFactor = offsetFactor
   
   //also incorporate some random sine movement into with a randomized speed for both axes
-  const timeScale =  0.0020 + Math.random() * 0.00015
+  const timeScale =  0.0010 + Math.random() * 0.00015
   const waveX = (Math.random() * 100) + 20
   const waveY = (Math.random() * 100) + 20
 
@@ -56,7 +56,7 @@ function glyphLoad(src) {
     const effectRadius = 400
     const ceilClip = 100 //how many pixels away will still be full 1.0 alpha
     const maxAlpha = 0.55
-    const minAlpha = 0.15
+    const minAlpha = 0.13
     sprite.filters[0].brightness(
       clamp(maxAlpha - ((distance - ceilClip) / (effectRadius * 2)), minAlpha, maxAlpha))
 
@@ -70,7 +70,7 @@ function glyphLoad(src) {
     const mouseOffsetX = Mouse.clientPosition.x*offsetFactor - (ww/2)*offsetFactor
     const mouseOffsetY = Mouse.clientPosition.y*offsetFactor - (wh/2)*offsetFactor
 
-    const maxOffsetScaling = 10
+    const maxOffsetScaling = 5
     const maxOffset = clamp(distanceToDefault/100, 0, maxOffsetScaling)
 
     const finalX = clamp(defX + mouseOffsetX, sprtX - maxOffset, sprtX + maxOffset) + (waveOffsetX * delta)
@@ -82,9 +82,8 @@ function glyphLoad(src) {
     )
 
     /* ROTATION */
-    // sprite.angularVelocity *= 0.99
-    sprite.angularVelocity += clamp(PI_2 - (distance/(200 / PI)), -PI_2, PI_2) / 2
-    sprite.angularVelocity = clamp(sprite.angularVelocity, -0.05, 0.05)
+    sprite.angularVelocity += clamp(PI_2 - (distance/(200 / PI)), -PI_2, PI_2) / 5
+    sprite.angularVelocity = clamp(sprite.angularVelocity, -0.03, 0.03)
     sprite.rotation += sprite.angularVelocity
     sprite.rotation = clamp(sprite.rotation, 0, PI)
   }

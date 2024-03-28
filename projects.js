@@ -261,6 +261,7 @@ let projects = {
     options: {
       collapseTextSide: false,
       singleImageView: false,
+      fillCoverWithFirstImage: true,
     },
     content: [
       {

@@ -28,14 +28,26 @@
 
 <div class='header'>
   <div class="navbar">
-    <div id="logo" tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);"></div>
+    <!-- <div id="navbar--inner-shadow-bottom"></div> -->
+    <!-- <div id="logo" tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);"></div> -->
+    <img src="images/banner.png" alt="">
+    <div id="navbar--buttons">
+      <div id="button--projects" class="button--drawn" onclick="setPage(projectsPage)" >
+        <img class="state--normal" src="images/buttons/button_projects_normal.png" alt="">
+        <img class="state--hover" src="images/buttons/button_projects_hover.png" alt="">
+      </div>
+      <div id="button--about" class="button--drawn" onclick="setPage(aboutPage)" >
+        <img class="state--normal" src="images/buttons/button_about_normal.png" alt="">
+        <img class="state--hover" src="images/buttons/button_about_hover.png" alt="">
+      </div>
+    </div>
     <div class='buttonCell hidden'>
-      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">Projects</button>
-      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">About</button>
-      <button tabindex="0" class='navbar-button purple-dull' >
+      <!-- <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">Projects</button>
+      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">About</button> -->
+      <!-- <button tabindex="0" class='navbar-button purple-dull' >
         <img src="images/bandcamp_icon.png" alt="" width="24px" style="margin-top: 4px; margin-right: 2px;">
         <a href="http://www.quatricise.bandcamp.com" target="_blank" referrerpolicy="noopener">Bandcamp</a>
-      </button>
+      </button> -->
     </div>
     <div class="hamburger">
       <div class="bar"></div>
@@ -57,12 +69,13 @@
 <div id='projects-page'>
   <div id="projects-page-content" class='pointerEventsNone no-scrollbar'>
     <div class="projects-page-header">
-      <h1 id="projects-page-main-heading">Projects</h1>
+      <h1 id="projects-page-main-heading" class="hidden">Projects</h1>
       <div class="project-type-switch">
         <div id="project-tags" class="no-scrollbar">
           <div id="project-tags-expand-button"></div>
           <div tabindex="0" class="project-tag-switch" data-tag="*">Everything</div>
         </div>
+        <div class="filler"></div>
         <div tabindex="0" id="search-bar" class="search-bar" onclick="Search.showSearchBar()">
           <input type="text" name="" id="search-bar-input">
           <img src="images/icon_search_white.png" class="search-bar-icon">
@@ -81,6 +94,9 @@
     <div id='background' class='background-dark background-ancient-cycles' title="Click to hide detail."></div>
   </div>
   <div id="project-detail-panel">
+
+    <div id="project-detail-cover" class="hidden"></div>
+
     <div id="project-detail-content" onscroll="Project.onScroll()">
       <button id="project-detail-button-scroll-up" class="button--scroll-up"></button>
       <div id="project-detail-top-shadow" style="opacity: 0;"></div>
@@ -109,14 +125,13 @@
         <p class="aboutParagraph">
           <span class="paragraph-section">
             I do music production, illustration and programming/web design.
-            You should find some of those things here.
           </span>
           <span class="paragraph-section">
-            If you want to license any music, get in touch.
-            I accept art and soundtrack commissions too.
-            Please message me via email or Instagram.
+            If you want to license any music or commission a new piece, or a soundtrack for your next project, get in touch.
             <br><br>
-            <span onclick="navigator.clipboard.writeText('stepantrvaj@gmail.com'); alert('💌 Copied email to clipboard. 💌')"><b><u> stepantrvaj@gmail.com</u></b></span>
+            Please message me via email or Instagram, your mileage may vary on other platforms.
+            <br><br>
+            <span style="cursor: pointer;" onclick="navigator.clipboard.writeText('stepantrvaj@gmail.com'); alert('💌 Copied email to clipboard. 💌')"><b><u> stepantrvaj@gmail.com</u></b></span>
           </span>
       </p>
       <div class="aboutParagraph">

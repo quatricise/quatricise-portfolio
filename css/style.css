@@ -77,6 +77,8 @@ h2 {
 }
 
 img {
+  display: block;
+  -webkit-user-drag: none;
   user-select: none;
 }
 
@@ -127,14 +129,24 @@ a.clickable:hover {
   z-index: 10000;
 }
 .navbar {
-  padding-bottom: 20px;
-  padding-top: 15px;
+  position: relative;
+  /* padding-bottom: 20px; */
+  padding-top: 0;
   display: flex;
   align-content: stretch;
   justify-content: space-between;
   max-width: 1000px;
   width: 95vw;
   margin: auto;
+}
+
+#navbar--inner-shadow-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(0deg, #000000, #00000000);
 }
 
 .logo-holder {
@@ -500,10 +512,8 @@ input[type="text"] {
 }
 
 #close-search {
-  /* position: fixed; */
   position: sticky;
   top: 20px;
-  /* bottom: 50px; */
   width: max-content;
   padding: 5px 10px 7px;
   border: 2px solid hsl(0, 0%, 100%, 0.5);
@@ -559,51 +569,6 @@ input[type="text"] {
   padding: 0;
 }
 
-.projects-page-header {
-  display: flex;
-  gap: 60px;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-#projects-page-main-heading {
-  color: white;
-  margin-bottom: 10px;
-  user-select: none;
-}
-.project-type-switch {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding-bottom: 15px;
-}
-.project-tag-switch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: max-content;
-  font-size: 1.2rem;
-  white-space: nowrap;
-  hyphens: none;
-  padding: 2px 20px 5px;
-  border: 2px solid transparent;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  user-select: none;
-}
-.project-tag-switch:hover {
-  background-color: var(--white-01);
-}
-.project-tag-switch.active {
-  border: 2px solid var(--white-05);
-}
-
-#project-tags {
-  display: flex;
-  height: 100%;
-  gap: 5px;
-}
 .cell--icon-search {
   display: flex;
   justify-content: center;
@@ -1870,6 +1835,35 @@ input:checked + .slider:before {
 }
 .spinning {
   animation: 1s linear infinite rotateZ;
+}
+
+#navbar--buttons {
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding-right: 38px;
+  z-index: 1000;
+}
+.button--drawn {
+  height: 100%;
+}
+.button--drawn .state--hover {
+  display: none;
+  height: 100%;
+}
+.button--drawn .state--normal {
+  display: unset;
+  height: 100%;
+}
+.button--drawn:hover .state--normal {
+  display: none;
+}
+.button--drawn:hover .state--hover {
+  display: unset;
 }
 
 

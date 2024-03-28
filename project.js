@@ -6,7 +6,7 @@ class Project {
     /** @type Object - Raw data of the project, such as image and music links, and text. */
     this.data = projects[projectIdentifier]
 
-    /** Crappy solution to displaying images - just push them here. */
+    /** @type Array<HTMLImageElement> Crappy solution to displaying images - just push them here. */
     this.images = []
 
     /** @type HTMLImageElement */
@@ -200,6 +200,14 @@ class Project {
         Q("#project-detail-artwork-side").style.height = "unset"
         Q("#project-detail-text-side").style.paddingTop = "20px"
       }
+    }
+
+    if(this.data.options?.fillCoverWithFirstImage) {
+      Q("#project-detail-cover").classList.remove("hidden")
+      Q("#project-detail-cover").append(this.images[0].cloneNode(true))
+    }
+    else {
+      Q("#project-detail-cover").classList.add("hidden")
     }
 
 
@@ -439,8 +447,12 @@ class Project {
     })
   }
 
+
+
   /** Setup the gallery and other random shit that needs to be done on page load. */
   static init() {
+
+    /* mobile layout adjustments */
 
     if(isOrientationPortrait) {
       Q("#projects-gallery-wrapper").classList.add("no-scrollbar")
@@ -458,6 +470,7 @@ class Project {
 
 
     /* setup gallery */
+
     let galleryDimensions = Q("#projects-gallery").getBoundingClientRect()
     this.gallery.width = galleryDimensions.width
     this.gallery.columns = Math.floor(galleryDimensions.width / this.gallery.desiredCellWidth)
@@ -476,7 +489,7 @@ class Project {
     }
 
     tags.forEach(t => {
-      let tagButton = El("div", "project-tag-switch", [], t)
+      let tagButton = El("div", "project-tag-switch", [], "#" + t)
       tagButton.tabIndex = 0
       tagButton.dataset.tag = t
       Q("#project-tags").append(tagButton)
@@ -485,8 +498,8 @@ class Project {
 
 
     /* select the "*" tag */
-    this.showByTags("*")
 
+    this.showByTags("*")
 
     
     /* add functions to tag switches */
