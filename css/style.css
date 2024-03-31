@@ -633,9 +633,10 @@ a {
   right: 0; 
   margin-left: auto; 
   margin-right: auto;
+  background-color: #000000;
   transition: transform 0.6s cubic-bezier(.50,.03,.45,.98), opacity 0.7s cubic-bezier(.10,.15,.60,.98);
   overflow-y: scroll;
-  height: 85vh;
+  /* height: 85vh; */
 }
 
 .about-section {
@@ -697,11 +698,11 @@ a {
 
 .about-text {
   display: flex;
-  gap: 180px;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   justify-content: space-between;
   margin: 5vh 0 0 0;
-  font-family: "darker";
 }
 .about-text a {
   color: white;
@@ -710,18 +711,22 @@ a {
   margin-bottom: 22px;
 }
 
-.aboutParagraph {
-  font-size: 25px;
-  color: rgb(255, 255, 255);
-  transition: color 0.5s;
+.about-paragraph {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 540px;
+  font-size: 1.5rem;
+  word-wrap: break-word;
+  text-justify: distribute;
+  color: rgb(255, 255, 255);
+  transition: color 0.5s;
 }
 .paragraph-section {
   margin-bottom: 25px;
   width: 100%;
 }
-.aboutParagraph a:hover {
+.about-paragraph a:hover {
   transform: scale(1.03);
 }
 .paragraph-section *:hover {
@@ -768,14 +773,16 @@ a {
   display: flex;
   align-items: center;
 }
+
 .social-media-links a {
   margin-right: 20px ;
 }
-.matter-logo {
-  max-width: 40px;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
+
+.links--social-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
 .dropdown-wrapper {
@@ -1235,7 +1242,7 @@ button {
   height: 1900px;
 }
 
-.buttonCell {
+.button-cell {
   display: flex;
   justify-content: space-between;
   justify-self: right;
@@ -1851,6 +1858,9 @@ input:checked + .slider:before {
 .button--drawn {
   height: 100%;
 }
+.button--drawn:hover {
+  /* transform: translateY(-5px) translateX(-2px); */
+}
 .button--drawn .state--hover {
   display: none;
   height: 100%;
@@ -1886,7 +1896,7 @@ input:checked + .slider:before {
     display: none;
   }
 
-  .buttonCell {
+  .button-cell {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -1913,7 +1923,7 @@ input:checked + .slider:before {
     margin-bottom: 15px!important;
   }
 
-  .aboutParagraph {
+  .about-paragraph {
     overflow: hidden;
   }
 
@@ -1996,7 +2006,7 @@ input:checked + .slider:before {
   .paragraph-section {
     margin-bottom: 5px;
   }
-  .aboutParagraph {
+  .about-paragraph {
     font-size: 20px;
   }
   .social-media-links {

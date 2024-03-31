@@ -1,17 +1,21 @@
 /** Inner width of window. */
 let ww = window.innerWidth 
+
 /** Inner height of window. */
 let wh = window.innerHeight 
 
 window.addEventListener("resize", (e) => {
   ww = window.innerWidth
   wh = window.innerHeight
+
+  app.renderer.resize(ww, wh)
 })
 
 const app = new PIXI.Application({height: window.innerHeight, width: window.innerWidth, backgroundColor: 0x000000})
 const stage = app.stage
 const canvas = app.view
 Q("#background-shit").append(canvas)
+
 let delta = 0
 
 const glyphCount = 17
@@ -98,7 +102,7 @@ for(let i = 1; i <= glyphCount; i++) {
 
 /* SORT GLYPHS BASED ON OFFSET FACTOR, essentially creating parallax */
 glyphs.sort((a, b) => {return b.offsetFactor - a.offsetFactor})
-console.log(glyphs.map(g => g.offsetFactor))
+// console.log(glyphs.map(g => g.offsetFactor))
 
 /* APPEND NOW IN THE NEW ORDER */
 glyphs.forEach(g => stage.addChild(g))

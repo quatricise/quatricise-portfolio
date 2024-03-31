@@ -3,7 +3,7 @@ let checkbox = Q('#dayNightCheckbox')
 let background = Q('#background')
 
 let navbarButtons = Qa('.navbar-button')
-let navbarButtonCell = Q('.buttonCell')
+let navbarButtonCell = Q('.button-cell')
 let logoHolder = document.querySelector('.logo-holder')
 let daytime = "dark";
 let preloader = document.querySelector('.preloader')
@@ -203,6 +203,19 @@ function init() {
       }
       case "search": {
         Search.search(value)
+        break
+      }
+      case "page": {
+        switch(value) {
+          case "projects": {
+            setPage(projectsPage)
+            break
+          }
+          case "about": {
+            setPage(aboutPage)
+            break
+          }
+        }
         break
       }
       case "carouselindex": {
