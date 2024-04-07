@@ -22,7 +22,7 @@ let pages = [
 ]
 
 function setPage(/** @type HTMLDivElement */ page) {
-  if(isOrientationPortrait) {
+  if(state.isOrientationPortrait) {
     toggleNavlinks(false)
   }
 
@@ -34,13 +34,21 @@ function setPage(/** @type HTMLDivElement */ page) {
 
 
   if(page === projectsPage) {
-    // logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
-    background.classList.remove('desaturated');
+    document.body.scrollTo({top: 0, behavior: "auto"})
+    document.body.style.overflowY = "hidden"
   }
   if(page === aboutPage) {
-    background.classList.add('desaturated');
-    if(daytime == "dark") {
-      // logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
+    document.body.style.overflowY = ""
+  }
+
+  if(page === searchResultsPage) {
+    if(state.isOrientationPortrait) {
+      Q(".header").classList.add("hidden")
+    }
+  }
+  else {
+    if(state.isOrientationPortrait) {
+      Q(".header").classList.remove("hidden")
     }
   }
 }
@@ -74,7 +82,7 @@ function quitPreloader() {
 }
 
 window.addEventListener('load', () => {
-  if(!isOrientationPortrait) {
+  if(!state.isOrientationPortrait) {
     navbarButtonCell.classList.remove("hidden")
   }
   quitPreloader();
@@ -175,6 +183,66 @@ document.addEventListener("mousemove", (event) => {
   Mouse.update(event)
 })
 
+
+Q("#projects-gallery-wrapper").addEventListener("scroll", (e) => {
+  /* we don't want the logo to ever hide on desktop */
+  if(!state.isOrientationPortrait) return
+
+  const scrollTop = Q("#projects-gallery-wrapper").scrollTop
+
+  /* scrolled up */
+  if(state.lastScrollTop > scrollTop) {
+    if(scrollTop <= 0) {
+      logoAnimate(true)
+    }
+  }
+  /* scrolled down */
+  else {
+    logoAnimate(false)
+  }
+
+  state.lastScrollTop = scrollTop
+})
+
+function logoAnimate(show = true) {
+
+  /* if the state is already what it should be */
+  console.log(state.logoVisible === show)
+  if(state.logoVisible === show) return
+
+  /* the naming is baaaad */
+  const navbar = Q(".navbar")
+  const logo = Q(".banner-image.mobile")
+
+  if(logo.getAnimations().length !== 0) {
+    return
+  }
+
+  const height = navbar.offsetHeight
+
+  let to = "0px"
+  let from = (-height + "px")
+  let easing = show ? "cubic-bezier(0.2, 0.0, 0.3, 1.0)" : "cubic-bezier(0.7, 0.0, 0.8, 1.0)"
+  let duration = 500
+
+  if(!show) {
+    [to, from] = [from, to]
+  }
+
+  logo.style.top = from
+  logo.animate([
+    {top: from},
+    {top: to},
+  ], {
+    duration,
+    easing
+  })
+  .onfinish = () => {
+    logo.style.top = to
+    show ? logo.classList.remove("hidden") : logo.classList.add("hidden")
+  }
+  state.logoVisible = show
+}
 
 
 function init() {

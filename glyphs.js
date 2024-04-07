@@ -95,7 +95,7 @@ function glyphLoad(src) {
   glyphs.push(sprite)
 }
 
-if(!isOrientationPortrait) {
+if(!state.isOrientationPortrait) {
   /* LOAD GLYPHS */
   for(let i = 1; i <= glyphCount; i++) {
     glyphLoad(`images/glyphs/${i}.png`)

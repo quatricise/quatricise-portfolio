@@ -77,7 +77,7 @@
           <div tabindex="0" class="project-tag-switch" data-tag="*">Everything</div>
         </div>
         <div class="filler"></div>
-        <div tabindex="0" id="search-bar" class="search-bar" onclick="Search.showSearchBar()">
+        <div tabindex="0" id="search-bar" class="search-bar" onclick="Search.showSearchBar()" title="Search [F]">
           <input type="text" name="" id="search-bar-input">
           <img src="images/icon_search_white.png" class="search-bar-icon">
         </div>
@@ -120,56 +120,41 @@
   </div>
 </div>
 
-<div id="aboutPage" class='pointerEventsNone no-scrollbar page hidden'>
+<div id="aboutPage" class='page hidden no-scrollbar'>
   <div class="about-section">
     <div class="about-text">
         <p class="about-paragraph">
           I'm a composer and illustrator. If you want to license any music or commission a new piece, or a soundtrack for your next project, get in touch.
-          <br>
-          <span class="hidden" style="cursor: pointer;" onclick="navigator.clipboard.writeText('stepantrvaj@gmail.com'); alert('💌 Copied email to clipboard. 💌')">
-            <b><u>stepantrvaj@gmail.com</u></b>
-          </span>
-          <br>
-          <b>Links</b>
+          <br><br>
+          <span class="about--section-header"><b>Links</b></span>
           <br>
       </p>
-      <div class="about-paragraph hidden">
-        <span class="paragraph-section">
-          Music
-          <br>
-        </span>
-        <span class="music-links">
-          <a target="_blank" rel="noopener" class="" href="https://youtube.com/@quatricise"><i class="fab fa-youtube"></i></a>
-          <a target="_blank" rel="noopener" class="" href="https://quatricise.bandcamp.com"><i class="fab fa-bandcamp"></i></a>
-          <a target="_blank" rel="noopener" class="" href="https://soundcloud.com"><i class="fab fa-soundcloud"></i></a>
-          <a target="_blank" rel="noopener" class="" href="https://open.spotify.com/artist/5Zs4jYGAgMBNVEx4znSTxp?si=VauChTQFRoGvJXgQ8F7OLA"><i class="fab fa-spotify"></i></a>
-        </span>
-        <span class="paragraph-section">
-          Art 
-          <br>
-        </span>
-        <span class="social-media-links">
-          <a target="_blank" title="Instagram" rel="noopener" class="tooltip" href = "https://instagram.com/quatricise"><i class="fab fa-instagram"></i></a>
-          <a target="_blank" title="Behance" rel="noopener" href='https://behance.net/quatricise'><i class="fab fa-behance-square"></i></a></a>
-          <a target="_blank" title="Twitter" rel="noopener" class="tooltip" href = "https://twitter.com/quatricise"><i class="fab fa-twitter"></i></a>
-          <a target="_blank" title="Tumblr" rel="noopener" class="tooltip" href = "https://tumblr.com/quatricise"><i class="fab fa-tumblr"></i></a>
-        </span>
-        <span class="paragraph-section">
-          Contact me
-          <br>
-        </span>
-        <span class="social-media-links">
-          <a target="_blank" title="Email me" rel="noopener" class="tooltip" href="mailto: stepantrvaj@gmail.com"><i class="fas fa-envelope-square"></i></a>
-        </span>
-        <div style="height: 1px;"></div>
-        <br>
-      </div>
     </div>
     <div class="links--social-media">
-      <img src="images/icons/icon_linktree.png"   alt="">
-      <img src="images/icons/icon_bandcamp.png"   alt="">
-      <img src="images/icons/icon_instagram.png"  alt="">
-      <img src="images/icons/icon_youtube.png"    alt="">
+      <a class="link--social-media" href="https://www.linktr.ee/quatricise">
+        <img src="images/icons/icon_linktree.png"   alt="">
+        <div class="link--label">Linktree</div>
+      </a>
+      <a class="link--social-media" href="https://quatricise.bandcamp.com/">
+        <img src="images/icons/icon_bandcamp.png"   alt="">
+        <div class="link--label">Bandcamp</div>
+      </a>
+      <a class="link--social-media" href="https://www.instagram.com/quatricise">
+        <img src="images/icons/icon_instagram.png"  alt="">
+        <div class="link--label">Instagram</div>
+      </a>
+      <a class="link--social-media" href="https://www.youtube.com/@quatricise">
+        <img src="images/icons/icon_youtube.png"    alt="">
+        <div class="link--label">YouTube</div>
+      </a>
+    </div>
+    <div class="about-text">
+      <p class="about-paragraph">
+        <span class="about--section-header"><b>Contact</b></span>
+        <br>
+        <a href="mailto:stepantrvaj@gmail.com" class="clickable" style="font-size: 2rem;">stepantrvaj@gmail.com</a>
+        <br>
+      </p>
     </div>
   </div>
 </div>

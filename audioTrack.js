@@ -47,7 +47,7 @@ class AudioTrack {
       /* @todo very inefficient lmao */
       AudioPlayer.elements.get("progressBar").style.backgroundColor = AudioPlayer.getAudioPlayerTrackColor()
       
-      if(isOrientationPortrait) {
+      if(state.isOrientationPortrait) {
         AudioPlayer.toggleControls(true)
       }
     }

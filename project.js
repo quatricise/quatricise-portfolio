@@ -186,7 +186,7 @@ class Project {
 
     if(this.data.options?.singleImageView) {
       
-      if(isOrientationPortrait) {
+      if(state.isOrientationPortrait) {
         Q("#project-detail-artwork-side").after(Q("#project-detail-text-side"))
         Q("#project-detail-artwork-side").style.height = ""
         Q("#project-detail-text-side").style.paddingTop = ""
@@ -195,7 +195,7 @@ class Project {
     else {
       Q("#project-detail-image-arrows").classList.add("hidden")
       
-      if(isOrientationPortrait) {
+      if(state.isOrientationPortrait) {
         Q("#project-detail-text-side").after(Q("#project-detail-artwork-side"))
         Q("#project-detail-artwork-side").style.height = "unset"
         Q("#project-detail-text-side").style.paddingTop = "20px"
@@ -272,11 +272,11 @@ class Project {
     
     if(this.elements.get("item").dataset.tags.includesAny(...tags)) {
       //do mobile without animations
-      isOrientationPortrait ? this.galleryItemShowInstant() : this.galleryItemShow()
+      state.isOrientationPortrait ? this.galleryItemShowInstant() : this.galleryItemShow()
     }
     else {
       //do mobile without animations
-      isOrientationPortrait ? this.galleryItemHideInstant() : this.galleryItemHide()
+      state.isOrientationPortrait ? this.galleryItemHideInstant() : this.galleryItemHide()
     }
   }
   async galleryItemShow() {
@@ -383,7 +383,7 @@ class Project {
     let easing = "cubic-bezier(0.1, 0.5, 0.5, 1.0)"
 
     let blurAmt = 100
-    if(!isOrientationPortrait) blurAmt = 500
+    if(!state.isOrientationPortrait) blurAmt = 500
 
     this.animations.push(
       animateFade(
@@ -454,7 +454,7 @@ class Project {
 
     /* mobile layout adjustments */
 
-    if(isOrientationPortrait) {
+    if(state.isOrientationPortrait) {
       Q("#projects-gallery-wrapper").classList.add("no-scrollbar")
       Q("#projects-gallery").classList.add("no-scrollbar")
       Q("#project-detail-content").classList.add("no-scrollbar")

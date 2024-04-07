@@ -183,7 +183,7 @@ class AudioPlayer {
 
     this.generatedHTML = true
 
-    if(isOrientationPortrait) {
+    if(state.isOrientationPortrait) {
       this.HTMLDesktopToMobile()
     }
   }
@@ -203,7 +203,7 @@ class AudioPlayer {
   /** Turns the player into a tiny bar. */
   static collapseHTML() {
     if(!this.generatedHTML) return
-    if(isOrientationPortrait) return
+    if(state.isOrientationPortrait) return
 
     this.elements.get("container").classList.add("collapsed")
     this.elements.get("track").classList.add("collapsed")
@@ -220,7 +220,7 @@ class AudioPlayer {
   /** This function assumes that all elements that have class "hidden" and "collapsed" will have those classes removed. */
   static expandHTML() {
     if(!this.generatedHTML) return
-    if(isOrientationPortrait) return
+    if(state.isOrientationPortrait) return
 
     let container = this.elements.get("container")
     container.classList.remove("collapsed", "hidden")

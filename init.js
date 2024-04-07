@@ -1,2 +1,5 @@
-const isOrientationPortrait = window.innerWidth < window.innerHeight
-let navlinksVisible = false
+const state = {
+  lastScrollTop: 0,
+  logoVisible: true,
+  isOrientationPortrait: window.innerWidth < window.innerHeight
+}

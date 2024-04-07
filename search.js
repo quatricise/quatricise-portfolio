@@ -97,6 +97,7 @@ class Search {
       Q("#search-results").append(element)
     })
     setPage(searchResultsPage)
+    Q("#search-results-wrapper").scrollTo({top: 0, behavior: "auto"})
   }
   static hideResults() {
     setPage(projectsPage)
@@ -132,7 +133,7 @@ class Search {
 
   
   static init() {
-    if(isOrientationPortrait) {
+    if(state.isOrientationPortrait) {
       Q("#search-results-wrapper").classList.add("no-scrollbar")
     }  
   }
