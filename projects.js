@@ -203,7 +203,7 @@ let projects = {
     `
     A composer approaches the Watchers with a tribute piece he's written about one of their games. Will he get a second chance, or will his interpretation of history displease them.
     `,
-    tags: ["music", "illustration"],
+    tags: ["music", "illustration", "wip"],
     options: {
       collapseTextSide: false,
       singleImageView: true,

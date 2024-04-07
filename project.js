@@ -511,7 +511,9 @@ class Project {
       new Project(key)
   }
 
-  /** Visual styling of the project gallery, this is used to initialize the element.*/
+  /** Visual styling of the project gallery, this is used to initialize the element.
+   * it's a bit shit, let's be honest
+  */
   static gallery = {
     gap: 10,
     columns: 4,

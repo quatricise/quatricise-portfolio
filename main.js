@@ -15,10 +15,6 @@ let searchResultsPage = Q('#search-results-page');
 /** @type HTMLDivElement */
 let currentPage = projectsPage;
 
-const isOrientationPortrait = window.innerWidth < window.innerHeight
-
-let navlinksVisible = false
-
 let pages = [
   projectsPage,
   aboutPage,
@@ -38,13 +34,13 @@ function setPage(/** @type HTMLDivElement */ page) {
 
 
   if(page === projectsPage) {
-    logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
+    // logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
     background.classList.remove('desaturated');
   }
   if(page === aboutPage) {
     background.classList.add('desaturated');
     if(daytime == "dark") {
-      logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
+      // logoHolder.classList.replace("background-logo-thin", "backgroundLogoWhite")
     }
   }
 }
@@ -53,24 +49,24 @@ function toggleNavlinks(/** @type Boolean */ value) {
   if(value === true) {
     currentPage.classList.add("hidden")
     navbarButtonCell.classList.remove("hidden")
-    hamburger.classList.remove("selected")
+    // hamburger.classList.remove("selected")
   }
   else if(value === false) {
     currentPage.classList.remove("hidden")
     navbarButtonCell.classList.add("hidden")
-    hamburger.classList.add("selected")
+    // hamburger.classList.add("selected")
   }
   else if(value === undefined) {
     currentPage.classList.toggle("hidden")
     navbarButtonCell.classList.toggle("hidden")
-    hamburger.classList.toggle("selected")
+    // hamburger.classList.toggle("selected")
   }
   else {
     throw "Value incorrect"
   }
 }
 
-hamburger.onclick = () => toggleNavlinks()
+// hamburger.onclick = () => toggleNavlinks()
 
 function quitPreloader() {
   preloader.classList.add('opacity-zero');

@@ -95,21 +95,22 @@ function glyphLoad(src) {
   glyphs.push(sprite)
 }
 
-/* LOAD GLYPHS */
-for(let i = 1; i <= glyphCount; i++) {
-  glyphLoad(`images/glyphs/${i}.png`)
+if(!isOrientationPortrait) {
+  /* LOAD GLYPHS */
+  for(let i = 1; i <= glyphCount; i++) {
+    glyphLoad(`images/glyphs/${i}.png`)
+  }
+
+  /* SORT GLYPHS BASED ON OFFSET FACTOR, essentially creating parallax */
+  glyphs.sort((a, b) => {return b.offsetFactor - a.offsetFactor})
+
+  /* APPEND NOW IN THE NEW ORDER */
+  glyphs.forEach(g => stage.addChild(g))
+
+  function tick() {
+    delta = app.ticker.elapsedMS / 1000
+    glyphs.forEach(glyph => glyph.glyphUpdate())
+  }
+
+  app.ticker.add(tick)
 }
-
-/* SORT GLYPHS BASED ON OFFSET FACTOR, essentially creating parallax */
-glyphs.sort((a, b) => {return b.offsetFactor - a.offsetFactor})
-// console.log(glyphs.map(g => g.offsetFactor))
-
-/* APPEND NOW IN THE NEW ORDER */
-glyphs.forEach(g => stage.addChild(g))
-
-function tick() {
-  delta = app.ticker.elapsedMS / 1000
-  glyphs.forEach(glyph => glyph.glyphUpdate())
-}
-
-app.ticker.add(tick)

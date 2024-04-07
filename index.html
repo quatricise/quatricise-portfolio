@@ -30,7 +30,8 @@
   <div class="navbar">
     <!-- <div id="navbar--inner-shadow-bottom"></div> -->
     <!-- <div id="logo" tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);"></div> -->
-    <img src="images/banner.png" alt="">
+    <img class="banner-image desktop" src="images/banner.png" alt="">
+    <img class="banner-image mobile"  src="images/banner_mobile.png" alt="">
     <div id="navbar--buttons">
       <div id="button--projects" class="button--drawn" onclick="setPage(projectsPage)" >
         <img class="state--normal" src="images/buttons/button_projects_normal.png" alt="">
@@ -49,11 +50,11 @@
         <a href="http://www.quatricise.bandcamp.com" target="_blank" referrerpolicy="noopener">Bandcamp</a>
       </button> -->
     </div>
-    <div class="hamburger">
+    <!-- <div class="hamburger">
       <div class="bar"></div>
       <div class="bar"></div>
       <div class="bar"></div>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -126,7 +127,7 @@
           I'm a composer and illustrator. If you want to license any music or commission a new piece, or a soundtrack for your next project, get in touch.
           <br>
           <span class="hidden" style="cursor: pointer;" onclick="navigator.clipboard.writeText('stepantrvaj@gmail.com'); alert('💌 Copied email to clipboard. 💌')">
-            <b><u> stepantrvaj@gmail.com</u></b>
+            <b><u>stepantrvaj@gmail.com</u></b>
           </span>
           <br>
           <b>Links</b>
@@ -168,7 +169,6 @@
       <img src="images/icons/icon_linktree.png"   alt="">
       <img src="images/icons/icon_bandcamp.png"   alt="">
       <img src="images/icons/icon_instagram.png"  alt="">
-      <img src="images/icons/icon_website.png"    alt="">
       <img src="images/icons/icon_youtube.png"    alt="">
     </div>
   </div>
@@ -176,6 +176,7 @@
 
 <script src="dependencies/pixi.js"></script>
 
+<script type="text/javascript" src="init.js"></script>
 <script type="text/javascript" src="utility.js"></script>
 <script type="text/javascript" src="extensions.js"></script>
 <script type="text/javascript" src="mouse.js"></script>
