@@ -9,6 +9,9 @@ class Project {
     /** @type Array<HTMLImageElement> Crappy solution to displaying images - just push them here. */
     this.images = []
 
+    /** @type Array<String> */
+    this.htmlBits = []
+
     /** @type HTMLImageElement */
     this.currentImage = null
 
@@ -148,7 +151,28 @@ class Project {
           break
         }
         case "text": {
-          throw "not done"
+          const html = El("div", "project-content--text", [])
+          html.innerHTML = content.text
+          Q("#project-detail-artwork-side").append(html)
+          break
+        }
+        case "embed": {
+          const iframe = El("iframe", "project-content--iframe", [["src", content.src], ["frameborder", "0"], ["referrerpolicy", "noreferrer"]])
+
+          switch(content.size) {
+            default: {
+              iframe.style.width = "100%"
+              iframe.style.height = "500px"
+              break
+            }
+            case "fill": {
+              iframe.style.width = "100%"
+              iframe.style.height = "900px"
+              break
+            }
+          }
+          
+          Q("#project-detail-artwork-side").append(iframe)
           break
         }
         default: {

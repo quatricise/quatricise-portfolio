@@ -225,6 +225,104 @@ let projects = {
       },
     ]
   },
+  napaciderAdvert: {
+    title: "Napacider - Motion Graphic",
+    description: 
+    `Short motion graphic for a cider brand from Czechia, Moravia region.
+    Handmade animation to be used in advertising on Facebook and similar platforms
+    `,
+    tags: ["animation"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/iVXPq6tLvHo",
+        size: "fill"
+      },
+    ]
+  },
+  corstonAndWilliam: {
+    title: "Whisky Branding",
+    description: 
+    `Design for a brand of czech whisky. It's based on emulating natural wood textures and simple typography.
+    `,
+    tags: ["branding", "design"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.jpg",                                             title: ""},
+          {src: "2.jpg",                                             title: ""},
+          {src: "3.jpg",                                             title: ""},
+          {src: "4.jpg",                                             title: ""},
+        ]
+      },
+    ]
+  },
+  quatricisePoster: {
+    title: "Quatricise Poster",
+    description: 
+    `Poster for my own web portfolio design, which ended up not getting built, but this poster is the only good thing that I made during that assignment.
+    `,
+    tags: ["illustration", "poster"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.jpg",                                       title: "",                               },
+        ],
+      },
+    ]
+  },
+  noCourseToTheInteriorSpace: {
+    title: "No Course to the Interior Space",
+    description: 
+    `Poster for an open call to an exhibition that took place during the covid pandemic in 2021.
+    `,
+    tags: ["illustration", "poster"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.jpg",                                       title: "",                               },
+        ],
+      },
+    ]
+  },
+  budweiserBeercase: {
+    title: "Branding poster for Budweiser.",
+    description: 
+    `Poster for a tender issued by Budweiser as part of the POPAI design competition. My poster did not get used, but the joy of drawing some ruins healed my heart.
+    `,
+    tags: ["illustration", "poster"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.jpg",                                       title: "",                               },
+        ],
+      },
+    ]
+  },
   memoryStrata: {
     title: "Memory Strata",
     description: 
@@ -261,7 +359,7 @@ let projects = {
     options: {
       collapseTextSide: false,
       singleImageView: false,
-      fillCoverWithFirstImage: true,
+      // fillCoverWithFirstImage: true,
     },
     content: [
       {

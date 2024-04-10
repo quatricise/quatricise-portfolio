@@ -1883,6 +1883,10 @@ input:checked + .slider:before {
 
 
 @media screen and (orientation: portrait) {
+
+  body {
+    overflow-y: hidden;
+  }
   h5 {
     font-size: 2vw;
   }
