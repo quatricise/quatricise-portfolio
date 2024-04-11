@@ -61,7 +61,7 @@ class Project {
     projectTag.classList.add("project-gallery-item-project-type")
     /** @type String - Let the project visually only show the main tag inside the gallery thumbnail. */
     let firstTag = this.tags.values().next().value
-    projectTag.innerText = firstTag
+    projectTag.innerText = "#" + firstTag
 
     let
     thumbnailTextLabel = document.createElement("div")
@@ -303,6 +303,7 @@ class Project {
       state.isOrientationPortrait ? this.galleryItemHideInstant() : this.galleryItemHide()
     }
   }
+
   async galleryItemShow() {
     const 
     item = this.elements.get("item")
@@ -311,13 +312,14 @@ class Project {
     item.style.opacity =        ""
     this.elements.get("thumbnailCircle").classList.add("hidden")
   }
+
   async galleryItemHide() {
-      const delay = Math.round(Math.random() * 260)
+      const delay = Math.round(Math.random() * 200)
       await waitFor(delay)
 
       Project.projectsToHide.push(this)
       
-      const duration = 560 - delay/2
+      const duration = 480 - delay/2
       const circle = this.elements.get("thumbnailCircle")
       const item = this.elements.get("item")
 
@@ -529,6 +531,11 @@ class Project {
     /* add functions to tag switches */
     Qa(".project-tag-switch").forEach(item => {
       item.onclick = () => this.showByTags(item.dataset.tag)
+      item.onkeydown = (e) => {
+        if(e.code == "Enter" || e.code == "NumpadEnter") {
+          this.showByTags(item.dataset.tag)
+        }
+      }
     })
 
     for(let key in projects)
