@@ -48,37 +48,39 @@ let projects = {
       },
     ]
   },
-  jumpout: {
-    title: "Jumpout",
+  confusion: {
+    title: "Impassive",
     description:
-    `Soundtrack for the game Jumpout.
-    <br><br>
-    Jumpout is an online multiplayer videogame. Your ship has become stranded in an uncharted area of space. Fight enemy ships, and collect resources to construct a Jump Drive that will get you out of this mess.
-    <br><br>
-    Demo of the game is available here:
-    <br>
-    <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
+    `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
     `,
-    tags: ["music", "wip", "soundtrack"],
+    tags: ["music", "wip"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
     },
     colors: {
-      gradient: ["#0b232b", "#4cf4fe"]
+      gradient: ["#171234", "#f77259"]
     },
     content: [
       {
         type: "audio",
         src: [
-          {filename: "Jumpout", description: ""},
-          {filename: "Battle", description: ""},
+          {filename: "Lament for a Seventeen-Year-Old Girl", description: ""},
+          {filename: "Burnout", description: ""},
+          {filename: "Adults Without Responsibilities", description: ""},
+          {filename: "Fall of Summer 2019", description: ""},
+          {filename: "Way Into It", description: ""},
+          {filename: "I'm a Candle", description: ""},
+          {filename: "Mind Darts", description: ""},
+          {filename: "Rumination", description: ""},
+          {filename: "Eruption", description: ""},
+          {filename: "Reunion", description: ""},
         ],
       },
       {
         type: "images",
         src: [
-          {src: "cover.jpg", title: "Jumpout Album Cover"},
+          {src: "cover.jpg", title: "Confusion album cover"},
         ],
       },
     ]
@@ -116,43 +118,6 @@ let projects = {
         type: "images",
         src: [
           {src: "cover.jpg", title: "Album cover"},
-        ],
-      },
-    ]
-  },
-  confusion: {
-    title: "Impassive",
-    description:
-    `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
-    `,
-    tags: ["music", "wip"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: true,
-    },
-    colors: {
-      gradient: ["#171234", "#f77259"]
-    },
-    content: [
-      {
-        type: "audio",
-        src: [
-          {filename: "Lament for a Seventeen-Year-Old Girl", description: ""},
-          {filename: "Burnout", description: ""},
-          {filename: "Adults Without Responsibilities", description: ""},
-          {filename: "Fall of Summer 2019", description: ""},
-          {filename: "Way Into It", description: ""},
-          {filename: "I'm a Candle", description: ""},
-          {filename: "Mind Darts", description: ""},
-          {filename: "Rumination", description: ""},
-          {filename: "Eruption", description: ""},
-          {filename: "Reunion", description: ""},
-        ],
-      },
-      {
-        type: "images",
-        src: [
-          {src: "cover.jpg", title: "Confusion album cover"},
         ],
       },
     ]
@@ -244,10 +209,42 @@ let projects = {
       },
     ]
   },
+  unwaste: {
+    title: "Pencil illustrations",
+    description: 
+    `Simple illustrations for a recycling app called Unwaste, which was a student project at Tomas Bata University in Zlín.
+    <br><br>
+    Made entirely with analog media - pen marker and colored crayons.
+    `,
+    tags: ["illustration"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "7.jpg",                                             title: ""},
+          {src: "8.jpg",                                             title: ""},
+          {src: "9.jpg",                                             title: ""},
+          {src: "10.jpg",                                            title: ""},
+          {src: "1.jpg",                                             title: ""},
+          {src: "2.jpg",                                             title: ""},
+          {src: "3.jpg",                                             title: ""},
+          {src: "4.jpg",                                             title: ""},
+          {src: "5.jpg",                                             title: ""},
+          {src: "6.jpg",                                             title: ""},
+        ]
+      },
+    ]
+  },
   corstonAndWilliam: {
     title: "Whisky Branding",
     description: 
     `Design for a brand of czech whisky. It's based on emulating natural wood textures and simple typography.
+    <br><br>
+    It was created during a school assignment for a real client based in czech republic who had just started their distillery and needed a brand identity.
     `,
     tags: ["branding", "design"],
     options: {
@@ -263,6 +260,41 @@ let projects = {
           {src: "3.jpg",                                             title: ""},
           {src: "4.jpg",                                             title: ""},
         ]
+      },
+    ]
+  },
+  jumpout: {
+    title: "Jumpout",
+    description:
+    `Soundtrack for the game Jumpout.
+    <br><br>
+    Jumpout is an online multiplayer videogame. Your ship has become stranded in an uncharted area of space. Fight enemy ships, and collect resources to construct a Jump Drive that will get you out of this mess.
+    <br><br>
+    Demo of the game is available here:
+    <br>
+    <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
+    `,
+    tags: ["music", "wip", "soundtrack"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
+    colors: {
+      gradient: ["#0b232b", "#4cf4fe"]
+    },
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Jumpout", description: ""},
+          {filename: "Battle", description: ""},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Jumpout Album Cover"},
+        ],
       },
     ]
   },
@@ -398,6 +430,34 @@ let projects = {
           {src: "the_shattered_domes_and_prism_1.0_vertical.jpg",       title: "Shattered Domes",                      },
           {src: "the_stone_palace_normal.jpg",                          title: "The Stone Palace",                     },
         ],
+      },
+    ]
+  },
+  pixelArt: {
+    title: "Pixel Art 2019-2021",
+    description: 
+    `Collection of the better pixel art pieces I made during that phase of my artistic development. They're all free pieces I created because I hated myself and enjoyed spending 40 hours drawing pixels with a pencil tool.
+    `,
+    tags: ["illustration", "pixel-art"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.png",                                             title: ""},
+          {src: "2.png",                                             title: ""},
+          {src: "3.png",                                             title: ""},
+          {src: "4.png",                                             title: ""},
+          {src: "5.png",                                             title: ""},
+          {src: "6.png",                                             title: ""},
+          {src: "7.png",                                             title: ""},
+          {src: "8.png",                                             title: ""},
+          {src: "9.png",                                             title: ""},
+          {src: "10.png",                                            title: ""},
+        ]
       },
     ]
   },
