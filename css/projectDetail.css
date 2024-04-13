@@ -576,14 +576,14 @@
 }
 
 .tag-container {
+  display: flex;
   overflow: visible;
 }
 
 .tag-button {
   border-radius: 5px;
-  padding: 5px;
-  vertical-align: middle;
-  overflow: visible;
+  padding: 5px 5px 8px;
+  margin: 0;
 }
 
 .tag-button:hover {

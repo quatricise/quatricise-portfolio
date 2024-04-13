@@ -102,7 +102,7 @@ class Project {
     let tagsHTML = El("div", "tag-container")
     /* fill the tag container with interactive tag buttons */
     Array.from(this.data.tags).forEach(tag => {
-      let button = El("span", "tag-button")
+      let button = El("div", "tag-button")
       button.innerText = `#${tag} `
       button.style.cursor = "pointer"
 

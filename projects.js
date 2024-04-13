@@ -317,6 +317,24 @@ let projects = {
       },
     ]
   },
+  reia: {
+    title: "Reia",
+    description: 
+    `Simple Photoshop animation for a song I made a while ago. It was part of a larger animation and worldbuilding project called Cosmic Caravan but it ended up being too much work alongside school, so I dropped it.
+    `,
+    tags: ["illustration", "animation", "music"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "embed",
+        src: "https://www.youtube.com/embed/-DimR1wILzI",
+        size: "fill"
+      },
+    ]
+  },
   alfik: {
     title: "Alfíkův Svět",
     description: 
@@ -476,6 +494,8 @@ let projects = {
     title: "Pixel Art 2019-2021",
     description: 
     `Collection of the better pixel art pieces I made during that phase of my artistic development. They're all free pieces I created because I hated myself and enjoyed spending 40 hours drawing pixels with a pencil tool.
+    <br><br>
+    There will not be any more of these, probably ever.
     `,
     tags: ["illustration", "pixel-art"],
     options: {
@@ -488,8 +508,8 @@ let projects = {
         src: [
           {src: "1.png",                                             title: ""},
           {src: "2.png",                                             title: ""},
-          {src: "3.png",                                             title: ""},
           {src: "4.png",                                             title: ""},
+          {src: "3.png",                                             title: ""},
           {src: "5.png",                                             title: ""},
           {src: "6.png",                                             title: ""},
           {src: "7.png",                                             title: ""},
