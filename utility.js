@@ -398,6 +398,46 @@ function rgb_to_hex(rgb) {
   return "#" + b[0] + b[1] + b[2]
 }
 
+function RGB_to_HSL(r, g, b) {
+  // Normalizing the RGB values
+  const rNormalized = r / 255;
+  const gNormalized = g / 255;
+  const bNormalized = b / 255;
+
+  // Finding the maximum and minimum values of RGB
+  const cmax = Math.max(rNormalized, gNormalized, bNormalized);
+  const cmin = Math.min(rNormalized, gNormalized, bNormalized);
+  const delta = cmax - cmin;
+
+  // Calculating hue
+  let hue;
+  if (delta === 0) {
+      hue = 0; // No saturation, so hue is undefined, we'll set it to 0
+  } else if (cmax === rNormalized) {
+      hue = ((gNormalized - bNormalized) / delta) % 6;
+  } else if (cmax === gNormalized) {
+      hue = (bNormalized - rNormalized) / delta + 2;
+  } else {
+      hue = (rNormalized - gNormalized) / delta + 4;
+  }
+  hue = Math.round(hue * 60);
+  if (hue < 0) {
+      hue += 360;
+  }
+
+  // Calculating lightness
+  const lightness = (cmax + cmin) / 2;
+
+  // Calculating saturation
+  const saturation = delta === 0 ? 0 : delta / (1 - Math.abs(2 * lightness - 1));
+
+  // Returning the HSL string
+  // return `hsl(${hue}, ${Math.round(saturation * 100)}%, ${Math.round(lightness * 100)}%)`;
+  return {h: hue, s: Math.round(saturation * 100), l: Math.round(lightness * 100)}
+}
+
+
+
 /** @returns String */
 function secondsToMinutes(time) {
   var min = parseInt(parseInt(time) / 60);

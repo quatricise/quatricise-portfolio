@@ -76,6 +76,10 @@ class Project {
     this.elements.set("thumbnail", thumbnail)
     this.elements.set("thumbnailCircle", thumbnailCircle)
     this.elements.set("description", description)
+
+    // thumbnail.onload = () => {
+    //   description.style.backgroundColor = Project.generateGalleryItemLabelColor(this)
+    // }
   }
 
   /* Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
@@ -538,6 +542,12 @@ class Project {
       }
     })
 
+    /* setup canvas */
+    this.canvas = document.createElement("canvas")
+    this.ctx = this.canvas.getContext("2d")
+    this.ctx.filter = "blur(500px)"
+    
+    /* generate projects */
     for(let key in projects)
       new Project(key)
   }
@@ -556,13 +566,44 @@ class Project {
   /* After all items have been marked for removal, remove them at the same time, preventing glitches. */
   static galleryReflow() {
     if(this.numItemsReadyToHide === this.projectsToHide.length) {
-      console.log("gallery reflow")
+      // console.log("gallery reflow")
       this.projectsToHide.forEach(p => p.elements.get("item").classList.add("hidden"))
       this.projectsToHide.empty()
       this.numItemsReadyToHide = 0
       this.galleryAnimations.empty()
     }
   }
+
+  static generateGalleryItemLabelColor(/** @type Project */ project) {
+    const src = project.elements.get("thumbnail")
+    const [x, y] = [src.naturalWidth, src.naturalHeight]
+
+    this.canvas.width = x
+    this.canvas.height = y
+    this.ctx.filter = "blur(200px)"
+    this.ctx.drawImage(src, 0, 0)
+
+    const imgdata = this.ctx.getImageData(x/2, y/2, 1, 1)
+    const color = [imgdata.data[0], imgdata.data[1], imgdata.data[2]]
+
+    // /* mute overly bright colors */
+    // let multFactor = 1
+    // for(let c of color) {
+    //   multFactor = Math.min(110 / c, multFactor)
+    // }
+    // const finalColor = color.map(c => c * multFactor)
+
+    const hsl = RGB_to_HSL(color[0], color[1], color[2])
+    hsl.s = clamp(hsl.s, 25, 78)
+    hsl.l = clamp(hsl.l, 15, 25)
+    return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+  }
+
+  /** @type HTMLCanvasElement */
+  static canvas
+
+  /** @type CanvasRenderingContext2D */
+  static ctx
 
   /** @type Set<Project> */
   static list = new Set()

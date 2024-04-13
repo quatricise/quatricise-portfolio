@@ -247,6 +247,7 @@
   gap: 10px;
   padding-right: 10px;
   padding-bottom: 200px;
+  border-radius: 10px;
   overflow-x: hidden;
 }
 
@@ -562,7 +563,7 @@
   background-image: url(../images/buttons/thumbnail_label_background_hover.png);
   background-position: center;
   background-size: 100%;
-  /* background-blend-mode: color-dodge; */
+  background-blend-mode: screen;
 }
 
 .project-gallery-item-project-type {
@@ -852,6 +853,7 @@
   .project-gallery-item-label {
     opacity: 1;
     filter: opacity(1);
+    background-image: none;
   }
 
   .project-gallery-item-description {

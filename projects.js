@@ -317,6 +317,45 @@ let projects = {
       },
     ]
   },
+  alfik: {
+    title: "Alfíkův Svět",
+    description: 
+    `Videogame concept for children ages 8-12.
+    <br><br>
+    You play as a little boy named Alfík and you can attend to a variety of tasks in the semi-open world of the game. Explore your town, play minigames with the NPC characters, learn new things in school and help the people of the town with your newfound knowledge.
+    <br><br>
+    The game would teach children to find a healthy mix of activities in their life, and teach them that knowledge can be actionable.
+    It would also teach of the social and health dangers of too much computer time by letting you play games all day and then see that the ingame characters react to that differently. You'll have less stamina for running and the NPC characters will try to talk to you about it.
+    `,
+    tags: ["videogame", "illustration", "animation"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: false,
+    },
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "1.png",                                       title: "",                               },
+          {src: "2.png",                                       title: "",                               },
+          {src: "3.png",                                       title: "",                               },
+          {src: "4.png",                                       title: "",                               },
+          {src: "5.png",                                       title: "",                               },
+          {src: "6.png",                                       title: "",                               },
+          {src: "7a.png",                                       title: "",                               },
+          {src: "7b.png",                                       title: "",                               },
+          {src: "8.png",                                       title: "",                               },
+          {src: "9.png",                                       title: "",                               },
+          {src: "10.png",                                       title: "",                               },
+          {src: "11.png",                                       title: "",                               },
+          {src: "12.png",                                       title: "",                               },
+          {src: "13.png",                                       title: "",                               },
+          {src: "14.png",                                       title: "",                               },
+          {src: "15.png",                                       title: "",                               },
+        ],
+      },
+    ]
+  },
   noCourseToTheInteriorSpace: {
     title: "No Course to the Interior Space",
     description: 
