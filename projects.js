@@ -102,16 +102,21 @@ let projects = {
       {
         type: "audio",
         src: [
+          {filename: "The Road Never Sleeps", description: ""},
           {filename: "Dawn Wakes Up Early", description: ""},
-          {filename: "Plant-based Diet", description: ""},
+          {filename: "Morning Traffic", description: ""},
           {filename: "Song of Glass and Metal", description: ""},
-          {filename: "Tracktess", description: ""},
-          {filename: "Ancient Folk Song", description: ""},
-          {filename: "Dandelion", description: ""},
-          {filename: "Solagne", description: ""},
-          {filename: "Walled Garden", description: ""},
-          {filename: "Unsprawl", description: ""},
+          {filename: "Go-getter Takes a Vacation", description: ""},
+          {filename: "Arrival", description: ""},
+          {filename: "Inner City", description: ""},
+          {filename: "Light Rail", description: ""},
+          {filename: "The Market", description: ""},
+          {filename: "Café Futur - Lounge", description: ""},
+          {filename: "Café Futur Pt. 2", description: ""},
+          {filename: "Contemplation", description: ""},
+          {filename: "Evening in the Bikepark", description: ""},
           {filename: "A City Without Cars", description: ""},
+          {filename: "Unsprawl", description: ""},
         ],
       },
       {
@@ -167,6 +172,8 @@ let projects = {
     description: 
     `
     A composer approaches the Watchers with a tribute piece he's written about one of their games. Will he get a second chance, or will his interpretation of history displease them.
+    <br><br>
+    So far this limited preview only contains the arc of the sand merchants.
     `,
     tags: ["music", "illustration", "wip"],
     options: {
