@@ -179,7 +179,10 @@ let projects = {
         src: [
           {filename: "Off to the Desert", description: ""},
           {filename: "Sand Lands", description: ""},
+          {filename: "Red Scar", description: ""},
           {filename: "Trapping the Castle", description: ""},
+          {filename: "Decoy", description: ""},
+          {filename: "Cactus Ring", description: ""},
         ],
       },
       {
