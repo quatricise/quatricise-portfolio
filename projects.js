@@ -362,6 +362,10 @@ let projects = {
     },
     content: [
       {
+        type: "embed",
+        src: "https://www.youtube.com/embed/HhTajcTvHm4",
+      },
+      {
         type: "images",
         src: [
           {src: "1.png",                                       title: "",                               },

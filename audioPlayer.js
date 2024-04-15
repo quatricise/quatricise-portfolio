@@ -56,7 +56,7 @@ class AudioPlayer {
     /* go dirty and literally recreate the player each time it needs updating, this would resolve some jankiness */
     if(this.elements.get("container")) this.elements.get("container").remove()
 
-    let container =     El("div", "audio-player", [["id", "audio-player"]])
+    let audioPlayer =     El("div", "audio-player", [["id", "audio-player"]])
     let cover =         El("img", "audio-player-cover", [["src", `projects/${project.projectIdentifier}/cover.jpg`]])
     let track =         El("div", "audio-player-track")
     let trackName =     El("div", "audio-player-track-name", [], AudioTrack.current.title)
@@ -93,10 +93,10 @@ class AudioPlayer {
     /* separate close button that stops audio and hides the player. */
     let closeButton =   El("div", "audio-player-close-button")
 
-    container.append(cover, track, toggleControls, controls, closeButton)
-    document.body.append(container)
+    audioPlayer.append(cover, track, toggleControls, controls, closeButton)
+    document.body.append(audioPlayer)
 
-    this.elements.set("container", container)
+    this.elements.set("container", audioPlayer)
     this.elements.set("controls", controls)
     this.elements.set("cover", cover)
     this.elements.set("prevButton", prevButton)
@@ -113,21 +113,28 @@ class AudioPlayer {
     this.elements.set("duration", duration)
     this.elements.set("toggleControls", toggleControls)
 
-    container.projectIdentifier = project.projectIdentifier
+    audioPlayer.projectIdentifier = project.projectIdentifier
 
 
     /* functionality */
 
     /* auto-collapsing */
-    // container.onmouseleave = () => {
-    //   this.collapseTimer = setTimeout(() => {
-    //     this.collapseHTML()
-    //   }, 2500)
-    // }
-    // container.onmouseover = () => {
-    //   window.clearTimeout(this.collapseTimer)
-    //   this.expandHTML()
-    // }
+    audioPlayer.onmouseleave = () => {
+      this.collapseTimer = setTimeout(() => {
+        this.collapseHTML()
+      }, 2500)
+    }
+    audioPlayer.onmouseover = () => {
+      window.clearTimeout(this.collapseTimer)
+      this.expandHTML()
+    }
+
+    /* stupid hack */
+    document.addEventListener("click", (e) => {
+      if(e.target.closest("#audio-player") == null && Project.projectDetailVisible == false) {
+        this.collapseHTML()
+      }
+    })
 
     playButton.onclick = () => {
       AudioTrack.current.toggle()
@@ -213,6 +220,9 @@ class AudioPlayer {
     this.elements.get("cover").classList.add("hidden")
     this.elements.get("trackName").classList.add("hidden")
     this.elements.get("trackNumber").classList.add("hidden")
+    this.elements.get("duration").classList.add("hidden")
+    this.elements.get("currentTime").classList.add("hidden")
+    this.elements.get("toggleControls").classList.add("hidden")
 
     this.elements.get("playheadGhost").classList.add("hidden")
   }

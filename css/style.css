@@ -1667,7 +1667,6 @@ input:checked + .slider:before {
 .fa-behance-square,
 .fa-instagram,
 .fa-twitter {
-  /* margin-left: 15px; */
   font-size: 1.5em;
   position: relative;
   top: 8px;
@@ -1791,7 +1790,6 @@ input:checked + .slider:before {
   padding: 20px 0;
   max-width: 1000px;
   text-align: center;
-  /* display: inline; */
 }
 .arrowContainer {
   display: flex;
@@ -1804,7 +1802,6 @@ input:checked + .slider:before {
 }
 
 .arrow {
-  /* position: absolute; */
   width: 5vw;
   z-index: 10001;
   pointer-events: initial!important;
@@ -1975,7 +1972,6 @@ input:checked + .slider:before {
   }
 
   .about-text {
-    /* overflow-y: hidden!important; */
     width: 100%;
   }
 
@@ -2128,10 +2124,6 @@ input:checked + .slider:before {
     margin: 10vh 0 0;
     height: 90vh;
   }
-  /* #aboutPage {
-    margin-top: 10vh;
-    height: 90vh;
-  } */
   .infos-ctn {
     padding-top: 30px;
   }

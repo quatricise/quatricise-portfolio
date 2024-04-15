@@ -77,6 +77,7 @@ class Project {
     this.elements.set("thumbnailCircle", thumbnailCircle)
     this.elements.set("description", description)
 
+    /* this looked weird */
     // thumbnail.onload = () => {
     //   description.style.backgroundColor = Project.generateGalleryItemLabelColor(this)
     // }
@@ -93,6 +94,7 @@ class Project {
     /* clear project detail panel */
     Q("#project-detail-type").innerHTML = ""
     Qa(".artwork-side-image").forEach(img => img.remove())
+    Qa(".project-content--iframe").forEach(el => el.remove())
 
     /* clear images, it's simpler that way */
     this.images = []
@@ -167,11 +169,13 @@ class Project {
             default: {
               iframe.style.width = "100%"
               iframe.style.height = "500px"
+              iframe.style.minHeight = "500px"
               break
             }
             case "fill": {
               iframe.style.width = "100%"
               iframe.style.height = "900px"
+              iframe.style.minHeight = "900px"
               break
             }
           }
