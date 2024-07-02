@@ -74,19 +74,26 @@ function toggleNavlinks(/** @type Boolean */ value) {
   }
 }
 
-// hamburger.onclick = () => toggleNavlinks()
-
 function quitPreloader() {
   preloader.classList.add('opacity-zero');
   setTimeout(() => preloader.classList.add('hidden'), 1000)
 }
 
+
+
+/* MAIN LOAD EVENT */
+
 window.addEventListener('load', () => {
   if(!state.isOrientationPortrait) {
     navbarButtonCell.classList.remove("hidden")
   }
+  if(state.isOrientationPortrait) {
+    Q(".project-type-switch").classList.add("hidden")
+  }
   quitPreloader();
 })
+
+
 
 let loadingCircle = document.querySelector('.circle-loading')
 

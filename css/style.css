@@ -761,11 +761,14 @@ a {
 .link--label {
   position: absolute;
   bottom: -15px;
-  /* display: none; */
   opacity: 0;
   color: white;
   font-size: 1.4rem;
   transition: opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), bottom 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.link--social-media:hover {
+  filter: drop-shadow(0 5px 12px rgba(153, 55, 109, 0.75));
 }
 
 .link--social-media:hover .link--label {
