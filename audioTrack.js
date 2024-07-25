@@ -72,7 +72,7 @@ class AudioTrack {
     let container = El("div", "audio-track", [], )
     let icon = El("div", "audio-track-play-state-icon", [], )
     let trackTitle = El("div", "audio-track-title", [], this.title)
-    let trackDuration = El("div", "audio-track-duration", [], )
+    let trackDuration = El("div", "audio-track-duration", [], "...loading")
     
     container.append(icon, trackTitle, trackDuration)
     container.onclick = (ev) => {

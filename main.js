@@ -57,17 +57,14 @@ function toggleNavlinks(/** @type Boolean */ value) {
   if(value === true) {
     currentPage.classList.add("hidden")
     navbarButtonCell.classList.remove("hidden")
-    // hamburger.classList.remove("selected")
   }
   else if(value === false) {
     currentPage.classList.remove("hidden")
     navbarButtonCell.classList.add("hidden")
-    // hamburger.classList.add("selected")
   }
-  else if(value === undefined) {
+  else if(value === undefined) { //this is to toggle them
     currentPage.classList.toggle("hidden")
     navbarButtonCell.classList.toggle("hidden")
-    // hamburger.classList.toggle("selected")
   }
   else {
     throw "Value incorrect"
@@ -87,7 +84,7 @@ window.addEventListener('load', () => {
   if(!state.isOrientationPortrait) {
     navbarButtonCell.classList.remove("hidden")
   }
-  if(state.isOrientationPortrait) {
+  if(state.isOrientationPortrait) { //@todo this is a hot-fix, not permanent
     Q(".project-type-switch").classList.add("hidden")
   }
   quitPreloader();

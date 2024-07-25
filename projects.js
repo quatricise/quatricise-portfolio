@@ -200,79 +200,80 @@ let projects = {
       },
     ]
   },
-  napaciderAdvert: {
-    title: "Napacider - Motion Graphic",
-    description: 
-    `Short motion graphic for a cider brand from Czechia, Moravia region.
-    Handmade animation to be used in advertising on Facebook and similar platforms
-    `,
-    tags: ["animation"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: false,
-    },
-    content: [
-      {
-        type: "embed",
-        src: "https://www.youtube.com/embed/iVXPq6tLvHo",
-        size: "fill"
-      },
-    ]
-  },
-  unwaste: {
-    title: "Pencil illustrations",
-    description: 
-    `Simple illustrations for a recycling app called Unwaste, which was a student project at Tomas Bata University in Zlín.
-    <br><br>
-    Made entirely with analog media - pen marker and colored crayons.
-    `,
-    tags: ["illustration"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: false,
-    },
-    content: [
-      {
-        type: "images",
-        src: [
-          {src: "7.jpg",                                             title: ""},
-          {src: "8.jpg",                                             title: ""},
-          {src: "9.jpg",                                             title: ""},
-          {src: "10.jpg",                                            title: ""},
-          {src: "1.jpg",                                             title: ""},
-          {src: "2.jpg",                                             title: ""},
-          {src: "3.jpg",                                             title: ""},
-          {src: "4.jpg",                                             title: ""},
-          {src: "5.jpg",                                             title: ""},
-          {src: "6.jpg",                                             title: ""},
-        ]
-      },
-    ]
-  },
-  corstonAndWilliam: {
-    title: "Whisky Branding",
-    description: 
-    `Design for a brand of czech whisky. It's based on emulating natural wood textures and simple typography.
-    <br><br>
-    It was created during a school assignment for a real client based in czech republic who had just started their distillery and needed a brand identity.
-    `,
-    tags: ["branding", "design"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: false,
-    },
-    content: [
-      {
-        type: "images",
-        src: [
-          {src: "1.jpg",                                             title: ""},
-          {src: "2.jpg",                                             title: ""},
-          {src: "3.jpg",                                             title: ""},
-          {src: "4.jpg",                                             title: ""},
-        ]
-      },
-    ]
-  },
+  // napaciderAdvert: {
+  //   title: "Napacider - Motion Graphic",
+  //   description: 
+  //   `Short motion graphic for a cider brand from Czechia, Moravia region.
+  //   Handmade animation to be used in advertising on Facebook and similar platforms
+  //   `,
+  //   tags: ["animation"],
+  //   options: {
+  //     collapseTextSide: false,
+  //     singleImageView: false,
+  //   },
+  //   content: [
+  //     {
+  //       type: "embed",
+  //       src: "https://www.youtube.com/embed/iVXPq6tLvHo",
+  //       size: "fill"
+  //     },
+  //   ]
+  // },
+  // unwaste: {
+  //   title: "Pencil illustrations",
+  //   description: 
+  //   `Simple illustrations for a recycling app called Unwaste, which was a student project at Tomas Bata University in Zlín.
+  //   <br><br>
+  //   Made entirely with analog media - pen marker and colored crayons.
+  //   https://www.digitalnidesign.cz/add/work/long-life-unwaste
+  //   `,
+  //   tags: ["illustration"],
+  //   options: {
+  //     collapseTextSide: false,
+  //     singleImageView: false,
+  //   },
+  //   content: [
+  //     {
+  //       type: "images",
+  //       src: [
+  //         {src: "7.jpg",                                             title: ""},
+  //         {src: "8.jpg",                                             title: ""},
+  //         {src: "9.jpg",                                             title: ""},
+  //         {src: "10.jpg",                                            title: ""},
+  //         {src: "1.jpg",                                             title: ""},
+  //         {src: "2.jpg",                                             title: ""},
+  //         {src: "3.jpg",                                             title: ""},
+  //         {src: "4.jpg",                                             title: ""},
+  //         {src: "5.jpg",                                             title: ""},
+  //         {src: "6.jpg",                                             title: ""},
+  //       ]
+  //     },
+  //   ]
+  // },
+  // corstonAndWilliam: {
+  //   title: "Whisky Branding",
+  //   description: 
+  //   `Design for a brand of czech whisky. It's based on emulating natural wood textures and simple typography.
+  //   <br><br>
+  //   It was created during a school assignment for a real client based in czech republic who had just started their distillery and needed a brand identity.
+  //   `,
+  //   tags: ["branding", "design"],
+  //   options: {
+  //     collapseTextSide: false,
+  //     singleImageView: false,
+  //   },
+  //   content: [
+  //     {
+  //       type: "images",
+  //       src: [
+  //         {src: "1.jpg",                                             title: ""},
+  //         {src: "2.jpg",                                             title: ""},
+  //         {src: "3.jpg",                                             title: ""},
+  //         {src: "4.jpg",                                             title: ""},
+  //       ]
+  //     },
+  //   ]
+  // },
   jumpout: {
     title: "Jumpout",
     description:
