@@ -65,16 +65,17 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Lament for a Seventeen-Year-Old Girl", description: ""},
-          {filename: "Burnout", description: ""},
-          {filename: "Adults Without Responsibilities", description: ""},
-          {filename: "Fall of Summer 2019", description: ""},
-          {filename: "Way Into It", description: ""},
-          {filename: "I'm a Candle", description: ""},
-          {filename: "Mind Darts", description: ""},
-          {filename: "Rumination", description: ""},
-          {filename: "Eruption", description: ""},
-          {filename: "Reunion", description: ""},
+          {filename: "Lament for a Seventeen-Year-Old Girl",      description: ""},
+          {filename: "Burnout",                                   description: ""},
+          {filename: "Adults Without Responsibilities",           description: ""},
+          {filename: "Fall of Summer 2019",                       description: ""},
+          {filename: "Way Into It",                               description: ""},
+          {filename: "I'm a Candle",                              description: ""},
+          {filename: "Mind Darts",                                description: ""},
+          {filename: "Bird Without a Home",                       description: ""},
+          {filename: "Get Used To",                               description: ""},
+          {filename: "Pent UP",                                   description: ""},
+          {filename: "Reunion",                                   description: ""},
         ],
       },
       {
@@ -88,7 +89,18 @@ let projects = {
   letGoOfTheCity: {
     title: "A City Without Cars",
     description:
-    `Solarpunk album, follows the story of Dawn, a city dweller who goes on a vacation to discover a better place to live.
+    `
+    Dawn lives in a version of the world that was promised to us many decades ago. It works, we made it. But she feels thinly stretched within her ego-driven, individualist pursuits and the demanding collectivist lifestyle and cannot keep up with it all, not every day.
+    <br><br>
+    There is the ecology, the activism that averted our impending climate catastrophy, the livable, human-centric cities. But there are other, more ancient perils of human existence:
+    <br><br>
+    Her relationship isn't always fulfilling. Jobs are still a chore, people die, trams are late, things break, the shopkeeper gets grumpy when you offer them a large banknote, people scowl at you when you play loud music in public.
+    <br><br>
+    There are kind people in the street sometimes. But there are also thieves, and assholes, creeps and snooty businessmen in expensive suits looking down at the homeless in contempt. There is rain, and thundsorrow, fear, joy, wonder, excitement...love.
+    <br><br>
+    People get together, break up, burn out at their job, go on holidays, watch the sunset, cry to sad films, help their grandmothers with groceries, panic in the bathroom at 3 AM after a saturday's night out.
+    <br><br>
+    The world appears to have changed when all you read is the front pages of major newspapers and listen to motivational podcasts.
     `,
     tags: ["music", "wip"],
     options: {
