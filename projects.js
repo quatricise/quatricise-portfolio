@@ -19,7 +19,7 @@ let projects = {
     <br>
     <a class="clickable" href="https://youtu.be/ULxFurQYyhA">https://youtu.be/ULxFurQYyhA</a>
     `,
-    tags: ["music", "soundtrack", "illustration"],
+    tags: ["music", "soundtrack"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -49,7 +49,7 @@ let projects = {
     ]
   },
   confusion: {
-    title: "Impassive",
+    title: "Twenty Nineteen",
     description:
     `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
     `,
@@ -65,17 +65,18 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Lament for a Seventeen-Year-Old Girl",      description: ""},
-          {filename: "Burnout",                                   description: ""},
-          {filename: "Adults Without Responsibilities",           description: ""},
-          {filename: "Fall of Summer 2019",                       description: ""},
-          {filename: "Way Into It",                               description: ""},
-          {filename: "I'm a Candle",                              description: ""},
-          {filename: "Mind Darts",                                description: ""},
-          {filename: "Bird Without a Home",                       description: ""},
-          {filename: "Get Used To",                               description: ""},
-          {filename: "Pent UP",                                   description: ""},
-          {filename: "Reunion",                                   description: ""},
+          {filename: "lament for a nineteen year-old girl"  ,description: ""},
+          {filename: "burnout"                              ,description: ""},
+          {filename: "adults without responsibilities"      ,description: ""},
+          {filename: "way into it"                          ,description: ""},
+          {filename: "vignette - twenty nineteen"           ,description: ""},
+          {filename: "candle"                               ,description: ""},
+          {filename: "darting"                              ,description: ""},
+          {filename: "unwinding"                            ,description: ""},
+          {filename: "twenty nineteen"                      ,description: ""},
+          {filename: "gotta get used to"                    ,description: ""},
+          {filename: "bird without a home"                  ,description: ""},
+          {filename: "sympathy junkies"                     ,description: ""},
         ],
       },
       {
@@ -87,7 +88,7 @@ let projects = {
     ]
   },
   letGoOfTheCity: {
-    title: "A City Without Cars",
+    title: "Paradise City Lost Pt. 1",
     description:
     `
     Dawn lives in a version of the world that was promised to us many decades ago. It works, we made it. But she feels thinly stretched within her ego-driven, individualist pursuits and the demanding collectivist lifestyle and cannot keep up with it all, not every day.
@@ -187,7 +188,7 @@ let projects = {
     <br><br>
     So far this limited preview only contains the arc of the sand merchants.
     `,
-    tags: ["music", "illustration", "wip"],
+    tags: ["music", "wip"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -337,24 +338,6 @@ let projects = {
         src: [
           {src: "1.jpg",                                       title: "",                               },
         ],
-      },
-    ]
-  },
-  reia: {
-    title: "Reia",
-    description: 
-    `Simple Photoshop animation for a song I made a while ago. It was part of a larger animation and worldbuilding project called Cosmic Caravan but it ended up being too much work alongside school, so I dropped it.
-    `,
-    tags: ["illustration", "animation", "music"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: false,
-    },
-    content: [
-      {
-        type: "embed",
-        src: "https://www.youtube.com/embed/-DimR1wILzI",
-        size: "fill"
       },
     ]
   },
