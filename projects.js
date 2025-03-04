@@ -38,7 +38,7 @@ let projects = {
 
     At the start it was a simple rip-off of Vektroid's early work, but I knew I had failed at this many times before so I decided to take it its own direction.
     `,
-    tags: ["music", "wip"],
+    tags: ["music"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -88,7 +88,7 @@ let projects = {
     <br><br>
     The world appears to have changed when all you read is the front pages of major newspapers and listen to motivational podcasts.
     `,
-    tags: ["music", "wip"],
+    tags: ["music"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -187,7 +187,7 @@ let projects = {
     <br>
     <a class="clickable" target="_blank" href=https://mylapqn.github.io/revenant-earth/> https://mylapqn.github.io/revenant-earth/ <a/>
     `,
-    tags: ["music", "wip", "soundtrack"],
+    tags: ["music", "soundtrack"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -222,7 +222,7 @@ let projects = {
     <br><br>
     So far this limited preview only contains the arc of the sand merchants.
     `,
-    tags: ["music", "wip"],
+    tags: ["music"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -332,7 +332,7 @@ let projects = {
     <br>
     <a class="clickable" target="_blank" href=https://notrustybot.github.io/Jump-out/client.html> https://notrustybot.github.io/Jump-out/client.html <a/>
     `,
-    tags: ["music", "wip", "soundtrack"],
+    tags: ["music", "soundtrack"],
     options: {
       collapseTextSide: false,
       singleImageView: true,
@@ -541,7 +541,7 @@ let projects = {
     <br><br>
     There will not be any more of these, probably ever.
     `,
-    tags: ["illustration", "pixel-art"],
+    tags: ["illustration"],
     options: {
       collapseTextSide: false,
       singleImageView: false,
