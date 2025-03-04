@@ -1,49 +1,32 @@
 let projects = {
-  flowerized: {
-    title: "Flowerized Soundtrack",
+  voyeurRomance: {
+    title: "Voyeur Romance",
     description: 
-    `
-    Flowerized is a 3D story adventure/farming game, where you play as Ilva - former astrobiologist who's lost her job and got demoted to an orbital cleaner position, where she picks up mangled bits of organisms that didn't manage to teleport properly. One day a similar thing happens to her, and she crashes onto an abandoned planet...
-    <br><br>
-    The game isn't out yet, but you can find out more or download a demo here:
-    <br>
-    <a class="clickable" href="https://www.visiongame.cz/hra/flowerized/">visiongame.cz/hra/flowerized/</a>
-    <br><br>
-    Dev instagram: 
-    <br>
-    <a class="clickable" href="https://www.instagram.com/acid.growth.games/">www.instagram.com/acid.growth.games/</a>
-    <br><br>
-    Buy the album here:
-    <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2846970281/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://quatricise.bandcamp.com/album/flowerized-soundtrack">Flowerized Soundtrack by Quatricise</a></iframe>
-    Youtube
-    <br>
-    <a class="clickable" href="https://youtu.be/ULxFurQYyhA">https://youtu.be/ULxFurQYyhA</a>
+    `Well this one's pretty weird. It's even more of a Vektroid ripoff than Twenty Nineteen.
+    But I also like proggy stuff so maybe it'll turn more into a weird-ass progressive post-club nightmare.
     `,
-    tags: ["music", "soundtrack"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: true,
-    },
+    tags: ["music"],
+    options: {collapseTextSide: false, singleImageView: true},
     content: [
       {
         type: "audio",
         src: [
-          {filename: "Strange and Desolate Land", description: ""},
-          {filename: "Distress", description: ""},
-          {filename: "Astro-cleaner", description: ""},
-          {filename: "Sunlit Garden", description: ""},
-          {filename: "Engine Repairs", description: ""},
-          {filename: "Mushroom Prince", description: ""},
-          {filename: "Windstorm", description: ""},
-          {filename: "Wasteland", description: ""},
-          {filename: "Dark Forest", description: ""},
-          {filename: "Reflection", description: ""},
+          {filename: "voyeur romance pt. 1",         description: ""},
+          {filename: "voyeur romance pt. 2",         description: ""},
+          {filename: "heart and mind",               description: ""},
+          {filename: "glitch 2016 - revisit 2025",   description: ""},
+          {filename: "Help",                         description: ""},
+          {filename: "distrans",                     description: ""},
+          {filename: "summer melancholy",            description: ""},
+          {filename: "relational data face",         description: ""},
+          {filename: "beacon of my sky",             description: ""},
+          {filename: "voyeur romance pt. 3",         description: ""},
         ],
       },
       {
         type: "images",
         src: [
-          {src: "cover.jpg", title: "Sand Lands Album Cover"},
+          {src: "cover.jpg", title: "Voyeur Romance Album Cover"},
         ],
       },
     ]
@@ -51,7 +34,9 @@ let projects = {
   confusion: {
     title: "Twenty Nineteen",
     description:
-    `Electronic instrumental album in the style of bubbly pop. I'm working on the story right now, and maybe searching for a vocalist. Very much a Vektroid ripoff.
+    `Electronic instrumental album in the style of bubbly pop. Some of the influences are Vektroid, Black Moth Super Rainbow, Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
+
+    At the start it was a simple rip-off of Vektroid's early work, but I knew I had failed at this many times before so I decided to take it its own direction.
     `,
     tags: ["music", "wip"],
     options: {
@@ -140,6 +125,55 @@ let projects = {
       },
     ]
   },
+  flowerized: {
+    title: "Flowerized Soundtrack",
+    description: 
+    `
+    Flowerized is a 3D story adventure/farming game, where you play as Ilva - former astrobiologist who's lost her job and got demoted to an orbital cleaner position, where she picks up mangled bits of organisms that didn't manage to teleport properly. One day a similar thing happens to her, and she crashes onto an abandoned planet...
+    <br><br>
+    The game isn't out yet, but you can find out more or download a demo here:
+    <br>
+    <a class="clickable" href="https://www.visiongame.cz/hra/flowerized/">visiongame.cz/hra/flowerized/</a>
+    <br><br>
+    Dev instagram: 
+    <br>
+    <a class="clickable" href="https://www.instagram.com/acid.growth.games/">www.instagram.com/acid.growth.games/</a>
+    <br><br>
+    Buy the album here:
+    <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/album=2846970281/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/artwork=small/transparent=true/" seamless><a href="https://quatricise.bandcamp.com/album/flowerized-soundtrack">Flowerized Soundtrack by Quatricise</a></iframe>
+    Youtube
+    <br>
+    <a class="clickable" href="https://youtu.be/ULxFurQYyhA">https://youtu.be/ULxFurQYyhA</a>
+    `,
+    tags: ["music", "soundtrack"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Strange and Desolate Land", description: "A very odd track that was dismissed by the author as sounding too vaguely oriental or exotic, which I agree with and it is not in the game."},
+          {filename: "Distress", description: ""},
+          {filename: "Astro-cleaner", description: "This is probably the only track which ended up in the game, otherwise there are only other sketches used. Which is why I talked about the soundtrack and game being quite different from each other."},
+          {filename: "Sunlit Garden", description: "First track ever composed for the soundtrack. Later on the in-game tracks took on another style, more based on acoustic drums and string samplers."},
+          {filename: "Engine Repairs", description: ""},
+          {filename: "Mushroom Prince", description: "There is an easter-egg in the game that this relates to."},
+          {filename: "Windstorm", description: ""},
+          {filename: "Wasteland", description: "One of the tracks which should've been sort of playing in the music naturally sometimes, it's a bit too sad and creepy though."},
+          {filename: "Dark Forest", description: "There has been an idea for an extra level, sort of a strange, dark forest somewhere with danger in it."},
+          {filename: "Reflection", description: "I wrote this imagining it could be used as a sort of ending to the game, but then the game became a farming simulator."},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Flowerized Album Cover"},
+        ],
+      },
+    ]
+  },
   revenantEarth: {
     title: "Revenant Earth",
     description:
@@ -197,12 +231,12 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Off to the Desert", description: ""},
-          {filename: "Sand Lands", description: ""},
-          {filename: "Red Scar", description: ""},
-          {filename: "Trapping the Castle", description: ""},
-          {filename: "Decoy", description: ""},
-          {filename: "Cactus Ring", description: ""},
+          {filename: "Off to the Desert", description: "Marks the point where the alliance between Scar and Grian is formed."},
+          {filename: "Sand Lands", description: "General theme for the duo."},
+          {filename: "Red Scar", description: "Theme for Red Scar, menacing but goofy."},
+          {filename: "Trapping the Castle", description: "Soundtracking the setup for the enchanter trap that gets Ren to yellow."},
+          {filename: "Decoy", description: "Soundtracking setting up the trap at the Crastle."},
+          {filename: "Cactus Ring", description: "The last track solely dedicated to the duo, you all know what this one is."},
         ],
       },
       {
