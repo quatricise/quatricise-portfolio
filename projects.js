@@ -4,6 +4,8 @@ let projects = {
     description: 
     `Well this one's pretty weird. It's even more of a Vektroid ripoff than Twenty Nineteen.
     But I also like proggy stuff so maybe it'll turn more into a weird-ass progressive post-club nightmare.
+    <br><br>
+    I'll provide the credits once it's finished, but I used some CC 4.0 samples and others.
     `,
     tags: ["music"],
     options: {collapseTextSide: false, singleImageView: true},
@@ -35,8 +37,10 @@ let projects = {
     title: "Twenty Nineteen",
     description:
     `Electronic instrumental album in the style of bubbly pop. Some of the influences are Vektroid, Black Moth Super Rainbow, Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
-
+    <br><br>
     At the start it was a simple rip-off of Vektroid's early work, but I knew I had failed at this many times before so I decided to take it its own direction.
+    <br><br>
+    I'll provide the credits once it's finished, but I used some CC 4.0 samples and others.
     `,
     tags: ["music"],
     options: {

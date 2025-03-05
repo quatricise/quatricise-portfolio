@@ -210,6 +210,7 @@ class AudioPlayer {
   /** Turns the player into a tiny bar. */
   static collapseHTML() {
     if(!this.generatedHTML) return
+    if(Project.projectDetailVisible) return
     if(state.isOrientationPortrait) return
 
     this.elements.get("container").classList.add("collapsed")

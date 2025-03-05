@@ -782,6 +782,7 @@
 }
 
 .audio-player--button-show-audio-controls {
+  display: none;
   min-width: 32px;
   height: 32px;
   border-radius: 5px;
@@ -802,6 +803,7 @@
 .audio-player--button-show-audio-controls:hover {
   background-color: hsla(255, 100%, 100%, 0.1)
 }
+
 
 .thumbnail-overlay-circle {
   position: absolute;
@@ -938,5 +940,9 @@
 
   .audio-track-title {
     font-size: 1.2rem;
+  }
+
+  .audio-player--button-show-audio-controls {
+    display: unset;
   }
 }
