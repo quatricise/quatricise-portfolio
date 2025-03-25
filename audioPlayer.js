@@ -22,7 +22,9 @@ class AudioPlayer {
     const trackContainer = El("div", "audio-track-container")
     Q("#project-detail-text-side").append(trackContainer)
 
+    /** @type AudioTrack[] */
     const tracks = []
+    
     content.src.forEach((source, index) => {
       let track = new AudioTrack(project, source, index)
       trackContainer.append(track.elements.get("container"))
@@ -37,8 +39,15 @@ class AudioPlayer {
 
     /* set a tracklist into the list map */
     this.tracklists.set(project.projectIdentifier, tracks)
+  }
 
-    this.currentTracklist = tracks
+  static setCurrentTracklist(/** @type string */ projectIdentifier) {
+    if(projectIdentifier) {
+      this.currentTracklist = this.tracklists.get(projectIdentifier)
+    }
+    else {
+      this.currentTracklist = this.tracklists.get(Project.current.projectIdentifier)
+    }
   }
 
   static playNext() {

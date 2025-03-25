@@ -631,3 +631,9 @@ function animateColor(
   })
   return anim
 }
+
+/** @returns boolean */
+function keyInObject(obj, tested) {
+  if(!obj) return false
+  return Object.keys(obj).has(tested)
+}

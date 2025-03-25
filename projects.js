@@ -1,6 +1,6 @@
 let projects = {
-  voyeurRomance: {
-    title: "Voyeur Romance",
+  portal: {
+    title: "Portal",
     description: 
     `Well this one's pretty weird. It's even more of a Vektroid ripoff than Twenty Nineteen.
     But I also like proggy stuff so maybe it'll turn more into a weird-ass progressive post-club nightmare.
@@ -13,16 +13,19 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "voyeur romance pt. 1",         description: ""},
-          {filename: "voyeur romance pt. 2",         description: ""},
-          {filename: "heart and mind",               description: ""},
-          {filename: "glitch 2016 - revisit 2025",   description: ""},
-          {filename: "Help",                         description: ""},
-          {filename: "distrans",                     description: ""},
-          {filename: "summer melancholy",            description: ""},
-          {filename: "relational data face",         description: ""},
-          {filename: "beacon of my sky",             description: ""},
-          {filename: "voyeur romance pt. 3",         description: ""},
+          {filename: "Portal, Pt. 1",           description: ""},
+          {filename: "Portal, Pt. 2",           description: ""},
+          {filename: "Soul Emblem",             description: ""},
+          {filename: "Heart and Mind",          description: ""},
+          {filename: "Heart Malfunction",       description: ""},
+          {filename: "Into Stratosphere",       description: ""},
+          {filename: "Portal, Pt. 3",           description: ""},
+          {filename: "Hello(Help)",             description: ""},
+          {filename: "Distressed Mistress",     description: ""},
+          {filename: "Summer Again",            description: ""},
+          {filename: "Relational Data Face",    description: ""},
+          {filename: "Beacon in the Sky",       description: ""},
+          {filename: "Portal, Pt. 4",           description: ""},
         ],
       },
       {
@@ -72,6 +75,26 @@ let projects = {
         type: "images",
         src: [
           {src: "cover.jpg", title: "Confusion album cover"},
+        ],
+      },
+    ]
+  },
+  illustrations2025: {
+    title: "Illustrations 2025",
+    description: 
+    `
+    `,
+    tags: ["illustration"],
+    options: {collapseTextSide: true, singleImageView: false},
+    content: [
+      {
+        type: "images",
+        src: [
+          {src: "volcano_1.6.jpg",    title: ""},
+          {src: "skier_1.4.jpg",      title: ""},
+          {src: "navestidlo_1.6.jpg", title: ""},
+          {src: "new_shapes_1.3.jpg", title: ""},
+          {src: "old_shapes_1.2.jpg", title: ""},
         ],
       },
     ]

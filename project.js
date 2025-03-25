@@ -9,9 +9,6 @@ class Project {
     /** @type Array<HTMLImageElement> Crappy solution to displaying images - just push them here. */
     this.images = []
 
-    /** @type Array<String> */
-    this.htmlBits = []
-
     /** @type HTMLImageElement */
     this.currentImage = null
 
@@ -83,7 +80,7 @@ class Project {
     // }
   }
 
-  /* Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
+  /** Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
   select() {
     Project.showDetail()
 
@@ -111,7 +108,7 @@ class Project {
       /* make button close the detail and filter the gallery by the tag */
       button.onclick = () => {
         Project.hideDetail()
-        Project.showByTags(tag)
+        Page.applyState(new PageState({tags: tag}))
       }
 
       tagsHTML.append(button)
@@ -131,6 +128,7 @@ class Project {
     this.data.content.forEach(content => {
 
       switch(content.type) {
+        /* this means it only loads one tracklist from a project, a project cannot contain multiple audio tracklists */
         case "audio": {
           AudioPlayer.loadTracklist(this, content)
 
@@ -244,6 +242,7 @@ class Project {
 
 
     Project.current = this
+    Page.applyState(new PageState({page: "projects", project: this.projectIdentifier}))
   }
 
 
@@ -382,13 +381,12 @@ class Project {
   
   /** Opens a bottom-docked panel with images, music and text contained within the project's data. */
   static showDetail() {
-    console.log("show detail");
     this.projectDetailVisible = true
 
     this.animations.forEach(a => a.cancel())
     this.animations = []
 
-    let duration = 350
+    let duration = 330
     let easing = "cubic-bezier(0.0, 0.7, 0.2, 1.0)"
     
     Q("#project-detail-panel").style.filter = ""
@@ -402,15 +400,18 @@ class Project {
     Q("#project-detail-content").scrollTo({top: 0, behavior: "auto"})
     Q("#project-detail-hide-button").classList.remove("hidden")
 
-    this.animations.push(animateTranslate(
-      Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing))
-    this.animations.push(animateFilter(
-      Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing))
+    // this.animations.push(animateTranslate(
+    //   Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing))
+    // this.animations.push(animateFilter(
+    //   Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing))
+    this.animations.push(
+      animateFilter(Q("#project-detail-panel"), "brightness(0.2) contrast(2) saturate(2) blur(10px)", "brightness(1) contrast(1) saturate(1) blur(0)", duration, easing))
+    this.animations.push(
+      animateTranslate(Q("#project-detail-panel"), new AnimOffset(0, 0, 50, 0), duration, easing))
   }
 
   /** Closes the bottom-docked panel. */
   static hideDetail() {
-    console.log("hide detail");
     this.projectDetailVisible = false
 
     let duration = 1050
@@ -440,6 +441,8 @@ class Project {
 
     /* collapse audio player */
     AudioPlayer.collapseHTML()
+
+    Page.applyState(new PageState({page: "projects"}))
   }
 
   /** Toggles the bottom-docked panel. */
@@ -450,20 +453,18 @@ class Project {
   }
 
   /** Filter the project gallery by tags. */
-  static showByTags(
-    /** @type String[] */ ...tags
-  ) {
+  static showByTags(/** @type String[] */ ...tags) {
 
-    /* cancel all animations */
+    /* @todo ? cancel all animations */
 
-    /* show everything */
+    /* 1) show everything */
     if(tags[0] === "*") {
       this.list.forEach(project => {
         project.galleryItemShow()
       })
     }
 
-    /* Show all thumbnails whose dataset.tags includes any tags selected */
+    /* 2) Show all thumbnails whose dataset.tags includes any tags selected */
     else {
       this.list.forEach(project => {
         project.galleryItemToggle(...tags)
@@ -474,9 +475,9 @@ class Project {
     Qa(".project-tag-switch").forEach(item => item.classList.remove("active"))
 
     /* highlight the correct switches */
-    Qa(`.project-tag-switch`).forEach(sw => {
-      if(sw.dataset.tag.isAny(...tags)) {
-        sw.classList.add("active")
+    Qa(`.project-tag-switch`).forEach(tagSwitch => {
+      if(tagSwitch.dataset.tag.isAny(...tags)) {
+        tagSwitch.classList.add("active")
       }
     })
   }
@@ -532,16 +533,15 @@ class Project {
 
 
     /* select the "*" tag */
-
-    this.showByTags("*")
+    // this.showByTags("*") 
 
     
     /* add functions to tag switches */
     Qa(".project-tag-switch").forEach(item => {
-      item.onclick = () => this.showByTags(item.dataset.tag)
+      item.onclick = () => Page.applyState(new PageState({tags: item.dataset.tag}))
       item.onkeydown = (e) => {
         if(e.code == "Enter" || e.code == "NumpadEnter") {
-          this.showByTags(item.dataset.tag)
+          Page.applyState(new PageState({tags: item.dataset.tag}))
         }
       }
     })

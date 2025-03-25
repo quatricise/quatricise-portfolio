@@ -59,6 +59,9 @@ String.prototype.convertCase = function(from, to) {
     return array.join("_")
   throw `unsupported conversion: ${from} ${to}`
 }
+
+
+
 Array.prototype.remove = function(...children) {
   children.forEach(child => {
     if(this.find(c => c === child) === undefined)
@@ -68,6 +71,9 @@ Array.prototype.remove = function(...children) {
 }
 Array.prototype.findChild = function(child) {
   return this.find(obj => obj === child)
+}
+Array.prototype.has = function(value) {
+  return this.find(obj => obj === value) !== undefined
 }
 Array.prototype.last = function() {
   return this[this.length - 1]

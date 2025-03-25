@@ -8,50 +8,172 @@ let logoHolder = document.querySelector('.logo-holder')
 let daytime = "dark";
 let preloader = document.querySelector('.preloader')
 
-let projectsPage = Q('#projects-page');
-let aboutPage = Q('#aboutPage');
-let searchResultsPage = Q('#search-results-page');
+/** @type HTMLDivElement */
+const projectsPage = Q('#page--projects');
+/** @type HTMLDivElement */
+const aboutPage = Q('#page--about');
+/** @type HTMLDivElement */
+const searchResultsPage = Q('#page--search');
 
 /** @type HTMLDivElement */
 let currentPage = projectsPage;
 
-let pages = [
-  projectsPage,
-  aboutPage,
-  searchResultsPage,
-]
-
-function setPage(/** @type HTMLDivElement */ page) {
-  if(state.isOrientationPortrait) {
-    toggleNavlinks(false)
-  }
-
-  if(page === currentPage) return
-
-  currentPage = page
-  pages.forEach(p => p.classList.add("hidden"))
-  page.classList.remove("hidden")
-
-
-  if(page === projectsPage) {
-    document.body.scrollTo({top: 0, behavior: "auto"})
-    document.body.style.overflowY = "hidden"
-  }
-  if(page === aboutPage) {
-    document.body.style.overflowY = ""
-  }
-
-  if(page === searchResultsPage) {
-    if(state.isOrientationPortrait) {
-      Q(".header").classList.add("hidden")
+class PageState {
+  constructor(args = {}) {
+    PageState.checkValidity(args)
+    for(let key in args) {
+      this[key] = args[key]
     }
   }
-  else {
-    if(state.isOrientationPortrait) {
-      Q(".header").classList.remove("hidden")
+  set(args = {}) {
+    PageState.checkValidity(args)
+    for(let key in args) {
+      this[key] = args[key]
+    }
+  }
+
+  static allowed = ["page", "project", "tags", "search"]
+
+  static checkValidity(args = {}) {
+    for(let key in args) {
+      if(!this.allowed.has(key) && key) throw "Wrong key in args: " + key
     }
   }
 }
+
+class Page {
+
+  /** @type string
+   * String that represents the name of the current page. Default home page is 'projects'.
+   */
+  static current = "projects"
+
+
+
+  static set(/** @type string */ pageName) {
+    if(state.isOrientationPortrait) {
+      toggleNavlinks(false)
+    }
+  
+    if(pageName === this.current) return
+  
+    this.current = pageName
+    Qa(".page").forEach(p => p.classList.add("hidden"))
+    Q("#page--" + pageName).classList.remove("hidden")
+  
+  
+    if(pageName === "project") {
+      projectsPage.classList.remove()
+      document.body.scrollTo({top: 0, behavior: "auto"})
+      document.body.style.overflowY = "hidden"
+    }
+    if(pageName === "about") {
+      document.body.style.overflowY = ""
+    }
+  
+    if(pageName === "search") {
+      if(state.isOrientationPortrait) {
+        Q(".header").classList.add("hidden")
+      }
+    }
+    else {
+      if(state.isOrientationPortrait) {
+        Q(".header").classList.remove("hidden")
+      }
+    }
+  }
+
+
+
+  /** @returns PageState */
+  static deserializeSearchString() {
+    const searchQuery = window.location.search.replace("?", "")
+    const pairs = searchQuery.split("+")
+    const args = {}
+    for(let pair of pairs) {
+      if(!pair) continue
+      const [key, value] = pair.split("=")
+      args[key] = value
+    }
+    const state = new PageState(args)
+    return state
+  }
+
+
+
+  /** @returns string | Returns a usable url navigator search string whatever appendix starting with "?" */
+  static serializeSearchString(/** @type PageState */ data) {
+    let url = "?"
+    for(let key in data) {
+      if(!key) continue
+      const value = data[key]
+      // if(value.includes(" ")) {
+      //   value.replaceAll(" ", "%20")
+      // }
+     
+      if(url !== "?") url += "+"
+      url += key + "=" + value
+    }
+    return url
+  }
+
+
+  /** Applies some state data to the website so it works as a single-page app */
+  static applyState(/** @type PageState */ pageState, fromHistory = false) {
+    if(!pageState) return
+
+    if(keyInObject(pageState, "page") === false) {
+      pageState.set({page: "projects"})
+    }
+    if(keyInObject(pageState, "tags") === false) {
+      pageState.set({tags: "*"})
+    }
+    // console.log(pageState)
+    if(keyInObject(pageState, "search") === true) {
+      pageState.set({page: "search"})
+    }
+
+    for(let key in pageState) {
+      const value = pageState[key]
+      
+      if(!key) continue 
+      
+      switch(key) {
+        case "page": {
+          Page.set(value)
+          break
+        }
+
+        case "tags": {
+          Project.showByTags(...value.split("%20"))
+          break
+        }
+
+        case "project": {
+          let project = Array.from(Project.list).find(p => p.projectIdentifier === value)
+          project.select()
+          break
+        }
+
+        case "search": {
+          Search.search(value)
+          break
+        }
+
+        case "carouselindex": {
+          for(let i = 0; i < value; i++)
+          Project.current?.showNextImage()
+          break
+        }
+
+      }
+    }
+
+    if(!fromHistory) {
+      history.pushState(pageState, "", Page.serializeSearchString(pageState))
+    }
+  }
+} 
 
 function toggleNavlinks(/** @type Boolean */ value) {
   if(value === true) {
@@ -127,7 +249,7 @@ document.addEventListener("keydown", (event) => {
   }
 
   if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement == Q("#search-bar input")) {
-    Search.search(Q("#search-bar-input").value)
+    Page.applyState(new PageState({search: Q("#search-bar-input").value}))
   }
   if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement.classList.contains("project-gallery-item")) {
     document.activeElement.click()
@@ -145,7 +267,7 @@ document.addEventListener("click", (event) => {
 
   /* Execute search when clicking on the search icon while the searchbar is open */
   if(event.target.closest(".search-bar-icon") && Search.searchBarVisible) {
-    Search.search(Q("#search-bar-input").value)
+    Page.applyState(new PageState({search: Q("#search-bar-input").value}))
   }
 
 })
@@ -254,44 +376,13 @@ function init() {
   Search.init()
 
   /* Process the URL search to allow things such as linking to pre-filtered content or opening a specific project */
-  let searchQuery = window.location.search.replace("?", "")
-  let pairs = searchQuery.split("+")
-  pairs.forEach(pair => {
-    let [key, value] = pair.split("=")
-    
-    switch(key) {
-      case "tag": {
-        Project.showByTags(value)
-        break
-      }
-      case "project": {
-        let project = Array.from(Project.list).find(p => p.projectIdentifier === value)
-        project.select()
-        break
-      }
-      case "search": {
-        Search.search(value)
-        break
-      }
-      case "page": {
-        switch(value) {
-          case "projects": {
-            setPage(projectsPage)
-            break
-          }
-          case "about": {
-            setPage(aboutPage)
-            break
-          }
-        }
-        break
-      }
-      case "carouselindex": {
-        for(let i = 0; i < value; i++)
-        Project.current?.showNextImage()
-        break
-      }
-    }
+  /* @todo replace this with Page.applyState */
+  const state = Page.deserializeSearchString()
+  Page.applyState(state)
+
+  /* implement the history thing */
+  window.addEventListener("popstate", (e) => {
+    Page.applyState(history.state, true)
   })
 }
 window.onload = init

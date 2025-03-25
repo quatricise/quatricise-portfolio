@@ -443,7 +443,7 @@ input[type="text"] {
   margin-top: 3px;
 }
 
-#search-results-page {
+#page--search {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -486,6 +486,11 @@ input[type="text"] {
   border-radius: 10px;
   background-color: rgba(34, 34, 34, 0.75);
   cursor: pointer;
+  background-image: url(../images/buttons/search_result_background_normal.png);
+  background-position: center;
+  background-size: 33%;
+  background-blend-mode: color-dodge;
+  background-repeat: repeat;
 }
 
 .search-result-element:hover {
@@ -633,7 +638,7 @@ a {
   pointer-events: all;
 }
 
-#aboutPage {
+#page--about {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -940,9 +945,9 @@ a {
 .background-dark {
   /* background-image: url('images/background/background_dark.jpg')!important; */
 }
-.background-ancient-cycles {
+/* .background-ancient-cycles {
   background-image: url('images/background/background_ancient_cycles.jpg');
-}
+} */
 .background-geodesy {
   background-image: url('images/background/background_geodesy.jpg');
 }
@@ -1052,7 +1057,7 @@ button {
   color: rgb(163, 43, 255);
 }
 
-#projects-page {
+#page--projects {
   position: relative;
   display: flex;
   justify-content: center;
@@ -1952,7 +1957,7 @@ input:checked + .slider:before {
     height: auto;
   }
 
-  #aboutPage {
+  #page--about {
     overflow-y: scroll;
   }
 

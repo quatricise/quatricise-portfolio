@@ -27,11 +27,15 @@ class AudioTrack {
       this.elements.get("trackDuration").innerText = secondsToMinutes(this.audio.duration)
     }
   }
+  /** Start playing this particular audio track(file). */
   play() {
     if(AudioTrack.current !== this) AudioTrack.current?.stop()
     AudioTrack.current = this
     this.audio.play()
     this.audio.volume = 1
+
+    /* actually change what the AudioPlayer.currentTracklist is */
+    AudioPlayer.setCurrentTracklist(this.project.projectIdentifier)
 
     /* visuals */
     this.elements.get("container").classList.add("active")

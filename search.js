@@ -5,6 +5,9 @@ class Search {
   static currentProject = null
   static searchBarVisible = false
 
+  /** @type string */
+  static searchQuery = ""
+
   static showSearchBar() {
     Q("#search-bar").classList.add("active")
     Q("#search-bar input").focus()
@@ -23,9 +26,9 @@ class Search {
     this.searchBarVisible ? this.hideSearchBar() : this.showSearchBar()
   }
 
-  static search(/** @type String */ searchQuery) {
-    if(searchQuery === "") return
-
+  static search(/** @type String */ query) {
+    if(query === "") return
+    this.searchQuery = query
     Q("#search-bar input").value = ""
 
     this.results.clear()
@@ -35,7 +38,7 @@ class Search {
       this.currentProject = key
       this.currentDataBlock = dataBlock
       for(let prop of searchProperties) {
-        this.searchData(dataBlock[prop], searchQuery)
+        this.searchData(dataBlock[prop], query)
       }
     }
     this.showResults()
@@ -96,11 +99,10 @@ class Search {
       let element = this.createSearchElement(result, projectIdentifier)
       Q("#search-results").append(element)
     })
-    setPage(searchResultsPage)
     Q("#search-results-wrapper").scrollTo({top: 0, behavior: "auto"})
   }
   static hideResults() {
-    setPage(projectsPage)
+    Page.applyState(new PageState({page: "projects"}))
   }
   static createSearchElement(dataBlock, projectIdentifier) {
     let 

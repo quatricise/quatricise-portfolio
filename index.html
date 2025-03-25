@@ -28,23 +28,21 @@
 
 <div class='header'>
   <div class="navbar">
-    <!-- <div id="navbar--inner-shadow-bottom"></div> -->
-    <!-- <div id="logo" tabindex="1" class='logo-holder backgroundLogoPurple' onclick="setPage(projectsPage);"></div> -->
     <img class="banner-image desktop" src="images/banner.png" alt="">
     <img class="banner-image mobile"  src="images/banner_mobile.png" alt="">
     <div id="navbar--buttons">
-      <div id="button--projects" class="button--drawn" onclick="setPage(projectsPage)" >
+      <div id="button--projects" class="button--drawn" onclick="Page.applyState(new PageState({page: 'projects'}))" >
         <img class="state--normal" src="images/buttons/button_projects_normal.png" alt="">
         <img class="state--hover" src="images/buttons/button_projects_hover.png" alt="">
       </div>
-      <div id="button--about" class="button--drawn" onclick="setPage(aboutPage)" >
+      <div id="button--about" class="button--drawn" onclick="Page.applyState(new PageState({page: 'about'}))" >
         <img class="state--normal" src="images/buttons/button_about_normal.png" alt="">
         <img class="state--hover" src="images/buttons/button_about_hover.png" alt="">
       </div>
     </div>
     <div class='button-cell hidden'>
-      <!-- <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(projectsPage)" data-page="projectsPage">Projects</button>
-      <button tabindex="0" class='navbar-button purple-dull'  onclick="setPage(aboutPage)" data-page="aboutPage">About</button> -->
+      <!-- <button tabindex="0" class='navbar-button purple-dull'  onclick="Page.set(projectsPage)" data-page="projectsPage">Projects</button>
+      <button tabindex="0" class='navbar-button purple-dull'  onclick="Page.set(aboutPage)" data-page="aboutPage">About</button> -->
       <!-- <button tabindex="0" class='navbar-button purple-dull' >
         <img src="images/bandcamp_icon.png" alt="" width="24px" style="margin-top: 4px; margin-right: 2px;">
         <a href="http://www.quatricise.bandcamp.com" target="_blank" referrerpolicy="noopener">Bandcamp</a>
@@ -60,14 +58,14 @@
 
 <div id="background-shit"></div>
 
-<div id="search-results-page" class="hidden">
+<div id="page--search" class="page hidden">
   <div id="search-results-wrapper">
-    <button id="close-search" onclick="setPage(projectsPage)">Close search</button>
+    <button id="close-search" onclick="Search.hideResults()">Close search</button>
     <div id="search-results"></div>
   </div>
 </div>
 
-<div id='projects-page'>
+<div id='page--projects' class="page">
   <div id="projects-page-content" class='pointerEventsNone no-scrollbar'>
 
     <!-- //some soft shadows around the edges to hide the sharp edge for the bg glyphs -->
@@ -95,7 +93,7 @@
 <div id="project-detail" class="hidden">
   <div id="background-container" class='fullscreen-fixed'>
     <div id="project-detail-hide-button" onclick="Project.hideDetail()">❌</div>
-    <div id='background' class='background-dark background-ancient-cycles' title="Click to hide detail."></div>
+    <div id='background' class='background-dark' title="Click to hide detail."></div>
   </div>
   <div id="project-detail-panel">
 
@@ -123,7 +121,7 @@
   </div>
 </div>
 
-<div id="aboutPage" class='page hidden no-scrollbar'>
+<div id="page--about" class='page hidden no-scrollbar'>
   <div class="about-section">
     <div class="about-text">
         <p class="about-paragraph">
