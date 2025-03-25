@@ -214,12 +214,17 @@ class Project {
       Q("#project-detail-content").classList.remove("alt-layout")
     }
 
+
     if(this.data.options?.singleImageView) {
       
       if(state.isOrientationPortrait) {
         Q("#project-detail-artwork-side").after(Q("#project-detail-text-side"))
         Q("#project-detail-artwork-side").style.height = ""
         Q("#project-detail-text-side").style.paddingTop = ""
+        // Q("#project-detail-artwork-side").style.justifyContent = ""
+      }
+      else {
+        // Q("#project-detail-artwork-side").style.justifyContent = "center"
       }
     }
     else {
@@ -231,6 +236,7 @@ class Project {
         Q("#project-detail-text-side").style.paddingTop = "20px"
       }
     }
+
 
     if(this.data.options?.fillCoverWithFirstImage) {
       Q("#project-detail-cover").classList.remove("hidden")

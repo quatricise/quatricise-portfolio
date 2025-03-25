@@ -496,7 +496,7 @@
 
 .audio-player-track-name.layout--mobile {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-shadow: none;
   width: 100%;
   overflow: hidden;
@@ -660,11 +660,11 @@
 }
 
 .audio-track-play-state-icon.play {
-  background-image: url(../images/play_icon.png);
+  background-image: url(../images/play_icon.png)!important;
 }
 
 .audio-track-play-state-icon.pause {
-  background-image: url(../images/pause_icon.png);
+  background-image: url(../images/pause_icon.png)!important;
 }
 
 .audio-track-duration {

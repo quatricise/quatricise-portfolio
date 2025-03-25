@@ -29,10 +29,26 @@ class AudioTrack {
   }
   /** Start playing this particular audio track(file). */
   play() {
-    if(AudioTrack.current !== this) AudioTrack.current?.stop()
-    AudioTrack.current = this
-    this.audio.play()
-    this.audio.volume = 1
+    if(!AudioTrack.current) {
+      AudioTrack.current = this
+      this.audio.play()
+      this.audio.volume = 1
+    } else
+    if(AudioTrack.current && AudioTrack.current !== this) {
+      AudioTrack.current.stop()
+      AudioTrack.current = this
+      this.audio.play()
+      this.audio.volume = 1
+    } else
+    if(AudioTrack.current === this) {
+      if(this.audio.paused) {
+        this.elements.get("playStateIcon").classList.remove("play", "pause")
+        this.audio.play()
+        AudioPlayer.elements.get("playButton").classList.add("paused")
+      } 
+      else this.pause()
+      return
+    }    
 
     /* actually change what the AudioPlayer.currentTracklist is */
     AudioPlayer.setCurrentTracklist(this.project.projectIdentifier)
@@ -43,12 +59,14 @@ class AudioTrack {
     /* @todo it recreates the entire player again, which will lead to more and more bugs as I add features */
     AudioPlayer.createHTML(this.project)
 
+    AudioPlayer.elements.get("playButton").classList.add("paused")
+
     this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
 
     if(AudioPlayer.generatedHTML) {
       AudioPlayer.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
-      /* @todo very inefficient lmao */
+      /* @todo very inefficient, lmao */
       AudioPlayer.elements.get("progressBar").style.backgroundColor = AudioPlayer.getAudioPlayerTrackColor()
       
       if(state.isOrientationPortrait) {
@@ -65,9 +83,12 @@ class AudioTrack {
 
     /* visuals */
     this.elements.get("container").classList.remove("active")
+    this.elements.get("playStateIcon").classList.remove("play", "pause")
   }
   pause() {
     this.audio.pause()
+    this.elements.get("playStateIcon").classList.add("play")
+    AudioPlayer.elements.get("playButton").classList.remove("paused")
   }
   toggle() {
     this.audio.paused ? this.play() : this.pause()
@@ -107,8 +128,9 @@ class AudioTrack {
 
     }
     
-    this.elements.set("container", container)
-    this.elements.set("trackDuration", trackDuration)
+    this.elements.set("container",      container)
+    this.elements.set("playStateIcon",  icon)
+    this.elements.set("trackDuration",  trackDuration)
   }
 
   /** @type AudioTrack - Only one can be playing at the same time. This is a limitation I can accept. */

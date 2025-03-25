@@ -65,7 +65,7 @@ class AudioPlayer {
     /* go dirty and literally recreate the player each time it needs updating, this would resolve some jankiness */
     if(this.elements.get("container")) this.elements.get("container").remove()
 
-    let audioPlayer =     El("div", "audio-player", [["id", "audio-player"]])
+    let audioPlayer =   El("div", "audio-player", [["id", "audio-player"]])
     let cover =         El("img", "audio-player-cover", [["src", `projects/${project.projectIdentifier}/cover.jpg`]])
     let track =         El("div", "audio-player-track")
     let trackName =     El("div", "audio-player-track-name", [], AudioTrack.current.title)
@@ -147,7 +147,6 @@ class AudioPlayer {
 
     playButton.onclick = () => {
       AudioTrack.current.toggle()
-      playButton.classList.toggle("paused")
     }
 
     nextButton.onclick = () => this.playNext()
