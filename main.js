@@ -240,9 +240,13 @@ document.addEventListener("keydown", (event) => {
     Project.hideDetail()
   }
 
-  // if(event.code === "Space") {
-  //   AudioTrack.current?.toggle()
-  // }
+  if(event.code === "ArrowRight" && Project.projectDetailVisible) {
+    Project.selectNext()
+  }
+
+  if(event.code === "ArrowLeft" && Project.projectDetailVisible) {
+    Project.selectPrev()
+  }
 
   if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
     Search.hideSearchBar()

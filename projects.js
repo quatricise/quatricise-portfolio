@@ -237,6 +237,9 @@ let projects = {
           {filename: "Ancient Battlefield", description: ""},
           {filename: "Melted Mountains", description: ""},
           {filename: "Dead Forest", description: ""},
+          {filename: "Patch of Green", description: ""},
+          {filename: "Pollution", description: ""},
+          {filename: "Toxic", description: ""},
         ],
       },
       {
@@ -599,12 +602,6 @@ let projects = {
       },
     ]
   },
-}
-
-const jokeResult = {
-  title: "No results",
-  description: 
-  `Keep looking ;)`
 }
 
 /** 

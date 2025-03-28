@@ -221,10 +221,6 @@ class Project {
         Q("#project-detail-artwork-side").after(Q("#project-detail-text-side"))
         Q("#project-detail-artwork-side").style.height = ""
         Q("#project-detail-text-side").style.paddingTop = ""
-        // Q("#project-detail-artwork-side").style.justifyContent = ""
-      }
-      else {
-        // Q("#project-detail-artwork-side").style.justifyContent = "center"
       }
     }
     else {
