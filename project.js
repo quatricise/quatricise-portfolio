@@ -86,7 +86,6 @@ class Project {
 
     if(Project.current === this) return
     Project.current?.deselect()
-    
 
     /* clear project detail panel */
     Q("#project-detail-type").innerHTML = ""
@@ -244,6 +243,7 @@ class Project {
 
 
     Project.current = this
+    AudioPlayer.collapseHTML()
     Page.applyState(new PageState({page: "projects", project: this.projectIdentifier}))
   }
 

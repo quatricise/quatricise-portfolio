@@ -362,6 +362,7 @@
 #audio-player.collapsed {
   height: unset;
   padding: 5px;
+  box-shadow: none;
 }
 
 .audio-player-cover {
