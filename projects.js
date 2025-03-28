@@ -2,10 +2,10 @@ let projects = {
   portal: {
     title: "Portal",
     description: 
-    `Well this one's pretty weird. It's even more of a Vektroid ripoff than Twenty Nineteen.
+    `Well... this one's pretty weird. It's even more of a Vektroid ripoff than Twenty Nineteen.
     But I also like proggy stuff so maybe it'll turn more into a weird-ass progressive post-club nightmare.
     <br><br>
-    I'll provide the credits once it's finished, but I used some CC 4.0 samples and others.
+    I'll provide the credits once it's finished, but I used some CC Attrib. samples and others.
     `,
     tags: ["music"],
     options: {collapseTextSide: false, singleImageView: true},
@@ -39,11 +39,11 @@ let projects = {
   confusion: {
     title: "Twenty Nineteen",
     description:
-    `Electronic instrumental album in the style of bubbly pop. Some of the influences are Vektroid, Black Moth Super Rainbow, Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
+    `Electronic instrumental album in the style of bubbly pop. Some of the influences are Vektroid, Black Moth Super Rainbow and Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
     <br><br>
     At the start it was a simple rip-off of Vektroid's early work, but I knew I had failed at this many times before so I decided to take it its own direction.
     <br><br>
-    I'll provide the credits once it's finished, but I used some CC 4.0 samples and others.
+    I'll provide the credits once it's finished, but I used some CC Attrib. samples and others.
     `,
     tags: ["music"],
     options: {
@@ -57,18 +57,22 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "lament for a nineteen year-old girl"  ,description: ""},
-          {filename: "burnout"                              ,description: ""},
-          {filename: "adults without responsibilities"      ,description: ""},
-          {filename: "way into it"                          ,description: ""},
-          {filename: "vignette - twenty nineteen"           ,description: ""},
-          {filename: "candle"                               ,description: ""},
-          {filename: "darting"                              ,description: ""},
-          {filename: "unwinding"                            ,description: ""},
-          {filename: "twenty nineteen"                      ,description: ""},
-          {filename: "gotta get used to"                    ,description: ""},
-          {filename: "bird without a home"                  ,description: ""},
-          {filename: "sympathy junkies"                     ,description: ""},
+          {filename: "Lament for a Nineteen Year-Old Girl"    , description: ""},
+          {filename: "Burnout"                                , description: ""},
+          {filename: "Adults Without Responsibilities"        , description: ""},
+          {filename: "Vignette - Twenty Nineteen"             , description: ""},
+          {filename: "Way Into It"                            , description: ""},
+          {filename: "Candle"                                 , description: ""},
+          {filename: "Red Flags, Pt. 1"                       , description: ""},
+          {filename: "Red Flags, Pt. 2"                       , description: ""},
+          {filename: "Twenty Nineteen"                        , description: ""},
+          {filename: "Unwinding"                              , description: ""},
+          {filename: "Two Red Flags"                          , description: ""},
+          {filename: "Bird Without a Home"                    , description: ""},
+          {filename: "How It Feels"                           , description: ""},
+          {filename: "Moves"                                  , description: ""},
+          {filename: "Decisions"                              , description: ""},
+          {filename: "Fallout"                                , description: ""},
         ],
       },
       {
@@ -82,10 +86,12 @@ let projects = {
   illustrations2025: {
     title: "Illustrations 2025",
     description: 
-    `
+    `Collection of new pieces from circa December 2024 onwards, they go in a slightly different direction than before, focusing more on geometric patterns and avoiding the usual comicbook-style linework, which I used to do for several years and it was time to break away from it.
+    <br><br>
+    These will probably take a while to finish, as I'm still discovering what I need to do with them.
     `,
     tags: ["illustration"],
-    options: {collapseTextSide: true, singleImageView: false},
+    options: {singleImageView: false},
     content: [
       {
         type: "images",
@@ -226,7 +232,7 @@ let projects = {
       {
         type: "audio",
         src: [
-          {filename: "Urban Ruins", description: "First track that plays when you enter the game."},
+          {filename: "Urban Ruins", description: ""},
           {filename: "Industrial Wasteland", description: ""},
           {filename: "Ancient Battlefield", description: ""},
           {filename: "Melted Mountains", description: ""},
@@ -237,39 +243,6 @@ let projects = {
         type: "images",
         src: [
           {src: "cover.png", title: "Revenant Earth Album Cover"},
-        ],
-      },
-    ]
-  },
-  sandLands: {
-    title: "Sand Lands",
-    description: 
-    `
-    A composer approaches the Watchers with a tribute piece he's written about one of their games. Will he get a second chance, or will his interpretation of history displease them.
-    <br><br>
-    So far this limited preview only contains the arc of the sand merchants.
-    `,
-    tags: ["music"],
-    options: {
-      collapseTextSide: false,
-      singleImageView: true,
-    },
-    content: [
-      {
-        type: "audio",
-        src: [
-          {filename: "Off to the Desert", description: "Marks the point where the alliance between Scar and Grian is formed."},
-          {filename: "Sand Lands", description: "General theme for the duo."},
-          {filename: "Red Scar", description: "Theme for Red Scar, menacing but goofy."},
-          {filename: "Trapping the Castle", description: "Soundtracking the setup for the enchanter trap that gets Ren to yellow."},
-          {filename: "Decoy", description: "Soundtracking setting up the trap at the Crastle."},
-          {filename: "Cactus Ring", description: "The last track solely dedicated to the duo, you all know what this one is."},
-        ],
-      },
-      {
-        type: "images",
-        src: [
-          {src: "cover.jpg", title: "Sand Lands Album Cover"},
         ],
       },
     ]
@@ -383,6 +356,39 @@ let projects = {
       },
     ]
   },
+  sandLands: {
+    title: "Sand Lands",
+    description: 
+    `
+    A composer approaches the Watchers with a tribute piece he's written about one of their games. Will he get a second chance, or will his interpretation of history displease them.
+    <br><br>
+    So far this limited preview only contains the arc of the sand merchants.
+    `,
+    tags: ["music"],
+    options: {
+      collapseTextSide: false,
+      singleImageView: true,
+    },
+    content: [
+      {
+        type: "audio",
+        src: [
+          {filename: "Off to the Desert", description: "Marks the point where the alliance between Scar and Grian is formed."},
+          {filename: "Sand Lands", description: "General theme for the duo."},
+          {filename: "Red Scar", description: "Theme for Red Scar, menacing but goofy."},
+          {filename: "Trapping the Castle", description: "Soundtracking the setup for the enchanter trap that gets Ren to yellow."},
+          {filename: "Decoy", description: "Soundtracking setting up the trap at the Crastle."},
+          {filename: "Cactus Ring", description: "The last track solely dedicated to the duo, you all know what this one is."},
+        ],
+      },
+      {
+        type: "images",
+        src: [
+          {src: "cover.jpg", title: "Sand Lands Album Cover"},
+        ],
+      },
+    ]
+  },
   quatricisePoster: {
     title: "Quatricise Poster",
     description: 
@@ -411,6 +417,8 @@ let projects = {
     <br><br>
     The game would teach children to find a healthy mix of activities in their life, and teach them that knowledge can be actionable.
     It would also teach of the social and health dangers of too much computer time by letting you play games all day and then see that the ingame characters react to that differently. You'll have less stamina for running and the NPC characters will try to talk to you about it.
+    <br><br>
+    I made the concept, drew illustrations, animated the video and composed the music and sound effects.
     `,
     tags: ["videogame", "illustration", "animation"],
     options: {
@@ -591,6 +599,12 @@ let projects = {
       },
     ]
   },
+}
+
+const jokeResult = {
+  title: "No results",
+  description: 
+  `Keep looking ;)`
 }
 
 /** 

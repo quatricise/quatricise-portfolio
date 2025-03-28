@@ -74,7 +74,7 @@ class Project {
     this.elements.set("thumbnailCircle", thumbnailCircle)
     this.elements.set("description", description)
 
-    /* this looked weird */
+    /* this looked weird, do not using */
     // thumbnail.onload = () => {
     //   description.style.backgroundColor = Project.generateGalleryItemLabelColor(this)
     // }
@@ -363,6 +363,8 @@ class Project {
     this.elements.get("item").classList.add("hidden")
   }
   
+
+
   //#region static
   
   /** Whether you can see the bottom-docked panel. */
@@ -404,6 +406,7 @@ class Project {
     Q("#project-detail").classList.remove("hidden")
 
     Q("#project-detail-content").scrollTo({top: 0, behavior: "auto"})
+    Q("#project-detail-text-side").scrollTo({top: 0, behavior: "auto"})
     Q("#project-detail-hide-button").classList.remove("hidden")
 
     // this.animations.push(animateTranslate(
@@ -456,6 +459,40 @@ class Project {
     this.projectDetailVisible ? 
     this.hideDetail() :
     this.showDetail()
+  }
+
+  static selectNext() {
+    let foundIt = false
+    for(let key in projects) {
+      if(foundIt) {
+        this.select(key)
+        return
+      }
+      if(key === this.current.projectIdentifier) {
+        foundIt = true
+      }
+    }
+
+    /* we reached the end, wrap around */
+    this.select(Object.keys(projects)[0])
+  }
+  
+  static selectPrev() {
+    let prev = null
+    for(let key in projects) {
+      if(key === this.current.projectIdentifier) {
+        if(prev) {
+          this.select(prev)
+        } else {
+          this.select(Object.keys(projects).last())
+        } 
+        return
+      }
+      prev = key
+    }
+
+    /* we reached the end, wrap around, but this is most likely not needed */
+    // this.select(Object.keys(projects)[0])
   }
 
   /** Filter the project gallery by tags. */
@@ -634,6 +671,7 @@ class Project {
   static projectsToHide = []
 
   static select(/** @type String */ projectIdentifier) {
+    if(!projectIdentifier) return
     let project = Array.from(this.list).find(p => p.projectIdentifier === projectIdentifier)
     project.select()
   }

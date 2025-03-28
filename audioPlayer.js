@@ -6,6 +6,9 @@ class AudioPlayer {
   /** @type AudioTrack[] */
   static currentTracklist = []
 
+  /** @type Project */
+  static currentProject = null
+
   /** @type Map<String, HTMLElement> */
   static elements = new Map()
 
@@ -44,9 +47,11 @@ class AudioPlayer {
   static setCurrentTracklist(/** @type string */ projectIdentifier) {
     if(projectIdentifier) {
       this.currentTracklist = this.tracklists.get(projectIdentifier)
+      this.currentProject = Array.from(Project.list).find(p => p.projectIdentifier === projectIdentifier)
     }
     else {
       this.currentTracklist = this.tracklists.get(Project.current.projectIdentifier)
+      this.currentProject = Project.current
     }
   }
 
@@ -56,6 +61,17 @@ class AudioPlayer {
   }
 
   static playPrevious() {
+    // let index = AudioTrack.current?.index
+    // if(index === 0) {
+    //   const track = this.currentTracklist[0]
+    //   track.audio.currentTime = 0
+    //   if(track.audio.paused) {
+    //     track.play()
+    //   }
+    // }
+    // else {
+    //   this.currentTracklist[index - 1]?.play()
+    // }
     let index = AudioTrack.current?.index
     this.currentTracklist[index - 1]?.play()
   }
@@ -190,7 +206,10 @@ class AudioPlayer {
     }
 
     cover.onclick = () => {
-      if(Project.current === project)
+      if(Project.current === project && Project.projectDetailVisible) {
+        return
+      } else
+      if(Project.current === project && !Project.projectDetailVisible)
         Project.showDetail()
       else
         Project.select(project.projectIdentifier)
@@ -291,7 +310,7 @@ class AudioPlayer {
 
   /** creates a canvas and samples kind of the average color of the cover image of an album, then stores that into the project. */
   static getAudioPlayerTrackColor() {
-    if(Project.current?.trackColor) return Project.current.trackColor
+    if(this.currentProject?.trackColor) return this.currentProject.trackColor
 
     const src = Q(".artwork-side-image")
     const [x, y] = [src?.naturalWidth, src?.naturalHeight ]

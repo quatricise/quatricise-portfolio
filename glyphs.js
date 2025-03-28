@@ -59,7 +59,7 @@ function glyphLoad(src) {
     /* FILTER */
     const effectRadius = 400
     const ceilClip = 100 //how many pixels away will still be full 1.0 alpha
-    const maxAlpha = 0.55
+    const maxAlpha = 0.45
     const minAlpha = 0.13
     sprite.filters[0].brightness(
       clamp(maxAlpha - ((distance - ceilClip) / (effectRadius * 2)), minAlpha, maxAlpha))

@@ -27,7 +27,8 @@ class Search {
   }
 
   static search(/** @type String */ query) {
-    if(query === "") return
+    if(query == "") return
+    console.log(query)
     this.searchQuery = query
     Q("#search-bar input").value = ""
 
@@ -93,18 +94,41 @@ class Search {
   }
 
   //#region visual logic
-  static showResults() {
+  static async showResults() {
     Q("#search-results").innerHTML = ""
-    this.results.forEach((result, projectIdentifier) => {
-      let element = this.createSearchElement(result, projectIdentifier)
+    let index = 0
+    const delayMS = 35
+    this.results.forEach(async (result, projectIdentifier) => {
+      const element = this.createSearchResultElement(result, projectIdentifier)
       Q("#search-results").append(element)
+
+      element.style.filter = "opacity(0)"
+      ++index
+      await waitFor(delayMS * index)
+      animateFilter(element, "opacity(0)", "opacity(1.0)", 250, "cubic-bezier(0.3, 0.0, 0.4, 1.0)")
+      element.style.filter = ""
     })
     Q("#search-results-wrapper").scrollTo({top: 0, behavior: "auto"})
+
+    if(this.results.size === 0) {
+      let 
+      element = document.createElement("div")
+      element.innerText = "No results"
+      element.style.width = "100%"
+      element.style.textAlign = "center"
+      element.style.fontSize = "1.2rem"
+      Q("#search-results").append(element)
+      setTimeout(() => {
+        Q("#close-search").focus()
+        console.log(document.activeElement)
+      }, 50)
+    }
   }
   static hideResults() {
     Page.applyState(new PageState({page: "projects"}))
   }
-  static createSearchElement(dataBlock, projectIdentifier) {
+  /** @returns HTMLDivElement */
+  static createSearchResultElement(dataBlock, projectIdentifier) {
     let 
     element = document.createElement("div")
     element.classList.add("search-result-element")

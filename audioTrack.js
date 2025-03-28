@@ -48,7 +48,7 @@ class AudioTrack {
       } 
       else this.pause()
       return
-    }    
+    }
 
     /* actually change what the AudioPlayer.currentTracklist is */
     AudioPlayer.setCurrentTracklist(this.project.projectIdentifier)
@@ -64,6 +64,7 @@ class AudioTrack {
     this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
 
+    /* @todo is this if clause necessary? it should always have the HTML generated, it does that previously in this function */
     if(AudioPlayer.generatedHTML) {
       AudioPlayer.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
       /* @todo very inefficient, lmao */
@@ -71,6 +72,14 @@ class AudioTrack {
       
       if(state.isOrientationPortrait) {
         AudioPlayer.toggleControls(true)
+      }
+
+      if(this.index === 0) {
+        AudioPlayer.elements.get("prevButton").disabled = true
+      }
+      
+      if(this.index === AudioPlayer.currentTracklist.length - 1) {
+        AudioPlayer.elements.get("nextButton").disabled = true
       }
     }
   }

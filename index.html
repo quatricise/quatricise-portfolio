@@ -26,6 +26,8 @@
   </div>
 </div>
 
+<div id="background-shit"></div>
+
 <div class='header'>
   <div class="navbar">
     <img class="banner-image desktop" src="images/banner.png" alt="">
@@ -51,11 +53,9 @@
   </div>
 </div>
 
-<div id="background-shit"></div>
-
 <div id="page--search" class="page hidden">
   <div id="search-results-wrapper">
-    <button id="close-search" onclick="Search.hideResults()">Close search</button>
+    <button id="close-search" onclick="Search.hideResults()">⨉&nbsp;&nbsp;Close search</button>
     <div id="search-results"></div>
   </div>
 </div>
@@ -88,11 +88,20 @@
 <div id="project-detail" class="hidden">
   <div id="background-container" class='fullscreen-fixed'>
     <div id="project-detail-hide-button" onclick="Project.hideDetail()">❌</div>
-    <div id='background' class='background-dark' title="Click to hide detail."></div>
+    <div id='background' class='background-dark' title="Close project detail [ESC]"></div>
   </div>
   <div id="project-detail-panel">
 
     <div id="project-detail-cover" class="hidden"></div>
+
+    <div id="project-detail--change-project-buttons">
+      <div id="project-detail--button--next-project" title="Next project" onclick="Project.selectNext()">
+        <img src="images/icon_arrow.png" alt="">
+      </div>
+      <div id="project-detail--button--prev-project" title="Previous project" onclick="Project.selectPrev()">
+        <img src="images/icon_arrow.png" alt="">
+      </div>
+    </div>
 
     <div id="project-detail-content" onscroll="Project.onScroll()">
       <button id="project-detail-button-scroll-up" class="button--scroll-up"></button>

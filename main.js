@@ -129,7 +129,7 @@ class Page {
       pageState.set({tags: "*"})
     }
     // console.log(pageState)
-    if(keyInObject(pageState, "search") === true) {
+    if(keyInObject(pageState, "search") === true && pageState.search != "") {
       pageState.set({page: "search"})
     }
 
@@ -207,7 +207,7 @@ window.addEventListener('load', () => {
     navbarButtonCell.classList.remove("hidden")
   }
   if(state.isOrientationPortrait) { //@todo this is a hot-fix, not permanent
-    Q(".project-type-switch").classList.add("hidden")
+    Q(".projects-page-header").classList.add("hidden")
   }
   quitPreloader();
 })
@@ -240,6 +240,10 @@ document.addEventListener("keydown", (event) => {
     Project.hideDetail()
   }
 
+  // if(event.code === "Space") {
+  //   AudioTrack.current?.toggle()
+  // }
+
   if(event.code === "Tab" && document.activeElement == Q("#search-bar input")) {
     Search.hideSearchBar()
   }
@@ -248,7 +252,7 @@ document.addEventListener("keydown", (event) => {
     Search.hideSearchBar()
   }
 
-  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement == Q("#search-bar input")) {
+  if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement == Q("#search-bar input") && Q("#search-bar-input")?.value) {
     Page.applyState(new PageState({search: Q("#search-bar-input").value}))
   }
   if((event.code === "Enter" || event.code === "NumpadEnter" || event.keyCode === 13) && document.activeElement.classList.contains("project-gallery-item")) {
@@ -263,10 +267,10 @@ document.addEventListener("keyup", (event) => {
   } 
 })
 
-document.addEventListener("click", (event) => {
+document.addEventListener("mousedown", (event) => {
 
   /* Execute search when clicking on the search icon while the searchbar is open */
-  if(event.target.closest(".search-bar-icon") && Search.searchBarVisible) {
+  if(event.target.closest(".search-bar-icon") && Q("#search-bar-input")?.value && Search.searchBarVisible) {
     Page.applyState(new PageState({search: Q("#search-bar-input").value}))
   }
 
