@@ -14,9 +14,47 @@ class AudioPlayer {
 
   /** @type Number */
   static collapseTimer = 0
+  
+  static scrubData = {
+    originalTime: 0,
+    movedMouse: false,
+    offsetFactor: 0,
+  }
 
-  /** @type Boolean */
-  static generatedHTML = false
+  static flags = {
+    createdHTML: false,
+    scrubbing: false,
+  }
+
+  static scrubBegin() {
+    this.flags.scrubbing = true
+    this.scrubData.movedMouse = false
+    this.scrubData.offsetFactor = 0
+    this.scrubData.originalTime = AudioTrack.current.audio.currentTime
+  }
+
+  static scrubUpdate() {
+    if(!this.flags.scrubbing) return
+
+    /* calculate mouse offset */
+    let bb = this.elements.get("track").getBoundingClientRect()
+    let offsetPX = Mouse.clientPosition.x - bb.left
+    this.scrubData.offsetFactor = (offsetPX / bb.width)
+
+    this.elements.get("progressBar").style.width = this.scrubData.offsetFactor * 100 + "%"
+    this.elements.get("playhead").style.left = this.scrubData.offsetFactor * 100 + "%"
+    this.elements.get("currentTime").innerText = secondsToMinutesString(AudioTrack.current.audio.currentTime)
+
+    AudioTrack.current.audio.currentTime = AudioTrack.current.audio.duration * this.scrubData.offsetFactor
+    this.scrubData.movedMouse = true
+  }
+
+  static scrubEnd() {
+    if(!this.scrubData.movedMouse) this.scrubUpdate()
+
+    this.flags.scrubbing = false
+    this.tickDurationHTML()
+  }
 
   /** This function loads a tracklist and then creates the HTML and appends it to the proper UI container. */
   static loadTracklist(/** @type Project */ project, content) {
@@ -154,9 +192,9 @@ class AudioPlayer {
       this.expandHTML()
     }
 
-    /* stupid hack */
+    /* collapse on leaving project detail */
     document.addEventListener("click", (e) => {
-      if(e.target.closest("#audio-player") == null && Project.projectDetailVisible == false) {
+      if(!e.target.closest("#audio-player") && !Project.projectDetailVisible) {
         this.collapseHTML()
       }
     })
@@ -180,17 +218,25 @@ class AudioPlayer {
 
     toggleControls.onclick = () => this.toggleControls()
 
-    track.onclick = () => {
-
+    track.onmousedown = () => {
       /* calculate mouse offset */
-      let bb = track.getBoundingClientRect()
-      let offsetPX = Mouse.clientPosition.x - bb.left
-      let offsetFactor = (offsetPX / bb.width)
+      let rect = track.getBoundingClientRect()
+      let offsetPX = Mouse.clientPosition.x - rect.left
+      this.scrubData.offsetFactor = (offsetPX / rect.width)
 
-      AudioTrack.current.audio.currentTime = AudioTrack.current.audio.duration * offsetFactor
+      AudioTrack.current.audio.currentTime = AudioTrack.current.audio.duration * this.scrubData.offsetFactor
+      this.tickDurationHTML()
+      this.scrubBegin()
     }
 
+    document.addEventListener("mouseup", (e) => this.scrubEnd(e), false)
+    document.addEventListener("mousemove", (e) => this.scrubUpdate(e), false)
+
     track.onmousemove = () => {
+      if(this.flags.scrubbing) {
+        playheadGhost.classList.add("hidden")
+        return
+      }
 
       /* calculate mouse offset */
       let bb = track.getBoundingClientRect()
@@ -215,7 +261,7 @@ class AudioPlayer {
         Project.select(project.projectIdentifier)
     }
 
-    this.generatedHTML = true
+    this.flags.createdHTML = true
 
     if(state.isOrientationPortrait) {
       this.HTMLDesktopToMobile()
@@ -224,19 +270,32 @@ class AudioPlayer {
 
   /** This method updates the visual for track duration, according to the current track being played. */
   static tickDurationHTML() {
-    if(!this.generatedHTML) return
+    if(!this.flags.createdHTML) return
     
-    let offset = (AudioTrack.current.audio.currentTime / AudioTrack.current.audio.duration) * 100 + "%"
-    this.elements.get("progressBar").style.width = offset
-    this.elements.get("playhead").style.left = offset
-    this.elements.get("currentTime").innerText = secondsToMinutesString(AudioTrack.current.audio.currentTime)
+    if(!this.flags.scrubbing) {
+      let offset = (AudioTrack.current.audio.currentTime / AudioTrack.current.audio.duration) * 100 + "%"
+      this.elements.get("progressBar").style.width = offset
+      this.elements.get("playhead").style.left = offset
+      this.elements.get("currentTime").innerText = secondsToMinutesString(AudioTrack.current.audio.currentTime)
+    }
+
     //@todo inefficient but works
     this.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
   }
 
+  static updateBufferIndicator(/** @type boolean */canPlay) {
+    if(canPlay) {
+      this.elements.get("playButton").classList.remove("buffering")
+    }
+    else 
+    if(!canPlay) {
+      this.elements.get("playButton").classList.add("buffering")
+    }
+  }
+
   /** Turns the player into a tiny bar. */
   static collapseHTML() {
-    if(!this.generatedHTML) return
+    if(!this.flags.createdHTML) return
     if(Project.projectDetailVisible && Project.current === this.currentProject) return
     if(state.isOrientationPortrait) return
 
@@ -257,7 +316,7 @@ class AudioPlayer {
 
   /** This function assumes that all elements that have class "hidden" and "collapsed" will have those classes removed. */
   static expandHTML() {
-    if(!this.generatedHTML) return
+    if(!this.flags.createdHTML) return
     if(state.isOrientationPortrait) return
 
     let container = this.elements.get("container")
@@ -343,5 +402,9 @@ class AudioPlayer {
   static close() {
     this.elements.get("container").remove()
     AudioTrack.current?.stop()
+
+    /* remove the scrubbing listener */
+    document.removeEventListener("mousemove", this.scrubUpdate)
+    document.removeEventListener("mouseup", this.scrubEnd)
   }
 }

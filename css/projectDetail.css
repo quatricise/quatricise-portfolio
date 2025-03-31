@@ -343,19 +343,20 @@
 
 
 #audio-player {
+  --width: 760px;
   position: fixed;
   bottom: 10px;
-  left: calc(50% - 720px / 2);
+  left: calc(50% - var(--width) / 2);
   display: flex;
   gap: 10px;
   align-items: center;
-  width: 720px;
+  width: var(--width);
   height: 80px;
   padding: 10px;
   user-select: none;
   background-color: rgb(29, 29, 29);
   border-radius: 5px;
-  box-shadow: 0 -15px 20px 20px #00000050;
+  box-shadow: 0 -0px 20px 10px #00000050;
   z-index: 100000;
 }
 
@@ -488,6 +489,12 @@
   background-image: url(../images/play_icon.png);
 }
 
+.audio-player-button.buffering {
+  background-image: url(../images/circle_loading.png)!important;
+  background-size: 70%;
+  animation: preloader-spin 1.5s infinite;
+}
+
 .audio-player-button.play.paused {
   background-image: url(../images/pause_icon.png);
 }
@@ -532,7 +539,6 @@
 .audio-player-duration {
   position: absolute;
   right: 10px;
-  /* top: 2px; */
   pointer-events: none;
 }
 
@@ -695,7 +701,7 @@
   gap: 5px;
   padding: 0 10px 0 6px;
   background-color: rgba(255,255,255,0.06);
-  border-radius: 2px;
+  border-radius: 3px;
   color: rgb(163, 163, 163);
   transition: background-color 0.05s cubic-bezier(0.4, 0.0, 1.0, 1.0), transform 0.05s, padding 0.05s, color 0.02s;
   user-select: none;
@@ -888,22 +894,6 @@
   background-color: rgb(201, 32, 32);
   filter: blur(25px);
   mix-blend-mode: color-burn;
-}
-
-/* GLYPHS */
-#background-shit {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  z-index: -2;
-}
-
-#background-shit canvas {
-  position: absolute;
-  width: 100%;
-  height: 100%;
 }
 
 

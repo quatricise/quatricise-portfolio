@@ -64,14 +64,22 @@ class AudioTrack {
     this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
 
+    /* @todo these events probably never fire if the audio is not interacted with, but if there are weird bugs, maybe these oughta be removed when another track starts playing */
+    this.audio.onwaiting = () => AudioPlayer.updateBufferIndicator(false)
+    this.audio.oncanplay = () => AudioPlayer.updateBufferIndicator(true)
+
     /* @todo is this if clause necessary? it should always have the HTML generated, it does that previously in this function */
-    if(AudioPlayer.generatedHTML) {
+    if(AudioPlayer.flags.createdHTML) {
       AudioPlayer.elements.get("duration").innerText = secondsToMinutesString(AudioTrack.current.audio.duration)
       /* @todo very inefficient, lmao */
       AudioPlayer.elements.get("progressBar").style.backgroundColor = AudioPlayer.getAudioPlayerTrackColor()
       
       if(state.isOrientationPortrait) {
         AudioPlayer.toggleControls(true)
+      }
+
+      if(AudioPlayer.currentProject !== Project.current) {
+        AudioPlayer.collapseHTML()
       }
 
       if(this.index === 0) {

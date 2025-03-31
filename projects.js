@@ -39,7 +39,7 @@ let projects = {
   confusion: {
     title: "Twenty Nineteen",
     description:
-    `Electronic instrumental album in the style of bubbly pop. Some of the influences are Vektroid, Black Moth Super Rainbow and Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
+    `Electronic instrumental album in the style of bubbly pop. Some of the influences include Vektroid, Black Moth Super Rainbow and Tigran Hamasyan. I'm working on the story right now, and searching for a female vocalist, otherwise I'll probably have to sing and autotune this.
     <br><br>
     At the start it was a simple rip-off of Vektroid's early work, but I knew I had failed at this many times before so I decided to take it its own direction.
     <br><br>
