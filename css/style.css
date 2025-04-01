@@ -675,7 +675,7 @@ a {
 }
 
 #about-section--bottom-shadow {
-  --width: calc(min(720px, 100vw));
+  --width: calc(min(860px, 100vw));
   position: absolute;
   left: calc((100vw - var(--width)) / 2);
   top: 0;

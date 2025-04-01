@@ -32,7 +32,7 @@ class PageState {
     }
   }
 
-  static allowed = ["page", "project", "tags", "search"]
+  static allowed = ["page", "project", "tags", "search", "selectAnim"]
 
   static checkValidity(args = {}) {
     for(let key in args) {
@@ -122,11 +122,16 @@ class Page {
   static applyState(/** @type PageState */ pageState, fromHistory = false) {
     if(!pageState) return
 
+    console.log("apply state")
+
     if(keyInObject(pageState, "page") === false) {
       pageState.set({page: "projects"})
     }
     if(keyInObject(pageState, "tags") === false) {
       pageState.set({tags: "*"})
+    }
+    if(keyInObject(pageState, "project") === false) {
+      Project.hideDetail()
     }
     // console.log(pageState)
     if(keyInObject(pageState, "search") === true && pageState.search != "") {
@@ -151,7 +156,13 @@ class Page {
 
         case "project": {
           let project = Array.from(Project.list).find(p => p.projectIdentifier === value)
-          project.select()
+          if(project) {
+            project.select(pageState.selectAnim)
+          } else {
+            console.warn("Invalid project idenfitier in URL: " + value)
+          }
+            
+          
           break
         }
 
@@ -237,7 +248,7 @@ document.addEventListener("keydown", (event) => {
   if(event.code === "Escape") {
     Search.hideSearchBar()
     Search.hideResults()
-    Project.hideDetail()
+    Page.applyState(new PageState({page: "projects"}))
   }
 
   if(event.code === "ArrowRight" && Project.projectDetailVisible) {
@@ -282,7 +293,7 @@ document.addEventListener("mousedown", (event) => {
 
 Q("#search-bar").onfocus =      () => Search.showSearchBar()
 Q("#search-bar input").onblur = () => Search.hideSearchBar()
-Q("#background").onclick =      () => Project.hideDetail()
+Q("#background").onclick =      () => Page.applyState(new PageState({page: 'projects'}))
 
 
 /** @type Animation - Animation instance of the arrow container in the project detail. */

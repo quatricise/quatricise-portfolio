@@ -36,7 +36,7 @@ class Project {
     item.style.height = Project.gallery.itemHeight + "px"
     item.dataset.tags = Array.from(this.tags).join(" ")
     item.dataset.project = this.projectIdentifier
-    item.onclick = () => this.select()
+    item.onclick = () => Page.applyState(new PageState({project: this.projectIdentifier, page: "projects"}))
     item.tabIndex = 0
 
     let
@@ -81,8 +81,8 @@ class Project {
   }
 
   /** Open project detail, fill it with this.data and also update the background to contain an adjusted, darkened version of the gallery thumbnail. */
-  select() {
-    Project.showDetail()
+  select(selectAnim) {
+    Project.showDetail(selectAnim)
 
     if(Project.current === this) return
     Project.current?.deselect()
@@ -244,7 +244,6 @@ class Project {
 
     Project.current = this
     AudioPlayer.collapseHTML()
-    Page.applyState(new PageState({page: "projects", project: this.projectIdentifier}))
   }
 
 
@@ -384,7 +383,7 @@ class Project {
   }
   
   /** Opens a bottom-docked panel with images, music and text contained within the project's data. */
-  static showDetail() {
+  static showDetail(selectAnim) {
     this.projectDetailVisible = true
 
     this.animations.forEach(a => a.cancel())
@@ -405,14 +404,26 @@ class Project {
     Q("#project-detail-text-side").scrollTo({top: 0, behavior: "auto"})
     Q("#project-detail-hide-button").classList.remove("hidden")
 
-    // this.animations.push(animateTranslate(
-    //   Q("#project-detail-hide-button"), new AnimOffset(0, 0, 200, 0), duration, easing))
-    // this.animations.push(animateFilter(
-    //   Q("#project-detail-hide-button"), "brightness(0.2) contrast(2) saturate(2)", "brightness(1) contrast(1) saturate(1)", duration, easing))
+
+
+    /** @type AnimOffset */
+    let animOffset
+    if(selectAnim === "fromRight") {
+      animOffset = new AnimOffset(50, 0, 0, 0)
+    } 
+    else
+    if(selectAnim === "fromLeft") {
+      animOffset = new AnimOffset(-50, 0, 0, 0)
+    } 
+    else 
+    {
+      animOffset = new AnimOffset(0, 0, 50, 0)
+    }
+
     this.animations.push(
       animateFilter(Q("#project-detail-panel"), "brightness(0.2) contrast(2) saturate(2) blur(10px)", "brightness(1) contrast(1) saturate(1) blur(0)", duration, easing))
     this.animations.push(
-      animateTranslate(Q("#project-detail-panel"), new AnimOffset(0, 0, 50, 0), duration, easing))
+      animateTranslate(Q("#project-detail-panel"), animOffset, duration, easing))
   }
 
   /** Closes the bottom-docked panel. */
@@ -446,22 +457,13 @@ class Project {
 
     /* collapse audio player */
     AudioPlayer.collapseHTML()
-
-    Page.applyState(new PageState({page: "projects"}))
-  }
-
-  /** Toggles the bottom-docked panel. */
-  static toggleDetail() {
-    this.projectDetailVisible ? 
-    this.hideDetail() :
-    this.showDetail()
   }
 
   static selectNext() {
     let foundIt = false
     for(let key in projects) {
       if(foundIt) {
-        this.select(key)
+        this.select(key, "fromRight")
         return
       }
       if(key === this.current.projectIdentifier) {
@@ -470,7 +472,7 @@ class Project {
     }
 
     /* we reached the end, wrap around */
-    this.select(Object.keys(projects)[0])
+    this.select(Object.keys(projects)[0], "fromRight")
   }
   
   static selectPrev() {
@@ -478,9 +480,9 @@ class Project {
     for(let key in projects) {
       if(key === this.current.projectIdentifier) {
         if(prev) {
-          this.select(prev)
+          this.select(prev, "fromLeft")
         } else {
-          this.select(Object.keys(projects).last())
+          this.select(Object.keys(projects).last(), "fromLeft")
         } 
         return
       }
@@ -617,6 +619,7 @@ class Project {
     }
   }
 
+  /** Currently unused, it was used to create background color for the label that pops up in the gallery on mouse hover. */
   static generateGalleryItemLabelColor(/** @type Project */ project) {
     const src = project.elements.get("thumbnail")
     const [x, y] = [src.naturalWidth, src.naturalHeight]
@@ -645,7 +648,7 @@ class Project {
   /** @type HTMLCanvasElement */
   static canvas
 
-  /** @type CanvasRenderingContext2D */
+  /** @type CanvasRenderingContext2D I think this is used for getting the color for the audio player, cos I'm a lazy inefficient fuck. */
   static ctx
 
   /** @type Set<Project> */
@@ -666,10 +669,9 @@ class Project {
   /** @type Array<Project> */
   static projectsToHide = []
 
-  static select(/** @type String */ projectIdentifier) {
+  static select(/** @type String */ projectIdentifier, /** @type string */ selectAnim) {
     if(!projectIdentifier) return
-    let project = Array.from(this.list).find(p => p.projectIdentifier === projectIdentifier)
-    project.select()
+    Page.applyState(new PageState({page: "projects", project: projectIdentifier, selectAnim: selectAnim}))
   }
 
   //#endregion static

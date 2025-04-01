@@ -58,8 +58,8 @@
 <div id='page--projects' class="page">
   <div id="projects-page-content" class='pointerEventsNone no-scrollbar'>
 
-    <!-- //some soft shadows around the edges to hide the sharp edge for the bg glyphs -->
-    <div style="position: absolute; left: -50px; top: -50px; width: calc(100% + 100px); height: calc(100% + 100px); background: #000; filter: blur(50px); z-index: -1;"></div>
+    <!-- some soft shadows around the edges to hide the sharp edge for the bg glyphs -->
+    <div style="position: absolute; left: -50px; top: -50px; width: calc(100% + 100px); height: calc(100% + 100px); background: #000; filter: blur(50px);"></div>
 
     <div class="projects-page-header">
       <div class="project-type-switch">
@@ -82,7 +82,7 @@
 
 <div id="project-detail" class="hidden">
   <div id="background-container" class='fullscreen-fixed'>
-    <div id="project-detail-hide-button" onclick="Project.hideDetail()">❌</div>
+    <div id="project-detail-hide-button" onclick="Page.applyState(new PageState({page: 'projects'}))">❌</div>
     <div id='background' class='background-dark' title="Close project detail [ESC]"></div>
   </div>
   <div id="project-detail-panel">

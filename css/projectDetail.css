@@ -299,13 +299,14 @@
   max-height: 100%;
   overflow-y: auto;
   overflow-x: visible;
+  z-index: 1;
 }
 
 #projects-gallery {
   display: grid;
   grid-template-rows: auto;
   gap: 10px;
-  padding-bottom: 200px;
+  padding-bottom: 250px;
   border-radius: 10px;
   overflow-x: hidden;
 }
@@ -786,6 +787,7 @@
   background-color: #000000;
   padding-bottom: 20px;
   padding-top: 20px;
+  z-index: 1;
 }
 
 #projects-page-main-heading {
