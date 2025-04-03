@@ -270,7 +270,6 @@
 #project-detail--button--prev-project:hover {
   background-image: url(../images/buttons/button_background_hover.png);
 }
-  
 
 #project-detail--button--next-project {
   width: var(--project-change-button-size);
