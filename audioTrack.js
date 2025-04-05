@@ -64,9 +64,12 @@ class AudioTrack {
     this.audio.ontimeupdate = () => AudioPlayer.tickDurationHTML()
     this.audio.onended = () => AudioPlayer.playNext()
 
-    /* @todo these events probably never fire if the audio is not interacted with, but if there are weird bugs, maybe these oughta be removed when another track starts playing */
-    this.audio.onwaiting = () => AudioPlayer.updateBufferIndicator(false)
-    this.audio.oncanplay = () => AudioPlayer.updateBufferIndicator(true)
+    this.audio.onwaiting = () => {
+      if(AudioTrack.current === this) AudioPlayer.updateBufferIndicator(false)
+    }
+    this.audio.oncanplay = () => {
+      if(AudioTrack.current === this) AudioPlayer.updateBufferIndicator(true)
+    }
 
     /* @todo is this if clause necessary? it should always have the HTML generated, it does that previously in this function */
     if(AudioPlayer.flags.createdHTML) {
