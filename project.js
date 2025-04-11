@@ -420,6 +420,10 @@ class Project {
       animOffset = new AnimOffset(0, 0, 50, 0)
     }
 
+    const buttons = Q("#project-detail--change-project-buttons")
+    buttons.style.display = "none"
+    setTimeout(() => buttons.style.display = "", duration + 100)
+
     this.animations.push(
       animateFilter(Q("#project-detail-panel"), "brightness(0.2) contrast(2) saturate(2) blur(10px)", "brightness(1) contrast(1) saturate(1) blur(0)", duration, easing))
     this.animations.push(

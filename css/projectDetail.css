@@ -990,7 +990,9 @@
 
   /* @todo mobile layout hotfix */
   #project-detail--change-project-buttons {
-    display: none;
+    position: fixed;
+    top: 50px;
+    height: auto;
   }
 
   .tag-button {
